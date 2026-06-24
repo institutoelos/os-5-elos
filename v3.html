@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>A Obra do Líder · ELO Business</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='47' fill='%23B4823A'/%3E%3Ctext x='50' y='70' font-family='Georgia,serif' font-size='58' font-style='italic' fill='%23FBF3E2' text-anchor='middle'%3E5%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Os 5 Elos — Mapa Comportamental do Instituto ELOS. Como você funciona, e onde está a sua alavanca.">
+<meta property="og:title" content="Os 5 Elos · Mapa Comportamental ELOS">
+<meta property="og:description" content="Um espelho do seu comportamento em 5 valores — e a sua alavanca de mudança.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================ DESIGN SYSTEM ============================ */
+:root{
+  --bg:#F4EFE7; --bg-grad-a:#F7F2EA; --bg-grad-b:#EFE7DA;
+  --ink:#231F1A; --ink-2:#5E574D; --ink-3:#928A7C;
+  --line:#E5DCCC; --line-2:#D8CCB8; --card:#FFFFFF;
+  --gold:#B4823A; --gold-2:#C99A50; --gold-soft:#EFDFBE; --gold-bg:#FBF3E2;
+  --green:#3E7A5C; --green-soft:#D7E9DC; --green-bg:#EAF3EC;
+  --terra:#B25B3C; --terra-soft:#F0D7CC;
+  --amber:#A6863F; --amber-soft:#EFE3C4;
+  --falta:#A6863F; --ponto:#3E7A5C; --excesso:#B25B3C;
+  --shadow-sm:0 2px 10px -4px rgba(60,40,15,.18);
+  --shadow:0 14px 50px -22px rgba(60,40,15,.40);
+  --shadow-lg:0 30px 70px -30px rgba(60,40,15,.45);
+  --serif:"Fraunces",ui-serif,Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --r:18px; --r-lg:26px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);color:var(--ink);line-height:1.55;font-size:16px;
+  background:radial-gradient(120% 90% at 50% -10%, var(--bg-grad-a), var(--bg-grad-b) 70%) fixed;
+  min-height:100dvh;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  display:flex;flex-direction:column;align-items:center;overflow-x:hidden;
+}
+.wrap{width:100%;max-width:680px;padding:0 22px;flex:1;display:flex;flex-direction:column}
+::selection{background:var(--gold-soft)}
+
+/* ---------- top bar / progress ---------- */
+.top{position:sticky;top:0;z-index:20;padding:18px 0 12px;
+  background:linear-gradient(var(--bg-grad-a) 62%, transparent);display:flex;align-items:center;gap:14px;opacity:0;transition:opacity .4s}
+.top.show{opacity:1}
+.logo{font-family:var(--serif);font-weight:600;font-size:16px;letter-spacing:.01em;white-space:nowrap}
+.logo b{color:var(--gold);font-style:italic}
+.bar{flex:1;height:6px;background:rgba(180,160,130,.22);border-radius:99px;overflow:hidden}
+.bar > i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--gold-2),var(--gold) 40%,var(--green));transition:width .55s var(--ease)}
+.pctn{font-size:12.5px;font-weight:600;color:var(--ink-3);font-variant-numeric:tabular-nums;min-width:36px;text-align:right}
+
+/* ---------- screen transitions ---------- */
+.screen{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 0 52px}
+.enter{animation:enter .55s var(--ease) both}
+.leaving{animation:leave .26s ease both}
+@keyframes enter{from{opacity:0;transform:translateY(20px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes leave{to{opacity:0;transform:translateY(-12px) scale(.99)}}
+.stagger > *{animation:enter .5s var(--ease) both}
+.stagger > *:nth-child(2){animation-delay:.05s}.stagger > *:nth-child(3){animation-delay:.1s}
+.stagger > *:nth-child(4){animation-delay:.15s}.stagger > *:nth-child(5){animation-delay:.2s}
+.stagger > *:nth-child(6){animation-delay:.25s}.stagger > *:nth-child(n+7){animation-delay:.3s}
+
+/* ---------- typography ---------- */
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:16px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(33px,8.5vw,50px);line-height:1.04;letter-spacing:-.018em;margin-bottom:20px}
+h1 .it{font-style:italic;color:var(--gold)}
+.lead{font-size:18px;color:var(--ink);line-height:1.5;margin-bottom:16px}
+.sub{font-size:16px;color:var(--ink-2);margin-bottom:18px}
+.pull{font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.4;color:var(--ink);
+  border-left:3px solid var(--gold-soft);padding-left:18px;margin:22px 0}
+
+/* ---------- buttons / fields ---------- */
+.btn{appearance:none;border:none;cursor:pointer;font-family:var(--sans);font-weight:650;font-size:16px;
+  background:var(--ink);color:#fff;padding:17px 30px;border-radius:15px;box-shadow:var(--shadow);
+  transition:transform .14s var(--ease),box-shadow .2s,filter .2s;display:inline-flex;align-items:center;gap:9px}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(1px) scale(.985)}
+.btn.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold))}
+.btn.ghost{background:transparent;color:var(--ink-2);box-shadow:none;border:1.5px solid var(--line-2);font-weight:600}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.field{width:100%;font:inherit;font-size:18px;padding:17px 18px;border:1.5px solid var(--line-2);border-radius:15px;
+  background:var(--card);color:var(--ink);margin:8px 0 20px;box-shadow:var(--shadow-sm);transition:border-color .2s,box-shadow .2s}
+.field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+.field::placeholder{color:var(--ink-3)}
+
+/* ---------- question ---------- */
+.qhead{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.qnum{font-size:13px;color:var(--gold);font-weight:700;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.qnum span{color:var(--ink-3);font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--green);background:var(--green-bg);padding:5px 12px;border-radius:99px;border:1px solid var(--green-soft)}
+.qtext{font-family:var(--serif);font-weight:500;font-size:clamp(21px,5.2vw,28px);line-height:1.26;margin-bottom:26px;letter-spacing:-.01em}
+.opts{display:flex;flex-direction:column;gap:11px}
+.opt{display:flex;align-items:center;gap:15px;width:100%;text-align:left;background:var(--card);
+  border:1.5px solid var(--line);border-radius:16px;padding:17px 18px;cursor:pointer;font:inherit;font-size:16px;
+  color:var(--ink);line-height:1.4;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  transition:border-color .18s,transform .14s var(--ease),box-shadow .18s,background .18s}
+.opt:hover{border-color:var(--gold-soft);transform:translateY(-1px)}
+.opt:active{transform:scale(.99)}
+.opt .key{font-family:var(--serif);font-weight:600;font-size:15px;color:var(--gold);width:24px;height:24px;flex:none;
+  display:grid;place-items:center;border:1.5px solid var(--line-2);border-radius:8px;transition:.18s}
+.opt.sel{border-color:var(--gold);background:var(--gold-bg);box-shadow:0 0 0 3px var(--gold-soft),var(--shadow-sm)}
+.opt.sel .key{background:var(--gold);color:#fff;border-color:var(--gold)}
+.opt.sel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(201,154,80,.16),transparent);
+  animation:sweep .5s var(--ease)}
+@keyframes sweep{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.scale{display:flex;gap:8px}
+.scale b{flex:1;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:13px;
+  padding:15px 4px;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink-2);cursor:pointer;line-height:1.2;
+  box-shadow:var(--shadow-sm);transition:.16s var(--ease)}
+.scale b:hover{border-color:var(--gold-soft);color:var(--ink);transform:translateY(-1px)}
+.scale b.sel{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#fff;border-color:var(--gold);transform:translateY(-2px)}
+.skip{display:block;margin:18px auto 0;background:none;border:none;color:var(--ink-3);text-decoration:underline;
+  text-underline-offset:3px;cursor:pointer;font:inherit;font-size:14px}
+.nav{margin-top:26px}
+.back{background:none;border:none;color:var(--ink-3);cursor:pointer;font:inherit;font-size:14.5px;display:inline-flex;align-items:center;gap:6px}
+.back:hover{color:var(--ink-2)}
+.cheer{margin-top:14px;font-size:13.5px;color:var(--gold);font-weight:600;text-align:center;animation:enter .5s var(--ease)}
+
+/* ---------- computing ---------- */
+.computing{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px;min-height:60vh}
+.orbits{position:relative;width:120px;height:120px}
+.orbits .d{position:absolute;width:15px;height:15px;border-radius:99px;top:50%;left:50%;margin:-7px}
+.orbits .d:nth-child(1){background:var(--gold)}.orbits .d:nth-child(2){background:var(--green)}
+.orbits .d:nth-child(3){background:var(--terra)}.orbits .d:nth-child(4){background:var(--amber)}
+.orbits .d:nth-child(5){background:var(--ink)}
+.orbits .d{animation:orbit 1.5s var(--ease) infinite}
+.orbits .d:nth-child(2){animation-delay:.12s}.orbits .d:nth-child(3){animation-delay:.24s}
+.orbits .d:nth-child(4){animation-delay:.36s}.orbits .d:nth-child(5){animation-delay:.48s}
+@keyframes orbit{0%,100%{transform:rotate(0deg) translateX(46px) scale(.7);opacity:.5}50%{transform:rotate(180deg) translateX(46px) scale(1.25);opacity:1}}
+.computing .t{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:500}
+
+/* ============================ REPORT ============================ */
+.seal{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--green);
+  background:var(--green-bg);border:1px solid var(--green-soft);padding:8px 15px;border-radius:99px;margin:8px 0 20px}
+.hero{background:linear-gradient(150deg,#28221b,#3c3023 55%,#4a3a26);color:#f7eede;border-radius:var(--r-lg);
+  padding:30px 26px;margin:8px 0 28px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-60px;top:-50px;width:220px;height:220px;
+  background:radial-gradient(circle,rgba(201,154,80,.5),transparent 68%)}
+.hero::after{content:"";position:absolute;left:-40px;bottom:-60px;width:180px;height:180px;
+  background:radial-gradient(circle,rgba(62,122,92,.32),transparent 70%)}
+.hero .k{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);font-weight:700;position:relative}
+.hero .name{font-family:var(--serif);font-weight:600;font-size:clamp(30px,7vw,40px);line-height:1.05;margin:8px 0 12px;position:relative;letter-spacing:-.01em}
+.hero p{color:#e8dcc7;font-size:16px;position:relative;margin:0}
+.hero .mm{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:17.5px;color:#f8eed8;
+  border-top:1px solid rgba(255,255,255,.16);padding-top:15px;position:relative}
+.lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:34px 0 15px;display:flex;align-items:center;gap:10px}
+.lbl::after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* gauges */
+.gauge{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 19px;margin-bottom:11px;box-shadow:var(--shadow-sm)}
+.gauge .gh{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;gap:8px}
+.gauge .gn{font-family:var(--serif);font-weight:600;font-size:17.5px}
+.gauge .gr{display:flex;gap:8px;align-items:center}
+.tagp{font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.tagp.lev{background:var(--terra-soft);color:#8c3f23}.tagp.for{background:var(--green-soft);color:#2c5942}
+.gz{font-size:12.5px;font-weight:700}
+.track{position:relative;height:11px;border-radius:99px;display:flex;margin:0 9px;box-shadow:inset 0 1px 3px rgba(0,0,0,.07)}
+.track .s{flex:1;height:100%}
+.track .s:first-child{border-radius:99px 0 0 99px;background:var(--amber-soft)}
+.track .s:nth-child(2){background:var(--green-soft)}
+.track .s:last-child{border-radius:0 99px 99px 0;background:var(--terra-soft)}
+.nd{position:absolute;top:50%;width:21px;height:21px;border-radius:99px;background:#fff;border:3px solid var(--ink);
+  transform:translate(-50%,-50%) scale(0);box-shadow:0 3px 12px -2px rgba(0,0,0,.45);left:50%;transition:left .9s var(--ease) .2s}
+.nd.go{animation:pop .5s var(--ease) forwards}
+@keyframes pop{to{transform:translate(-50%,-50%) scale(1)}}
+.tl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-3);margin:9px 9px 0;font-weight:500}
+
+/* bloco em camadas */
+.bloco{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 22px;margin-bottom:15px;box-shadow:var(--shadow-sm)}
+.bloco.lead{border:1.5px solid var(--gold-soft);box-shadow:0 0 0 3px var(--gold-soft),var(--shadow)}
+.bloco .ban{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.bloco .epi{font-family:var(--serif);font-weight:600;font-size:24px;margin:5px 0 3px;line-height:1.12;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.start{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#fff}
+.estado{font-size:13px;color:var(--ink-2);font-weight:600;margin-bottom:2px}
+.voz{font-family:var(--serif);font-style:italic;color:var(--ink-2);font-size:16px;margin:15px 0 0;line-height:1.4}
+.lyr{margin-top:15px}
+.lyr .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--gold)}
+.lyr.gr .h{color:var(--green)}
+.lyr p{margin:4px 0 0;color:var(--ink);font-size:15.5px;line-height:1.5}
+.alav{margin-top:8px;display:flex;flex-direction:column;gap:9px}
+.alav li{list-style:none;position:relative;padding:12px 14px 12px 38px;background:var(--gold-bg);border:1px solid var(--gold-soft);
+  border-radius:12px;font-size:15px;color:var(--ink);line-height:1.45;cursor:pointer;transition:.16s var(--ease)}
+.alav li::before{content:"";position:absolute;left:14px;top:15px;width:14px;height:14px;border:1.5px solid var(--gold);border-radius:5px;transition:.16s}
+.alav li:hover{transform:translateX(2px)}
+.alav li.on{background:#fff;border-color:var(--gold)}
+.alav li.on::before{background:var(--gold);box-shadow:inset 0 0 0 2px #fff}
+.fill{margin-top:13px;background:var(--bg-grad-b);border:1px dashed var(--gold-2);border-radius:13px;padding:14px 15px;font-size:14.5px;color:var(--ink-2)}
+.fill b{color:var(--ink)}
+.ponte{margin-top:15px;font-size:15px;color:var(--ink-2);line-height:1.5}
+.ponte .h{font-weight:700;color:var(--green);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+.bpull{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.35;color:var(--gold);margin-top:17px;padding-left:16px;border-left:3px solid var(--gold-soft)}
+.pcard{background:var(--green-bg);border:1px solid var(--green-soft);border-radius:var(--r);padding:17px 19px;margin-bottom:10px}
+.pcard .pe{font-family:var(--serif);font-weight:600;font-size:17px;display:flex;gap:10px;align-items:center}
+.pcard .pe i{font-size:10px;font-weight:800;text-transform:uppercase;background:var(--green);color:#fff;padding:3px 9px;border-radius:99px;font-style:normal;letter-spacing:.04em}
+.pcard p{margin:8px 0 0;font-size:15px;color:var(--ink)}
+.rep{background:linear-gradient(150deg,#163029,#274a3f);color:#eaf3ee;border-radius:var(--r-lg);padding:24px 22px;margin:8px 0}
+.rep .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green-soft);font-weight:700}
+.rep .n{font-family:var(--serif);font-size:23px;font-weight:600;margin:7px 0 9px}
+.rep p{color:#d6e7de;font-size:15px;margin:0}
+.close{font-family:var(--serif);font-size:21px;line-height:1.42;color:var(--ink);margin:30px 0 14px}
+.close b{color:var(--gold)}
+
+/* guia do lider */
+.lcta{background:linear-gradient(150deg,#1d2a25,#243a32);color:#eaf3ee;border-radius:var(--r-lg);padding:24px 22px;margin:20px 0;box-shadow:var(--shadow)}
+.lcta .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-soft);font-weight:700}
+.lcta .t{font-family:var(--serif);font-size:21px;font-weight:600;margin:7px 0 8px;line-height:1.15}
+.lcta p{color:#cfe0d8;font-size:15px;margin:0 0 16px}
+.lcta button{background:#fff;color:#16302a;border:none;border-radius:13px;padding:14px 24px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;box-shadow:var(--shadow);transition:transform .14s var(--ease),filter .2s}
+.lcta button:hover{filter:brightness(.96)}.lcta button:active{transform:scale(.98)}
+.postura{font-family:var(--serif);font-style:italic;color:var(--ink-2);font-size:16px;margin:6px 0 18px;border-left:3px solid var(--green-soft);padding-left:16px;line-height:1.45}
+.lcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 21px;margin-bottom:13px;box-shadow:var(--shadow-sm)}
+.lcard.lead{border:1.5px solid var(--green-soft);box-shadow:0 0 0 3px var(--green-soft),var(--shadow-sm)}
+.lcard h3{font-family:var(--serif);font-size:19px;font-weight:600;margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.lb{margin-top:12px}
+.lb .h{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--green)}
+.lb.w .h{color:var(--terra)}
+.lb p{margin:3px 0 0;font-size:15px;color:var(--ink);line-height:1.48}
+.lb.q{background:var(--green-bg);border:1px solid var(--green-soft);border-radius:12px;padding:13px 15px;margin-top:15px}
+.lb.q p{font-family:var(--serif);font-style:italic;font-size:16px;color:#1f3a30}
+
+.foot{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);margin-top:34px;padding:20px 0 46px;text-align:center;line-height:1.6}
+.foot b{color:var(--ink-2)}
+.hidden{display:none!important}
+@media(max-width:480px){.wrap{padding:0 18px}}
+@media print{.top,.nav,.row,.lcta button,.skip{display:none!important}.hidden{display:block!important}body{background:#fff}.hero,.rep,.lcta{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.obra{margin:18px 0;padding:16px;border:1px solid rgba(0,0,0,.08);border-radius:18px;background:#fff}
+.obra-cap{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:700;margin:4px 0 10px}
+.alicerce-band{margin-top:14px;padding:14px 14px 6px;border-radius:14px;background:rgba(70,45,20,.06);border-top:3px solid var(--gold)}
+.gauge.crack .gn{color:var(--excesso)}
+.mini{font-size:11px;color:var(--ink-2);font-weight:600;background:rgba(0,0,0,.05);padding:1px 7px;border-radius:8px;margin-left:6px;text-transform:uppercase;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top" id="top"><div class="logo">Os 5 <b>Elos</b></div><div class="bar"><i id="bar"></i></div><div class="pctn" id="pct">0%</div></div>
+  <main id="app"></main>
+</div>
+<script>
+"use strict";
+/* ════════════════════════ DADOS ════════════════════════ */
+const BANK = {"forcas": {"con": [{"area": "Você", "texto": "Quem convive comigo no trabalho e em casa vê a mesma pessoa.", "reverse": false}, {"area": "Trabalho", "texto": "Não levo vantagem num acordo, mesmo quando o outro não perceberia.", "reverse": false}, {"area": "Você", "texto": "Não finjo simpatia por alguém só pra destravar um negócio.", "reverse": false}, {"area": "Trabalho", "texto": "Gosto de ser visto como mais importante do que as pessoas à minha volta.", "reverse": true}, {"area": "Você", "texto": "Se dá pra ganhar no detalhe sem ninguém notar, eu ganho.", "reverse": true}, {"area": "Trabalho", "texto": "Em público defendo princípios que nem sempre sigo na rotina.", "reverse": true}], "alm": [{"area": "Equipe", "texto": "Reparo no estado de quem trabalha comigo, mesmo no meio da correria.", "reverse": false}, {"area": "Você", "texto": "Saio mexido de uma conversa em que o outro estava mal.", "reverse": false}, {"area": "Equipe", "texto": "Dou meu tempo a quem da equipe está passando por um aperto.", "reverse": false}, {"area": "Você", "texto": "Costumo ser o último a saber quando alguém ao meu redor está mal.", "reverse": true}, {"area": "Equipe", "texto": "Não me envolvo no que quem trabalha comigo carrega por fora.", "reverse": true}, {"area": "Você", "texto": "Não costumo me colocar no lugar de quem está na minha frente.", "reverse": true}], "lea": [{"area": "Equipe", "texto": "Banco quem é da minha equipe mesmo quando isso me custa caro.", "reverse": false}, {"area": "Você", "texto": "Quando algo me incomoda num sócio, levo a ele e falo na frente.", "reverse": false}, {"area": "Equipe", "texto": "Não comento por aí os problemas internos de quem trabalha comigo.", "reverse": false}, {"area": "Você", "texto": "Mágoa antiga com um sócio me faz fechar a porta pra ele.", "reverse": true}, {"area": "Equipe", "texto": "Se um parceiro me irrita, é mais fácil desabafar com outros do que com ele.", "reverse": true}, {"area": "Você", "texto": "Se bancar alguém da equipe começa a me prejudicar, prefiro me afastar dele.", "reverse": true}], "exc": [{"area": "Trabalho", "texto": "Refaço o que já passou pelos outros se eu enxergo uma falha.", "reverse": false}, {"area": "Você", "texto": "Confiro o que entrego antes de dar como pronto.", "reverse": false}, {"area": "Trabalho", "texto": "Entregar algo 'mais ou menos' pronto me incomoda até eu corrigir.", "reverse": false}, {"area": "Você", "texto": "Se o detalhe não muda o resultado, deixo como está.", "reverse": true}, {"area": "Trabalho", "texto": "Quando o trabalho fica aceitável, paro por ali.", "reverse": true}, {"area": "Você", "texto": "O que não é minha responsabilidade direta na empresa, não é problema meu.", "reverse": true}], "int": [{"area": "Pressão", "texto": "Assim que decido algo, quero ver acontecendo já, não semana que vem.", "reverse": false}, {"area": "Trabalho", "texto": "Imprimo um ritmo acelerado e me impaciento quando as coisas arrastam.", "reverse": false}, {"area": "Pressão", "texto": "Me cobro metas grandes e vou com tudo atrás delas.", "reverse": false}, {"area": "Trabalho", "texto": "Largo boa parte do que começo antes de chegar ao fim.", "reverse": true}, {"area": "Pressão", "texto": "Sem um prazo apertado em cima, eu vou empurrando a tarefa.", "reverse": true}, {"area": "Trabalho", "texto": "Raramente sinto aquela pressa de tirar as coisas do papel.", "reverse": true}], "fir": [{"area": "Pressão", "texto": "No meio de uma crise, mantenho a cabeça fria e ajo.", "reverse": false}, {"area": "Você", "texto": "Faço a cobrança dura mesmo quando isso me custa a simpatia.", "reverse": false}, {"area": "Pressão", "texto": "Não recuo de um confronto necessário só pra evitar desgaste.", "reverse": false}, {"area": "Você", "texto": "Um contratempo pequeno já estraga meu dia inteiro.", "reverse": true}, {"area": "Pressão", "texto": "Adio conversas duras esperando que o problema se resolva sozinho.", "reverse": true}, {"area": "Você", "texto": "Quando a pressão aperta, perco o controle e travo.", "reverse": true}], "pre": [{"area": "Equipe", "texto": "Em qualquer roda, acabo sendo eu a conduzir a conversa.", "reverse": false}, {"area": "Você", "texto": "Quando chego empolgado, a sala inteira sente e acompanha.", "reverse": false}, {"area": "Equipe", "texto": "Num evento cheio, gosto de estar no centro das atenções.", "reverse": false}, {"area": "Você", "texto": "Numa reunião, prefiro ficar quieto a tomar a palavra.", "reverse": true}, {"area": "Equipe", "texto": "Não costumo ser eu quem levanta a energia de um grupo.", "reverse": true}, {"area": "Você", "texto": "Num lugar cheio de gente, costumo passar despercebido.", "reverse": true}], "fle": [{"area": "Trabalho", "texto": "Quando o cenário muda, refaço o plano em vez de insistir no antigo.", "reverse": false}, {"area": "Você", "texto": "Gosto de experimentar um método novo antes de ter certeza dele.", "reverse": false}, {"area": "Trabalho", "texto": "Me interessam ideias fora do comum, mesmo as que parecem estranhas.", "reverse": false}, {"area": "Você", "texto": "Prefiro o que já está provado a ficar testando novidade.", "reverse": true}, {"area": "Trabalho", "texto": "Ideia muito diferente me deixa mais desconfiado do que curioso.", "reverse": true}, {"area": "Você", "texto": "Quando algo funciona, não vejo motivo pra rever a abordagem.", "reverse": true}]}, "meta": {"con": {"nome": "Congruência", "eixo": "Alicerce"}, "alm": {"nome": "Alma", "eixo": "Alicerce"}, "lea": {"nome": "Lealdade", "eixo": "Alicerce"}, "exc": {"nome": "Excelência", "eixo": "Prédio"}, "int": {"nome": "Intensidade", "eixo": "Prédio"}, "fir": {"nome": "Firmeza", "eixo": "Prédio"}, "pre": {"nome": "Presença", "eixo": "Prédio"}, "fle": {"nome": "Flexibilidade", "eixo": "Prédio"}}};
+const CONTENT = {"con": {"nome": "Congruência", "eixo": "Alicerce", "forca": "Congruência", "essencia": "Mede o quanto a sua palavra bate com o seu ato — e se quem te vê de perto encontra a mesma pessoa que quem te vê de longe.", "niveis": {"baixo": {"epi": "Joga o jogo", "da": "Você lê a mesa antes de mostrar a mão. Não entrega tudo, não se expõe à toa, e mostra a versão sua que aquele momento pede. Isso te dá margem que o sujeito transparente não tem: na negociação você segura a carta certa, na crise não bota pânico pra fora, e guarda informação que, solta, viraria arma na mão de quem está do outro lado da mesa.", "custa": "O preço não aparece na hora — aparece na distância entre o que você fala e o que você faz. Quando essa fenda cresce, seu time para de ouvir a sua palavra e passa a adivinhar a sua intenção. Aí você lidera no medo, na cobrança em cima, no controle — porque a palavra sozinha já não move ninguém. Quem te vê de perto e quem te vê de longe começam a descrever dois caras diferentes. E o dia que isso vaza, não é um erro que te cobram. É o personagem inteiro.", "alavanca": "Nos próximos dias eu escolho uma coisa que eu disse que ia fazer e faço — onde o time vê — pra minha palavra voltar a pesar sem que eu precise cobrar ninguém. Uma promessa cumprida na frente de todos vale mais que dez discursos."}, "medio": {"epi": "Caso a caso", "da": "Você é reto na maioria das mesas e dobra a régua quando o jogo aperta. Não é ingênuo nem dissimulado — é pragmático. Cumpre o que promete quando dá pra cumprir, e quando não dá, ajusta sem se vender por inteiro. Confiável o bastante pra ter gente atrás de você, flexível o bastante pra não rachar no primeiro aperto.", "custa": "O problema é que 'depende' também é uma resposta que o seu time lê. Eles não sabem qual versão sua vão encontrar na segunda de manhã — a que cumpre ou a que arruma um bom motivo pra não cumprir. Essa imprevisibilidade cobra juro silencioso: ninguém te enfrenta de frente porque ninguém sabe onde você trava. E sob pressão de verdade o 'caso a caso' escorrega — quase sempre pro lado que te favorece. Sem uma linha fixa, você é coerente até o dia em que custar caro demais ser.", "alavanca": "Nos próximos dias eu defino as 2 ou 3 linhas que eu não cruzo em hipótese nenhuma, custe o que custar, e digo ao meu time quais são — pra eles pararem de adivinhar qual versão minha vão encontrar e saberem onde eu sou de ferro."}, "alto": {"epi": "Reto", "da": "Sua palavra é a sua assinatura. O que você diz na reunião é o que você faz no corredor, e quem te conhece há dez anos descreve o mesmo homem que te conheceu ontem. Isso te dá a coisa mais cara que existe numa empresa e que dinheiro nenhum compra: gente que executa o que você fala sem precisar conferir. Você não lidera no controle porque não precisa — o que sai da sua boca, vale. E não troca a sua paz por holofote: não precisa ser o maior da sala pra saber o seu tamanho.", "custa": "Só que a mesma reta que te faz confiável te faz previsível — e, às vezes, otário. Você mostra a mão quando não precisava, fala a verdade que custou o contrato, e olha torto pra quem dobra a régua, como se todo mundo tivesse a obrigação de jogar limpo do seu jeito. Tem hora que franqueza não é virtude, é vaidade: você prefere ter razão a ter resultado. E cobra dos outros um padrão que pouca gente sustenta — então some do seu lado gente boa que só estava sendo humana, não desonesta.", "alavanca": "Nos próximos dias eu escolho uma mesa onde a minha franqueza está me custando dinheiro e seguro a carta que eu não preciso mostrar — sem mentir, só sem entregar de graça. E na primeira vez que eu me pegar julgando alguém por dobrar a régua, eu pergunto se aquilo foi desonestidade ou só foi humano."}}}, "alm": {"nome": "Alma", "eixo": "Alicerce", "forca": "Alma", "essencia": "Alma mede se você enxerga gente de verdade — se sente o que o outro sente, repara quem não está bem e se importa, de fato, com quem rema do seu lado.", "niveis": {"baixo": {"epi": "Resolve, não acolhe", "da": "Você decide pelo fato, não pela cara. Não se enrosca no emocional dos outros, não carrega culpa por decisão dura, faz a chamada difícil e dorme tranquilo. Trata adulto como adulto — cada um cuida da sua parte. É uma objetividade que o líder de coração mole não tem: você não vira refém de quem chora pra ganhar o que não merece.", "custa": "Você não vê a pessoa rachando do seu lado antes de ela rachar. Quem trabalha com você se sente recurso, não gente — e recurso não fica por lealdade, fica enquanto o salário cai. E tem o pior: quando você não enxerga a pessoa de verdade, sua firmeza escorrega pra intimidação e sua cobrança vira controle. O time te obedece com medo, não com respeito. Aí você confunde silêncio com concordância — e descobre tarde demais que ninguém estava junto.", "alavanca": "Nos próximos dias, escolha uma pessoa do time e pergunte como ela está — fora da pauta de tarefa. Fique de boca fechada até ela terminar. Não resolve, não aconselha, não conserta. Só escuta e anota o que ouviu. O objetivo não é ajudar: é treinar o olho que você ainda não usa."}, "medio": {"epi": "Cuida sem afundar", "da": "Você lê a sala sem se afogar nela. Repara em quem não está bem e, ainda assim, toma a decisão que o negócio precisa. As pessoas se sentem vistas, mas não confundem o seu cuidado com licença pra afrouxar. Você consegue demitir com respeito e cobrar com afeto — segura as duas pontas que a maioria larga uma pra conseguir pegar a outra.", "custa": "O risco do meio é o conforto. Você repara o suficiente pra não parecer frio e decide o suficiente pra não parecer mole — e pode parar de crescer exatamente aí, achando que equilíbrio é chegada. No dia de verdade — um corte, uma traição, um amigo que parou de entregar — o meio balança: às vezes você endurece demais, às vezes amolece demais, e não sabe de antemão qual dos dois vai ser. Equilíbrio que nunca passou pela prova ainda não é caráter, é sorte.", "alavanca": "Nos próximos dias, pegue uma decisão difícil que envolve uma pessoa e escreva em duas linhas: o que o negócio precisa e o que essa pessoa precisa. Decida olhando os dois — e diga a ela os dois, na cara. Sem escolher um lado só pra fugir do desconforto do outro."}, "alto": {"epi": "Sente junto", "da": "Você sente o que o outro sente antes de ele falar. Pega o problema enquanto ele é pequeno — a pessoa que já decidiu sair, o conflito que ninguém verbaliza, o que está se afogando calado. Quem trabalha com você rema do seu lado porque sabe que é visto como gente, não como peça. Isso constrói uma lealdade que salário nenhum compra.", "custa": "Você carrega peso que não é seu e chama isso de responsabilidade. Trava uma decisão porque não quer machucar ninguém — e a indecisão machuca todo mundo, só que devagar. Quem sabe bancar a vítima te manobra. E o mais cruel: o time aprende que você não tem estômago pro corte e começa a relaxar debaixo da sua proteção. Cuidar sem coluna não é cuidado, é moleza com outro nome — e a gente boa vai embora junto com a ruim, porque você nunca separou as duas.", "alavanca": "Nos próximos dias, ache a cobrança que você está adiando porque não quer ferir alguém — e faça. Com firmeza E com cuidado, não escolha um. Diga o problema com todas as letras e o respeito também. Quem te respeita de verdade aguenta a verdade — e quem não aguenta acabou de te mostrar quem é."}}}, "lea": {"nome": "Lealdade", "eixo": "Alicerce", "forca": "Lealdade", "essencia": "Mede se você fica do lado de quem é seu quando custa caro — e se fala na cara, em vez de pelas costas.", "niveis": {"baixo": {"epi": "Pé atrás", "da": "Você não vira refém de relação. Lê gente pelo que entrega, não pelo tempo de casa. Quando alguém para de entregar, você solta sem novela e sem dez anos de culpa — não confunde afeto com competência. Seu julgamento sobre a empresa não é comprado por 'mas ele é gente boa'. Você enxerga claro justamente porque não está enrolado emocionalmente em cada pessoa que trabalha com você.", "custa": "Só que quem trabalha com você sente isso na pele: percebe que é substituível, que no dia em que escorregar você solta sem piscar. E ninguém dá o sangue por quem soltaria sem piscar. Lealdade é mão dupla — desce antes de subir. Se você não põe o corpo pelos seus, não espere que ponham o corpo por você. Tem a outra face: quando alguém te decepciona, você não senta pra falar — você se fecha, fica remoendo, e o assunto migra pro corredor. Aí a base racha. A confiança que a lealdade não construiu, você passa a comprar no controle: vigia, confere, desconfia — porque não criou o vínculo que deixaria confiar. O medo ocupa o espaço que a lealdade deixou vazio.", "alavanca": "Nos próximos dias, escolha uma pessoa do seu time que já provou ser sua e banque ela em público, na frente dos outros, mesmo quando custar. E o próximo que te decepcionar: em 48 horas, sente na frente dele e fale na cara — em vez de remoer e deixar o assunto vazar pro corredor."}, "medio": {"epi": "Na medida", "da": "Você banca os seus, mas de olho aberto. A lealdade não te cega. Dá ao time a segurança de saber que tem alguém atrás — e ao mesmo tempo não passa a mão na cabeça no que precisa ser exposto. O que te incomoda, você fala na frente da pessoa; não deixa virar assunto de corredor. Você segura as duas pontas: o vínculo e a verdade. Quem está perto sabe duas coisas ao mesmo tempo — que você está com ele e que você não vai mentir pra deixar ele confortável. É a mistura mais rara, e é sobre ela que a confiança de verdade se levanta.", "custa": "O custo do meio é que ele te cobra o tempo inteiro — cansa segurar a linha entre bancar alguém e virar refém dele. E tem um risco real: em nome do 'equilíbrio', você dosa a lealdade com tanto cuidado que ninguém nunca sente que você iria até o fim por ele. Lealdade medida passa por lealdade morna. A pessoa não quer um líder que pesa o compromisso em gramas — às vezes ela precisa saber que você atravessaria a rua e tomaria o ônibus por ela, sem calcular. Se ninguém nunca sente isso, você está protegido, mas não tem ninguém que seja seu de verdade.", "alavanca": "Nos próximos dias, ache a pessoa do time que mais precisaria saber que você está com ela e tire o asterisco: mostre lealdade inteira, sem o 'mas'. Em paralelo, aquela conversa que você vem dosando há semanas — tenha ela reta, na cara, sem almofada. Teste se o seu 'na medida' é equilíbrio ou é fuga com boas maneiras."}, "alto": {"epi": "Banca os seus", "da": "Você põe o corpo por quem é seu. Quem trabalha com você sabe que tem alguém que não vai largar no primeiro tropeço — e isso constrói uma lealdade que volta pra você com força. Você defende o time, não deixa o barco que rema virar assunto de corredor, fala na cara porque se importa de verdade. Gente segue um cara assim pro fogo, porque sabe que você não troca por conveniência. Essa é a base que sustenta tudo lá em cima: ninguém dá o sangue por um líder que não daria o sangue por ele. Você tem o que a maioria dos líderes não consegue comprar — pessoas que são suas de verdade.", "custa": "Só que lealdade sem freio vira lealdade cega. Você segura a pessoa errada porque ela é 'sua' — e o time inteiro te vê protegendo quem já não entrega, e aprende que aqui pertencer vale mais que entregar. Sua lealdade vira muro contra a verdade: ninguém te conta que o seu xodó é o problema, porque sabe que você vai defender. E a pior face: quando alguém que você bancou te decepciona, você não lê como erro — lê como traição. E leal traído é perigoso: ele se fecha, pune, o afeto vira controle. A mesma intensidade que te fez bancar as pessoas é a que te faz esmagar quando elas falham. A base que sustentava a confiança passa a fabricar medo — porque agora todo mundo anda com receio do dia em que vai cair da sua graça.", "alavanca": "Nos próximos dias, pegue a pessoa que você defenderia de olhos fechados e se pergunte, honesto: seguro ela porque entrega, ou porque é minha? Tenha ainda esta semana a conversa que você vem evitando justamente porque ela é sua — a chamada difícil que a lealdade te faz adiar. Lealdade que não aguenta um feedback duro não é lealdade, é cumplicidade."}}}, "exc": {"nome": "Excelência", "eixo": "Prédio", "forca": "Excelência", "essencia": "Mede o tamanho da régua que você impõe — a si mesmo e ao time — e o quanto trata o que é da empresa como se fosse seu.", "niveis": {"baixo": {"epi": "Deixa correr", "da": "Você entrega. Não trava polindo o que ninguém vai notar, não segura o time refazendo vírgula. Delega e deixa a coisa andar — o que sai, sai, e o volume não para. Num mercado que paga por quem entrega rápido, isso é dinheiro na mesa que o perfeccionista deixa esfriar.", "custa": "A régua desce sem você ver. O detalhe que você julgou 'não muda muito' é justo o que o cliente repara. E como não tem ninguém acima puxando o padrão, ele assenta no chão: o 'tá bom assim' vira a cultura da casa, e entrega mediana todo dia deixa de incomodar — até virar o normal que você jura que não é.", "alavanca": "Nos próximos dias eu pego uma entrega que eu passaria batido e inspeciono no detalhe — pelos olhos do cliente, não pelos meus. Onde ele sente, ali a régua sobe e vira inegociável. Uma só, pra começar."}, "medio": {"epi": "Aperta onde conta", "da": "Você tem o que é mais difícil de ter: discernimento. Aperta no que o cliente vê e sente, solta no que não muda o jogo. Não se afoga em detalhe nem deixa a casa cair. No papel, é o ponto de equilíbrio que todo dono diz que quer.", "custa": "Só que 'onde conta' escorrega fácil pra 'onde é confortável'. Sem critério escrito, você chama de 'não importa' exatamente o que dá trabalho — e o meio vira esconderijo. O risco aqui não é a régua baixa: é você achar que está escolhendo a briga certa quando, no fundo, está fugindo da difícil.", "alavanca": "Nos próximos dias eu escrevo as 3 coisas inegociáveis da minha entrega e as que eu escolho, conscientemente, soltar. Critério no papel vira decisão, não conveniência disfarçada — e me deixa cobrar o time pelo mesmo mapa."}, "alto": {"epi": "Não solta", "da": "Você é a régua da casa. Confere até sair certo, não cede no 'tá bom assim' e trata o que é da empresa como se fosse seu — porque, pra você, é. O time aprende que existe um padrão e que ele não dobra. A marca não passa vergonha no detalhe, e quem entrega abaixo da linha sabe que vai voltar.", "custa": "Mas tudo passa por você — e aí você vira o gargalo da própria empresa. O time para de assumir porque sabe que você refaz; ninguém carrega a régua porque a régua é você. Perfeccionismo que atrasa entrega, que te queima e queima quem trabalha do seu lado. E o pior: você nunca forma gente que segura o padrão sozinha, porque o padrão nunca chega a ser dela.", "alavanca": "Nos próximos dias eu pego uma entrega, defino por escrito o que é 'bom o bastante pra sair' e deixo ir sem a minha conferida final. Se voltar problema, eu viro isso processo do time — não tarefa minha de novo."}}}, "int": {"nome": "Intensidade", "eixo": "Prédio", "forca": "Intensidade", "essencia": "Mede a distância entre a ideia e a ação — quanta urgência você imprime no que faz e no que cobra do time.", "niveis": {"baixo": {"epi": "Sem pressa", "da": "Você não corre atrás de cada impulso. Pensa antes de lançar, não cria incêndio onde não tem, e o time trabalha sem a sensação de que o chão está sempre pegando fogo. Você não gasta tiro à toa — quando se mexe, é porque vale a pena. Sua calma estabiliza quem está em volta e segura a empresa de virar refém da empolgação do dia.", "custa": "Enquanto você espera o momento certo, a janela fecha. O mercado não te espera, e o concorrente que se mexeu primeiro já está lá. Vista de fora, sua falta de urgência parece descaso — e a empresa passa a andar na velocidade da pessoa mais tranquila da sala: você. Ambição sem pressa não passa de plano guardado na gaveta.", "alavanca": "Nos próximos dias eu pego uma coisa que venho empurrando só porque não tem prazo apertado e ponho data nela — pra esta semana. Uma. Sem esperar o cenário ideal, porque ele não vem."}, "medio": {"epi": "Na medida", "da": "Você tem urgência, mas escolhe onde gastar. Sai do impulso pra ação no que importa e deixa o resto amadurecer. Tem fôlego pra puxar quando precisa e cabeça pra não correr atrás de tudo. Termina o que começa com mais frequência do que larga.", "custa": "O risco do meio é o dia decidir por você. Tem semana que você acelera o que pedia calma, e tem semana que deixa esfriar o que pedia velocidade — e nem sempre percebe qual foi qual. Sem um critério claro do que merece pressa, o equilíbrio escorrega pro morno. E morno não move empresa.", "alavanca": "Nos próximos dias eu olho pra trás e separo: onde fui morno quando o jogo pedia velocidade, e onde me precipitei quando pedia calma. Não pra me equilibrar mais — pra saber, na hora, qual botão apertar."}, "alto": {"epi": "Já sai fazendo", "da": "Entre a ideia e a primeira ação quase não tem intervalo. Você imprime ritmo, e a empresa anda na sua velocidade. Onde os outros ainda debatem, você já testou. Sua ambição não fica no papel — ela puxa o time pra frente e contamina quem está perto com a sensação de que, aqui, as coisas acontecem.", "custa": "Você começa mais do que termina. O chão fica cheio de coisa pela metade, e o time aprende que amanhã tem outra prioridade — então para de levar a sua a sério. Quando tudo é urgente, nada é urgente. Você confunde mexer com avançar, e a sua pressa vira o desgaste do time: eles correm no seu ritmo até não sobrar fôlego.", "alavanca": "Nos próximos dias eu escolho uma coisa que já comecei e não abro a próxima antes de fechar essa. E antes de sair fazendo o que me empolgou hoje, paro e pergunto: isso precisa ser agora, ou é só a minha pressa falando?"}}}, "fir": {"nome": "Firmeza", "eixo": "Prédio", "forca": "Firmeza", "essencia": "Mede o quanto você mantém a cabeça fria no aperto e encara a conversa difícil sem fugir dela nem desabar nela.", "niveis": {"baixo": {"epi": "Cede no aperto", "da": "Você sente o ambiente. A pressão te atravessa, e isso tem um lado real: você percebe a tensão antes de ela explodir, lê quando alguém está no limite e não sai atropelando ninguém. Perto de você o time respira — não anda pisando em ovos pra te abordar.", "custa": "A régua escorrega. A conversa difícil fica sempre pra amanhã, porque o desconforto de fazê-la custa mais, hoje, do que o problema de não fazer. E no aperto, o tranco te tira do prumo — quando isso acontece, quem manda na sala passa a ser o seu nervoso, não você. O conflito que você adia não evapora: muda de lugar e cresce.", "alavanca": "Nos próximos dias eu pego a única conversa que venho empurrando — aquela cobrança que adio há semanas — e faço ela esta semana. Marco a hora, falo direto, sem amaciar, e aguento o silêncio que vem depois sem sair correndo pra consertar o clima."}, "medio": {"epi": "No ponto", "da": "Você segura a maior parte do que vem. A pressão não toma conta, e quando a chamada difícil importa de verdade, você faz. Encara o conflito que precisa acontecer sem transformar tudo em guerra — você escolhe a hora.", "custa": "Mas onde fica a linha entre 'deixa pra lá' e 'tem que falar' ainda oscila dentro de você. Tem dia que engole o que devia dizer; tem dia que estoura no que devia deixar passar. Você é firme o bastante pra não desabar — mas não firme a ponto de o time saber, de olhos fechados, exatamente onde você não abre mão.", "alavanca": "Nos próximos dias eu escolho dois ou três pontos onde a minha régua não desce de jeito nenhum — e digo isso em voz alta pro time, antes do próximo aperto. Quando o teste vier, eu já chego sabendo o que é 'deixa pra lá' e o que é 'senta que a gente conversa'."}, "alto": {"epi": "Sangue frio", "da": "A crise não te move. Enquanto a sala perde a cabeça, você mantém a sua — e é dessa firmeza que o time se segura pra não entrar em pânico. Você faz a cobrança, toma a decisão impopular, segura a régua sem piscar. Ninguém fica adivinhando onde você está.", "custa": "O custo é que a mesma frieza que segura a crise atropela a pessoa. Você faz a cobrança — e nem sempre registra o estrago que ela deixou. A pressão que não te abala é também a que você não enxerga no outro: o que pra você foi 'só franqueza', pro seu time foi porta na cara. E porque o aperto não te derruba, você costuma passar do seu próprio limite sem o alarme tocar.", "alavanca": "Nos próximos dias, depois de cada cobrança dura que eu fizer, eu paro e checo a pessoa, não só a tarefa: pergunto como ela ficou e me obrigo a responder com sinceridade se aquela dureza era necessária mesmo ou se era só a saída mais fácil pra mim."}}}, "pre": {"nome": "Presença", "eixo": "Prédio", "forca": "Presença", "essencia": "Presença mede quanto espaço você ocupa numa sala — se puxa a frente, energiza e direciona, ou se prefere conduzir do fundo e deixar o ambiente respirar.", "niveis": {"baixo": {"epi": "Fica no fundo", "da": "Você não precisa ocupar o centro pra mandar. Quando fala, é porque tem o que dizer — e por ser raro, pesa. A sala respira perto de você: as ideias dos outros aparecem porque você não as atropela, e a decisão acaba saindo do que faz sentido, não de quem gritou mais alto. Você lê o ambiente em vez de dominá-lo, e isso é uma forma de comando que pouca gente percebe que tem.", "custa": "Numa mesa de gente barulhenta, você some — e some junto com a sua melhor ideia, que morre porque ninguém reparou que ela existia. O time não sente pra onde ir: silêncio não direciona, não energiza, não puxa ninguém num dia ruim. E tem uma confusão cara nisso: quem fica no fundo demais é lido como ausente, e ausência o dono paga vendo o comando da sala ir pra mão de quem fala mais alto — não de quem pensa melhor.", "alavanca": "Nos próximos dias eu vou assumir a frente de uma reunião de propósito — abrir, conduzir e fechar — sem esperar ser chamado. E vou colocar minha opinião antes dos outros, não depois, só pra ver o que muda na sala quando o espaço sou eu que tomo, em vez de esperar ele sobrar."}, "medio": {"epi": "Na medida", "da": "Você sabe a hora de aparecer e a hora de recolher. Puxa a frente quando a sala precisa de direção e recua quando é outro que tem de brilhar. Não é viciado no holofote nem foge dele — usa a presença como ferramenta, não como vício. Liga a energia quando o ambiente está morto e desliga quando já tem barulho demais. É a versão que sustenta uma reunião sem dominá-la.", "custa": "O preço do meio é a ambiguidade: nem sempre a sala sabe se desta vez você vai conduzir ou esperar, e essa dúvida custa segundos de comando que, no aperto, vão pra mão de outro. Você não tem o magnetismo de quem entra e já organiza tudo em volta, nem o peso de quem só fala porque é raro. Dosar é virtude — até o dia em que a indecisão entre puxar e calar deixa o lugar vazio, e vazio sempre é preenchido por alguém.", "alavanca": "Nos próximos dias eu vou, numa reunião, decidir de propósito em quais momentos puxo a frente e em quais recuo — e no fim vou perguntar a duas pessoas se ficou claro quem estava conduzindo. Se ninguém soube responder, a minha dose está borrada, e borrado o time confunde com falta de dono."}, "alto": {"epi": "Comanda a sala", "da": "Você entra e o lugar se organiza em volta de você. Energiza um time cansado, vende a visão, preenche o vácuo na hora exata em que ninguém sabe o que fazer. Onde você passa, as coisas se mexem — reunião travada destrava, gente parada anda. A sala te segue porque a sua energia contagia antes mesmo do seu argumento chegar. Numa crise, ter alguém que toma a frente sem titubear vale ouro.", "custa": "Você suga o ar. As ideias mais silenciosas — às vezes as melhores — morrem soterradas pela sua, e você nem vê, porque confunde a sua animação com a concordância de todos. Cuidado: as pessoas concordam com o volume, não com o mérito, e você sai da sala achando que alinhou quando só calou. Pior: o time para de empurrar porque já tem você empurrando por todos — e aí você criou dependência, não comando. Carisma que cansa a sala vira ruído, e ruído ninguém segue por muito tempo.", "alavanca": "Nos próximos dias eu vou, numa reunião, segurar a minha fala até três pessoas falarem antes de mim — e contar quantas ideias boas apareceram que eu teria atropelado. Se aparecerem várias, a minha presença está abafando o time em vez de conduzir, e o trabalho é abrir espaço, não preencher mais."}}}, "fle": {"nome": "Flexibilidade", "eixo": "Prédio", "forca": "Flexibilidade", "essencia": "Mede o quanto você troca de método quando o jogo vira — se larga rápido o que sempre fez e testa o novo, ou se segura firme no que já provou que funciona.", "niveis": {"baixo": {"epi": "No trilho", "da": "Você dá ao time o chão que ninguém tira: o método é o mesmo ontem, hoje e amanhã. Enquanto o concorrente muda de direção a cada palestra que assiste, você aprofunda o que já funciona e extrai dele o que os afobados nunca chegam a enxergar. Quem trabalha com você sabe onde pisa — e tem coisa que só se domina de tanto repetir, sem trocar.", "custa": "O jogo vira e você é o último a perceber, porque 'sempre funcionou' virou sua resposta automática pra qualquer ideia diferente. O mercado já trocou de mapa e você ainda defende o caminho que decorou. Pior: seu time aprende rápido a não te trazer nada novo — já sabe que vai ouvir não. Um dia o método que você protegeu com unha e dente vira exatamente o motivo de a empresa ficar pra trás.", "alavanca": "Nos próximos dias, pega UMA coisa que você faz 'porque sempre foi assim' e pergunta a quem executa: se a gente começasse hoje, do zero, faria igual? Escuta sem defender. Você não precisa mudar nada — precisa saber se ainda escolheria esse jeito, ou se só está repetindo no automático."}, "medio": {"epi": "Muda com motivo", "da": "Você muda quando o fato manda, não quando a moda chama. Testa o novo sem largar o que segura a casa de pé. É o ponto que quase todo dono diz querer: nem refém do método velho, nem escravo da novidade. Pesa, decide, e então vira — ou fica. Tanto a estabilidade quanto a abertura estão à mão; você usa a que a hora pede.", "custa": "O preço do meio é o timing. Enquanto você pesa se a mudança vale, o rápido demais já errou e corrigiu duas vezes, e o firme demais já fincou bandeira e foi. Tem hora que 'depende' é sabedoria, e tem hora que é só medo de se comprometer com um lado. O risco do equilíbrio é ele virar álibi: você nunca banca uma aposta inteira, e chama de prudência o que é adiamento.", "alavanca": "Nos próximos dias, escolhe UMA decisão que está 'em análise' faz tempo demais. Marca data pra bater o martelo — virar ou manter, tanto faz, mas decidir. Equilíbrio sem prazo não é maturidade: é só adiamento com nome bonito."}, "alto": {"epi": "Gira rápido", "da": "Quando o jogo vira, você já virou junto — sem chorar pelo plano que morreu. Enxerga a oportunidade antes de ela ter nome e testa enquanto os outros ainda discutem em reunião. Contigo, nada apodrece de tão parado. É essa cabeça que faz uma empresa achar o caminho que ninguém tinha mapeado, porque você não tem apego ao mapa antigo.", "custa": "Mas tem um custo que seu time sente na pele: ele nunca sabe qual é o plano, porque o de ontem você já trocou hoje. Você larga o método na metade — bem na hora em que ele ia começar a dar fruto — porque o novo brilha mais. Vira novidade demais e consolidação de menos. E cuidado: nem tudo que é diferente é melhor, e empresa também quebra de tanto mudar antes de colher. O que você chama de adaptar, às vezes é só não aguentar a parte chata de terminar.", "alavanca": "Nos próximos dias, pega a última coisa que você decidiu trocar e pergunta sem se enganar: o que eu larguei tinha mesmo parado de funcionar, ou eu só enjoei? Antes de virar a próxima chave, escolhe UMA coisa e deixa madurar até o fim, mesmo entediado. Terminar é uma força — e girar rápido demais te poupa, sem você perceber, de treinar ela."}}}};
+
+/* CONSTANTES */
+const VK = ["ex","in","co","al","le"];
+const NOME = {ex:"Excelência",in:"Intensidade",co:"Congruência",al:"Alma",le:"Lealdade"};
+const BANNER = {ex:"Sua entrega · Excelência",in:"Sua chama · Intensidade",co:"Sua verdade · Congruência",al:"Seu coração · Alma",le:"Seu barco · Lealdade"};
+const FREQ = ["Discordo muito","Discordo","Mais ou menos","Concordo","Concordo muito"];
+const AREA_ICON = {"Trabalho":"💼","Família":"🏡","Saúde":"🌱","Equipe":"🤝","Dinheiro":"💸","Pressão":"⏱️","Você":"🪞","Casa":"🏡","Excelência":"✦"};
+const CHEERS = {6:"Tá fluindo bem.",12:"Mais da metade — segue assim.",18:"Reta final.",24:"Quase lá. 🌟"};
+
+/* ════════════════════════ MOTOR ════════════════════════ */
+const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const ORD=["con","alm","lea","exc","int","fir","pre","fle"];
+const ALI=["con","alm","lea"], PRE=["exc","int","fir","pre","fle"];
+function buildQuestions(){
+  let cols={}; ORD.forEach(c=> cols[c]=shuffle((BANK.forcas[c]||[]).map(it=>({type:"freq",c,area:it.area,texto:it.texto,reverse:it.reverse}))));
+  let out=[], left=true;
+  while(left){ left=false; for(const c of shuffle(ORD.slice())){ if(cols[c].length){ out.push(cols[c].shift()); left=true; } } }
+  return out;
+}
+function score(){
+  const sum={},cnt={}; ORD.forEach(c=>{sum[c]=0;cnt[c]=0;});
+  Q.forEach((q,i)=>{ const a=ans[i]; if(q.type==="freq"&&typeof a==="number"&&a>=1&&a<=5){ const v=q.reverse?(6-a):a; sum[q.c]+=v; cnt[q.c]++; } });
+  const st={}; ORD.forEach(c=>{ const mean=cnt[c]?sum[c]/cnt[c]:3; const sc=Math.round((mean-1)/4*100);
+    const lv=mean<2.6?"baixo":mean>3.4?"alto":"medio"; st[c]={mean,score:sc,level:lv}; });
+  return st;
+}
+
+const Q = buildQuestions(); const N = Q.length;
+const ans = {}; let step=0, nome="", leaderOpen=false;
+const app=document.getElementById("app");
+const $top=document.getElementById("top"), $bar=document.getElementById("bar"), $pct=document.getElementById("pct");
+
+function progress(){ const s = step===0?0:(step>N?100:Math.round(step/(N+1)*100)); $bar.style.width=s+"%"; $pct.textContent=s+"%"; $top.classList.toggle("show",step>0&&step<=N); }
+function paint(html,cls){ app.innerHTML=`<section class="screen ${cls||"enter"}">${html}</section>`; }
+function transition(next){ const s=app.firstElementChild; if(s){s.classList.add("leaving"); setTimeout(next,200);} else next(); }
+function goto(s){ step=Math.max(0,s); window.scrollTo({top:0,behavior:"instant"}); render(); }
+function render(){ progress(); if(step===0) return Intro(); if(step>=1&&step<=N) return Question(step-1); return Report(); }
+
+/* ════════════════════════ TELAS ════════════════════════ */
+function Intro(){
+  paint(`
+    <div class="eyebrow">Mapa Comportamental ELOS</div>
+    <h1>A <span class="it">Obra do Líder</span></h1>
+    <p class="lead">Aqui não tem teste de certo ou errado — tem um <b>espelho</b>. Por situações do dia a dia, ele mostra como você funciona e onde está a sua alavanca.</p>
+    <p class="sub">Não pense muito: escolha o que você <b>realmente faria</b>. Leva uns 8 minutos — e passa voando.</p>
+    <label style="font-size:14px;color:var(--ink-2);font-weight:600">Como você se chama?</label>
+    <input class="field" id="nm" placeholder="Seu primeiro nome" autocomplete="given-name" />
+    <div class="row"><button class="btn gold" id="go">Começar &nbsp;→</button></div>`);
+  const inp=document.getElementById("nm"); inp.value=nome;
+  const begin=()=>{ nome=inp.value.trim(); transition(()=>goto(1)); };
+  document.getElementById("go").onclick=begin;
+  inp.addEventListener("keydown",e=>{ if(e.key==="Enter") begin(); });
+  setTimeout(()=>inp.focus(),300);
+}
+function Question(i){
+  const q=Q[i], cur=ans[i], ic=AREA_ICON[q.area]||"";
+  let body;
+  if(q.type==="freq"){
+    body=`<div class="scale">${FREQ.map((l,k)=>`<b class="${cur===k+1?"sel":""}" data-v="${k+1}">${l}</b>`).join("")}</div>`;
+  } else {
+    body=`<div class="opts">${q.opts.map((o,k)=>`<button class="opt ${cur===k?"sel":""}" data-k="${k}"><span class="key">${String.fromCharCode(65+k)}</span><span>${o.t}</span></button>`).join("")}</div>
+      <button class="skip" data-k="skip">nenhuma combina comigo</button>`;
+  }
+  const cheer = CHEERS[i] ? `<div class="cheer">${CHEERS[i]}</div>` : "";
+  paint(`
+    <div class="qhead"><span class="qnum">${i+1} <span>/ ${N}</span></span><span class="chip">${ic} ${q.area}</span></div>
+    <div class="qtext">${q.texto}</div>${body}${cheer}
+    <div class="nav">${i>0?`<button class="back" id="bk">← voltar</button>`:""}</div>`);
+  const choose = val => { ans[i]=val; // re-marca visual
+    app.querySelectorAll(".opt,.scale b").forEach(el=>el.classList.remove("sel"));
+    const sel = q.type==="freq" ? app.querySelector(`.scale b[data-v="${val}"]`) : app.querySelector(`.opt[data-k="${val}"]`);
+    if(sel) sel.classList.add("sel");
+    setTimeout(()=>transition(()=>goto(step+1)),230);
+  };
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(b.dataset.k==="skip"?"skip":+b.dataset.k));
+  app.querySelectorAll(".scale b").forEach(b=>b.onclick=()=>choose(+b.dataset.v));
+  const sk=app.querySelector(".skip"); if(sk) sk.onclick=()=>choose("skip");
+  const bk=document.getElementById("bk"); if(bk) bk.onclick=()=>transition(()=>goto(step-1));
+}
+function Report(){
+  // tela de "montando" → revela
+  paint(`<div class="computing"><div class="orbits"><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><div class="t">Montando o seu mapa…</div></div>`,"enter");
+  $top.classList.remove("show");
+  setTimeout(()=>transition(renderReport),1300);
+}
+function renderReport(){
+  const st=score(), Nm=nome||"Você", C=CONTENT, M=BANK.meta;
+  const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
+  const aliAvg=avg(ALI.map(c=>st[c].score)), preAvg=avg(PRE.map(c=>st[c].score));
+  const weakBase=ALI.slice().sort((a,b)=>st[a].score-st[b].score)[0];
+  const weakPre=PRE.slice().sort((a,b)=>st[a].score-st[b].score)[0];
+  let diag;
+  if(aliAvg<48&&preAvg>=55) diag=`Você ergue alto sobre um alicerce que treme — na <b>${M[weakBase].nome}</b>. A sua ação impõe, mas ainda não inspira: o time te obedece, mas não te segue.`;
+  else if(aliAvg>=55&&preAvg<48) diag=`O seu alicerce é firme — confiam em você. Mas falta poder de ação pra mover o time. Comece a erguer pela <b>${M[weakPre].nome}</b>.`;
+  else if(aliAvg>=55&&preAvg>=55) diag=`Obra firme: base e ação no ponto — isso é raro. O trabalho agora é afinar a sua força mais fina, a <b>${M[weakPre].nome}</b>.`;
+  else if(aliAvg<48&&preAvg<48) diag=`A obra ainda está no começo. Antes de erguer mais alto, firme o alicerce — comece pela <b>${M[weakBase].nome}</b>.`;
+  else diag=`A sua obra está de pé, com pontos a firmar. O mais urgente é a <b>${M[weakBase].nome}</b> no alicerce — é ela que segura o resto.`;
+  const row=c=>{ const s=st[c], b=C[c], crack=(ALI.includes(c)&&c===weakBase&&s.level!=="alto");
+    return `<div class="gauge ${crack?'crack':''}"><div class="gh"><span class="gn">${M[c].nome}${crack?' ⚠':''}</span><span class="gr"><span class="gz">${b.niveis[s.level].epi}</span></span></div>
+      <div class="track"><span class="s"></span><span class="s"></span><span class="s"></span><span class="nd" data-pos="${Math.max(5,Math.min(95,s.score))}"></span></div></div>`;};
+  const predio=PRE.map(row).join(""), alicerce=ALI.map(row).join("");
+  const card=c=>{ const s=st[c], b=C[c], lv=b.niveis[s.level];
+    return `<div class="bloco"><div class="epi">${M[c].nome} — ${lv.epi} <span class="mini">${M[c].eixo}</span></div>
+      <div class="estado">${b.essencia}</div>
+      <div class="lyr"><span class="h">O que isso te dá</span><p>${lv.da}</p></div>
+      <div class="lyr w"><span class="h">Onde pode te custar</span><p>${lv.custa}</p></div>
+      <div class="lyr gr"><span class="h">A sua alavanca</span><p>${lv.alavanca}</p></div></div>`;};
+  const detalhe=`<div class="lbl">O alicerce — quem você é</div>${ALI.map(card).join("")}<div class="lbl">O prédio — o que você exerce</div>${PRE.map(card).join("")}`;
+  app.innerHTML=`<section class="screen enter stagger">
+    <div class="eyebrow">A obra do líder</div>
+    <h1>${Nm}, é assim que <span class="it">você conduz</span></h1>
+    <p class="sub">Todo líder é uma obra: o <b>prédio</b> que aparece — a sua ação — e o <b>alicerce</b> que ninguém vê — quem você é. Não é a altura que derruba; é o alicerce que não aguentou.</p>
+    <div class="obra">
+      <div class="obra-cap">🏗️ O prédio · a sua ação</div>${predio}
+      <div class="alicerce-band"><div class="obra-cap">🧱 O alicerce · quem você é</div>${alicerce}</div>
+    </div>
+    <div class="hero"><div class="k">O seu diagnóstico</div><p style="font-size:17px;line-height:1.5">${diag}</p></div>
+    <div class="lcta"><div class="t">As 8 forças, uma a uma</div><p>O que cada força te dá, onde te custa, e a alavanca pra mexer.</p><button id="det">Descer um andar — ver as 8 forças →</button></div>
+    <div id="detbox" class="hidden">${detalhe}</div>
+    <div class="close">${Nm}, nenhuma dessas forças é quem você é — é o que você <b>faz</b> hoje. O líder se constrói: firma o alicerce, ergue o prédio. Comece por uma.</div>
+    <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button><button class="btn ghost" id="redo">Refazer</button></div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>A Obra do Líder — 8 forças · alicerce + prédio</div>
+  </section>`;
+  setTimeout(()=>app.querySelectorAll(".nd").forEach(n=>{n.classList.add("go");n.style.left=n.dataset.pos+"%";}),120);
+  document.getElementById("det").onclick=()=>{const x=document.getElementById("detbox"); x.classList.toggle("hidden"); document.getElementById("det").textContent=x.classList.contains("hidden")?"Descer um andar — ver as 8 forças →":"Esconder as 8 forças"; if(!x.classList.contains("hidden")) setTimeout(()=>x.scrollIntoView({behavior:"smooth"}),60);};
+  document.getElementById("redo").onclick=()=>{ for(const k in ans) delete ans[k]; step=0; window.scrollTo({top:0}); transition(render); };
+}
+
+render();
+</script>
+</body>
+</html>
