@@ -311,11 +311,11 @@ function score(){
     if(q.type==="q4"){ if(a&&typeof a==="object"){ const mo=q.opts[a.most],le=q.opts[a.least]; if(mo&&mo.emo)cen[mo.emo]+=1; if(le&&le.emo)cen[le.emo]-=1; } }
     else if(q.type==="freq"){ if(typeof a==="number"&&a>=1&&a<=5){ const v=(q.good?(a-3):(3-a)); mat[q.emo]+=v; matc[q.emo]++; allM+=v; allN++; if(q.gov){govS+=v; govN++;} } }
   });
-  const st={emo:{}}; EMO.forEach(e=>{ const c=Math.round((cen[e]+12)/24*10);
+  const st={emo:{}}; EMO.forEach(e=>{ const c=Math.round((cen[e]+12)/24*50);
     const m=matc[e]?Math.round(mat[e]/(matc[e]*2)*10):0; st.emo[e]={cen:c,mat:Math.max(-10,Math.min(10,m))}; });
   const spine=govN?(govS/(govN*2)):0, supp=allN?(allM/(allN*2)):0;   // cada um em -1..1
   const g01=0.6*spine+0.4*supp;                                       // mistura ponderada
-  st.reg=Math.max(0,Math.min(10,Math.round((g01+1)/2*10)));           // 0..10
+  st.reg=Math.max(0,Math.min(50,Math.round((g01+1)/2*50)));           // 0..50
   return st;
 }
 
@@ -394,19 +394,19 @@ function renderReport(){
   const flavor= dm>=3?"e você tende a usá-la bem":(dm<=-3?"e hoje ela mais te custa do que te serve":"e o uso dela ainda está em construção");
   const matTag=m=> m>=3?'<span class="mt ok">uso forte</span>':(m<=-3?'<span class="mt bad">te custa</span>':'<span class="mt">em construção</span>');
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
-    return `<div class="frow ${pri?'pri':''}"><span class="fn">${b.mercado}</span><span class="fbar"><i data-w="${Math.max(4,s.cen*10)}"></i></span><span class="fnum">${s.cen}</span>${matTag(s.mat)}</div>`;};
+    return `<div class="frow ${pri?'pri':''}"><span class="fn">${b.mercado}</span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span>${matTag(s.mat)}</div>`;};
   const chart=EMO.map(frow).join("");   /* eixo FIXO (ordem sempre igual) — o formato do gráfico vira assinatura comparável */
-  const reg=st.reg, regCls=reg>=7?"hi":(reg<=3?"lo":"mid");
-  const regTtl=reg>=7?"Você conduz o que sente":(reg<=3?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
-  const regTxt=reg>=7
+  const reg=st.reg, regCls=reg>=35?"hi":(reg<=15?"lo":"mid");
+  const regTtl=reg>=35?"Você conduz o que sente":(reg<=15?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
+  const regTxt=reg>=35
       ?`${Nm}, você sente forte e ainda assim conduz: as emoções são instrumento na sua mão, não o contrário. É a sua força mais silenciosa — e a mais rara.`
-      :(reg<=3
+      :(reg<=15
       ?`Hoje as suas emoções costumam conduzir você mais do que o contrário. A força está toda aí; o que falta é a maestria — usar cada uma na hora e na medida certa.`
       :`Em alguns dias você conduz, em outros a emoção assume. Você já sabe conduzir — só ainda não de forma constante, sob pressão.`);
   const regBand=`
     <div class="reg ${regCls}">
-      <div class="regtop"><span class="rk">A sua Maestria</span><span class="rnum">${reg}<i>/10</i></span></div>
-      <div class="rbar"><i data-w="${reg*10}"></i></div>
+      <div class="regtop"><span class="rk">A sua Maestria</span><span class="rnum">${reg}<i>/50</i></span></div>
+      <div class="rbar"><i data-w="${reg*2}"></i></div>
       <div class="rtt">${regTtl}</div><p class="rtx">${regTxt}</p>
       <div class="rsub">Não é uma sétima emoção — é a <b>maestria com que você usa as outras seis</b>: o quanto conduz o que sente, em vez de ser conduzido por isso.</div>
     </div>`;
@@ -424,7 +424,7 @@ function renderReport(){
     <div class="eyebrow">O seu mapa das emoções</div>
     <h1>${Nm}, o seu motor é a <span class="it">${A.mercado}</span></h1>
     <p class="sub">Por baixo do seu jeito de liderar, a emoção que mais te move é a <b>${dom}</b> — ${flavor}. Logo atrás vem a <b>${C[seg].mercado}</b>.</p>
-    <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 10</b></div>${chart}</div>
+    <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 50</b></div>${chart}</div>
     ${regBand}
     <div class="hero"><div class="k">O seu arquétipo</div><div class="name">${A.nome}</div><p>${A.frase}</p></div>
     <div class="lyr"><span class="h">O que essa emoção move em você</span><p>${D.oQueMove}</p></div>
