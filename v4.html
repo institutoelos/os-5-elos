@@ -397,18 +397,18 @@ function renderReport(){
     return `<div class="frow ${pri?'pri':''}"><span class="fn">${b.mercado}</span><span class="fbar"><i data-w="${Math.max(4,s.cen*10)}"></i></span><span class="fnum">${s.cen}</span>${matTag(s.mat)}</div>`;};
   const chart=ord.map(frow).join("");
   const reg=st.reg, regCls=reg>=7?"hi":(reg<=3?"lo":"mid");
-  const regTtl=reg>=7?"Você está na regência":(reg<=3?"Hoje a emoção te conduz mais":"A batuta troca de mão");
+  const regTtl=reg>=7?"Você conduz o que sente":(reg<=3?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
   const regTxt=reg>=7
       ?`${Nm}, você sente forte e ainda assim conduz: as emoções são instrumento na sua mão, não o contrário. É a sua força mais silenciosa — e a mais rara.`
       :(reg<=3
-      ?`Hoje as suas emoções costumam reger você mais do que você as rege. A força está toda aí; o que falta é a batuta — usar cada uma na hora e na medida certa.`
-      :`Em alguns dias você rege, em outros a emoção assume a batuta. Você já sabe conduzir — só ainda não de forma constante, sob pressão.`);
+      ?`Hoje as suas emoções costumam conduzir você mais do que o contrário. A força está toda aí; o que falta é a maestria — usar cada uma na hora e na medida certa.`
+      :`Em alguns dias você conduz, em outros a emoção assume. Você já sabe conduzir — só ainda não de forma constante, sob pressão.`);
   const regBand=`
     <div class="reg ${regCls}">
-      <div class="regtop"><span class="rk">A sua Regência</span><span class="rnum">${reg}<i>/10</i></span></div>
+      <div class="regtop"><span class="rk">A sua Maestria</span><span class="rnum">${reg}<i>/10</i></span></div>
       <div class="rbar"><i data-w="${reg*10}"></i></div>
       <div class="rtt">${regTtl}</div><p class="rtx">${regTxt}</p>
-      <div class="rsub">Não é uma sétima emoção — é a <b>batuta acima das seis</b>: o quanto você conduz o que sente, em vez de ser conduzido por isso.</div>
+      <div class="rsub">Não é uma sétima emoção — é a <b>maestria com que você usa as outras seis</b>: o quanto conduz o que sente, em vez de ser conduzido por isso.</div>
     </div>`;
   const bul=a=>`<ul class="bul">${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
   const paras=t=>{ const parts=String(t).split('. '); let out='',buf=[]; for(let i=0;i<parts.length;i++){ let seg=parts[i]; if(i<parts.length-1 && !seg.endsWith('.')) seg+='.'; buf.push(seg); if(buf.length>=2||i===parts.length-1){ if(buf.length){ out+='<p>'+buf.join(' ')+'</p>'; buf=[]; } } } return out; };
