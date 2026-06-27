@@ -395,7 +395,7 @@ function renderReport(){
   const matTag=m=> m>=3?'<span class="mt ok">uso forte</span>':(m<=-3?'<span class="mt bad">te custa</span>':'<span class="mt">em construção</span>');
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
     return `<div class="frow ${pri?'pri':''}"><span class="fn">${b.mercado}</span><span class="fbar"><i data-w="${Math.max(4,s.cen*10)}"></i></span><span class="fnum">${s.cen}</span>${matTag(s.mat)}</div>`;};
-  const chart=ord.map(frow).join("");
+  const chart=EMO.map(frow).join("");   /* eixo FIXO (ordem sempre igual) — o formato do gráfico vira assinatura comparável */
   const reg=st.reg, regCls=reg>=7?"hi":(reg<=3?"lo":"mid");
   const regTtl=reg>=7?"Você conduz o que sente":(reg<=3?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
   const regTxt=reg>=7
