@@ -232,7 +232,9 @@ h1 .it{font-style:italic;color:var(--gold)}
 .eixo{display:flex;justify-content:space-between;align-items:baseline;margin:2px 0 8px;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
 .eixo b{font-size:11px;opacity:.6;font-weight:600}
 .frow{display:flex;align-items:center;gap:9px;padding:6px 0}
-.frow .fn{flex:0 0 120px;font-weight:600;font-size:13.5px}
+.frow .fn{flex:0 0 132px;display:flex;flex-direction:column;line-height:1.15}
+.frow .fn b{font-weight:600;font-size:13.5px}
+.frow .fn i{font-style:normal;font-size:10px;color:var(--ink-3);font-weight:500;margin-top:1px;letter-spacing:.005em}
 .frow .fbar{flex:1;height:7px;border-radius:6px;background:rgba(0,0,0,.07);position:relative;overflow:hidden}
 .frow .fbar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:6px;background:var(--gold);transition:width .9s cubic-bezier(.2,.7,.2,1)}
 .frow .fnum{flex:0 0 22px;text-align:right;font-family:Fraunces,serif;font-weight:600;font-size:16px;color:#2b2320}
@@ -297,6 +299,7 @@ const CHEERS = {6:"Tá fluindo bem.",12:"Mais da metade — segue assim.",18:"Re
 /* ════════════════════════ MOTOR ════════════════════════ */
 const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
 const EMO=["raiva","medo","tristeza","alegria","cuidado","busca"];
+const GLOSS={raiva:"confrontar e cobrar",medo:"prever o risco",tristeza:"sentir a fundo",alegria:"energia e ânimo",cuidado:"cuidar das pessoas",busca:"buscar o novo"};
 function buildQuestions(){
   const fc=shuffle((BANK.blocos||[]).map(bl=>({type:"q4",area:"Você",texto:"Qual é MAIS e qual é MENOS a sua cara?",opts:shuffle(bl.opts.map(o=>({t:o.t,emo:o.emo})))})));
   const mat=shuffle((BANK.maturidade||[]).map(m=>({type:"freq",emo:m.emo,good:m.good,gov:!!m.gov,area:"Você",texto:m.texto})));
@@ -394,7 +397,7 @@ function renderReport(){
   const flavor= dm>=3?"e você tende a usá-la bem":(dm<=-3?"e hoje ela mais te custa do que te serve":"e o uso dela ainda está em construção");
   const matTag=m=> m>=3?'<span class="mt ok">uso forte</span>':(m<=-3?'<span class="mt bad">te custa</span>':'<span class="mt">em construção</span>');
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
-    return `<div class="frow ${pri?'pri':''}"><span class="fn">${b.mercado}</span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span>${matTag(s.mat)}</div>`;};
+    return `<div class="frow ${pri?'pri':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||""}</i></span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span>${matTag(s.mat)}</div>`;};
   const chart=EMO.map(frow).join("");   /* eixo FIXO (ordem sempre igual) — o formato do gráfico vira assinatura comparável */
   const reg=st.reg, regCls=reg>=35?"hi":(reg<=15?"lo":"mid");
   const regTtl=reg>=35?"Você conduz o que sente":(reg<=15?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
