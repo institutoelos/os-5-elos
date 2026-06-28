@@ -249,6 +249,13 @@ h1 .it{font-style:italic;color:var(--gold)}
 .falta li{font-size:13px;color:var(--ink-2);line-height:1.42;padding:4px 0}
 .falta li b{color:var(--ink);font-weight:600}
 .falta .fkn{font-size:11.5px;color:var(--ink-3);line-height:1.4;margin-top:9px;padding-top:9px;border-top:1px solid var(--line)}
+.falta .cmp{display:block;font-size:12px;color:#7a6a4e;margin-top:3px;font-weight:500}
+.combos{margin:14px 0 4px;padding:16px 18px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.combos .ck{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:11px}
+.combos .cmb{padding:10px 0;border-top:1px solid var(--line)}
+.combos .cmb:first-of-type{border-top:none;padding-top:0}
+.combos .cmb b{display:block;font-size:14.5px;color:var(--ink);font-weight:600;margin-bottom:3px}
+.combos .cmb p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.45}
 .reg{margin:14px 0 4px;padding:18px 20px;border-radius:18px;background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);color:#f7eede;box-shadow:var(--shadow)}
 .reg .regtop{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .reg .rk{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold-2)}
@@ -309,6 +316,7 @@ const shuffle = a => { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.ran
 const EMO=["raiva","medo","tristeza","alegria","cuidado","busca"];
 const GLOSS={raiva:"confrontar e cobrar",medo:"prever o risco",tristeza:"sentir a fundo",alegria:"energia e ânimo",cuidado:"cuidar das pessoas",busca:"buscar o novo"};
 const DEFICIT={raiva:"Você evita o confronto que o time às vezes precisa, e deixa o medíocre passar.",medo:"Você arrisca sem calcular, e o perigo chega sem aviso.",tristeza:"Você passa por cima do que dói — seu e dos outros — sem registrar.",alegria:"Falta o ânimo que contagia; o clima pesa sem alguém puxar pra cima.",cuidado:"As pessoas se sentem cobradas sem se sentir cuidadas.",busca:"Você se acomoda no que já funciona, e o novo passa enquanto você fica."};
+const COMPLEMENT={raiva:"alguém que confronta e cobra sem dó — pro padrão não cair",medo:"alguém que enxerga o risco antes de você pisar nele",tristeza:"alguém que lê o clima e o que não foi dito na sala",alegria:"alguém que traz energia e levanta o astral quando pesa",cuidado:"alguém que cuida das pessoas enquanto você cobra resultado",busca:"alguém que traz o novo e questiona o que já está posto"};
 const LOWCEN=20;   /* abaixo disso: a falta pesa + selo de uso fica mudo (sinal fino demais) */
 function buildQuestions(){
   const fc=shuffle((BANK.blocos||[]).map(bl=>({type:"q4",area:"Você",texto:"Qual é MAIS e qual é MENOS a sua cara?",opts:shuffle(bl.opts.map(o=>({t:o.t,emo:o.emo})))})));
@@ -411,7 +419,26 @@ function renderReport(){
     return `<div class="frow ${pri?'pri':''} ${low?'lowf':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||""}</i></span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span>${tag}</div>`;};
   const chart=EMO.map(frow).join("");   /* eixo FIXO (ordem sempre igual) — o formato do gráfico vira assinatura comparável */
   const baixas=EMO.filter(e=>st.emo[e].cen<=LOWCEN).sort((a,b)=>st.emo[a].cen-st.emo[b].cen);
-  const faltaHTML = baixas.length ? `<div class="falta"><div class="fk">⚠ Onde a falta também pesa</div><ul>${baixas.map(e=>`<li><b>${C[e].mercado}</b> — ${DEFICIT[e]}</li>`).join("")}</ul><div class="fkn">Extremo dos dois lados é risco: emoção demais te governa; de menos, te falta a função dela na hora certa.</div></div>` : "";
+  const faltaHTML = baixas.length ? `<div class="falta"><div class="fk">⚠ Onde a falta também pesa</div><ul>${baixas.map(e=>`<li><b>${C[e].mercado}</b> — ${DEFICIT[e]}<span class="cmp">↳ quem te complementa: ${COMPLEMENT[e]}</span></li>`).join("")}</ul><div class="fkn">Extremo dos dois lados é risco: emoção demais te governa; de menos, te falta a função dela na hora certa.</div></div>` : "";
+  /* ── combinações / tensões: leituras cruzadas mais salientes (deriva dos scores, zero item novo) ── */
+  const cc=e=>st.emo[e].cen, REG=st.reg, HI=32, LO=22;
+  const PAT=[
+    ()=> cc('cuidado')>=HI&&cc('raiva')<=LO ? {t:'Cuida muito, confronta pouco',x:'Você é o porto seguro do time — mas engole o que precisaria cobrar, e o medíocre se acomoda na sua bondade.',s:(cc('cuidado')-HI)+(LO-cc('raiva'))}:null,
+    ()=> cc('raiva')>=HI&&cc('cuidado')<=LO ? {t:'Cobra forte, acolhe pouco',x:'Você levanta o padrão — mas as pessoas se sentem cobradas sem se sentir cuidadas, e a lealdade não cola.',s:(cc('raiva')-HI)+(LO-cc('cuidado'))}:null,
+    ()=> cc('busca')>=HI&&REG<=LO ? {t:'Acende rápido, fecha devagar',x:'Você abre frente atrás de frente — mas a execução repetitiva te entedia, e o que começa nem sempre fecha.',s:(cc('busca')-HI)+(LO-REG)}:null,
+    ()=> cc('busca')>=HI&&REG>=35 ? {t:'Curioso e no controle',x:'Você vai atrás do novo com fome e ainda assim conclui o que abre — curiosidade com linha de chegada, que é rara.',s:(cc('busca')-HI)+(REG-35)}:null,
+    ()=> cc('medo')>=HI&&cc('busca')<=LO ? {t:'Protege bem, arrisca pouco',x:'Você blinda a empresa contra o pior — mas a mesma cautela trava o salto: segurança que vira estagnação.',s:(cc('medo')-HI)+(LO-cc('busca'))}:null,
+    ()=> cc('busca')>=HI&&cc('medo')<=LO ? {t:'Arrisca muito, protege pouco',x:'Você vai atrás do novo com fome — mas pode pisar no risco que ninguém calculou.',s:(cc('busca')-HI)+(LO-cc('medo'))}:null,
+    ()=> cc('alegria')>=HI&&cc('tristeza')<=LO ? {t:'Anima, mas pode não sentir o peso',x:'Você contagia e levanta o astral — mas pode passar por cima do que dói, no outro e em você.',s:(cc('alegria')-HI)+(LO-cc('tristeza'))}:null,
+    ()=> cc('tristeza')>=HI&&cc('alegria')<=LO ? {t:'Sente fundo, falta leveza',x:'Você registra o que ninguém vê — mas o peso pode faltar respiro, pra você e pro time.',s:(cc('tristeza')-HI)+(LO-cc('alegria'))}:null,
+    ()=> cc('medo')>=HI&&cc('tristeza')>=HI ? {t:'Radar fino, peso grande',x:'Você sente o risco e o peso antes dos outros — leitura rara do que pode dar errado, que cobra caro em paz se você não a descarrega.',s:(cc('medo')-HI)+(cc('tristeza')-HI)}:null,
+    ()=> cc('raiva')>=HI&&REG<=LO ? {t:'Pavio curto no comando',x:'Você confronta com força — mas sob pressão a raiva te pega, e a firmeza vira explosão.',s:(cc('raiva')-HI)+(LO-REG)}:null,
+    ()=> cc('cuidado')>=HI&&REG<=LO ? {t:'Cuida até se esgotar',x:'Você se dá às pessoas — mas sem freio: vira gargalo e se esvazia.',s:(cc('cuidado')-HI)+(LO-REG)}:null,
+    ()=> REG>=35&&['raiva','medo','tristeza'].includes(dom) ? {t:'Sente forte e ainda conduz',x:'A sua força dominante é das intensas — e mesmo assim você a rege. Isso é raro.',s:(REG-35)+8}:null,
+    ()=> REG<=LO ? {t:'Hoje a emoção te conduz',x:'A sua força dominante te governa mais do que você a governa — o passo é a regência, não trocar de emoção.',s:(LO-REG)+6}:null,
+  ];
+  const combos=PAT.map(f=>f()).filter(Boolean).filter(o=>o.s>=3).sort((a,b)=>b.s-a.s).slice(0,3);
+  const combosHTML = combos.length ? `<div class="combos"><div class="ck">As suas combinações — o que as forças dizem juntas</div>${combos.map(o=>`<div class="cmb"><b>${o.t}</b><p>${o.x}</p></div>`).join("")}</div>` : "";
   const reg=st.reg, regCls=reg>=35?"hi":(reg<=15?"lo":"mid");
   const regTtl=reg>=35?"Você conduz o que sente":(reg<=15?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
   const regTxt=reg>=35
@@ -443,6 +470,7 @@ function renderReport(){
     <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 50</b></div>${chart}</div>
     ${faltaHTML}
     ${regBand}
+    ${combosHTML}
     <div class="hero"><div class="k">O seu arquétipo</div><div class="name">${A.nome}</div><p>${A.frase}</p></div>
     <div class="lyr"><span class="h">O que essa emoção move em você</span><p>${D.oQueMove}</p></div>
     <div class="cols">
