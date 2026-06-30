@@ -341,7 +341,15 @@ function score(){
 }
 
 const Q = buildQuestions(); const N = Q.length;
-const ans = {}; let step=0, nome="", leaderOpen=false;
+const ans = {}; let step=0, nome="", leaderOpen=false, FORCED_ST=null;
+/* modo "resultado via link": #r=<base64> com {n,c[6],m[6],r} renderiza o relatório direto, sem refazer o teste */
+function loadFromHash(){ try{
+  const h=(location.hash||"").replace(/^#r?=?/,""); if(!h) return false;
+  const j=JSON.parse(decodeURIComponent(escape(atob(h.replace(/-/g,'+').replace(/_/g,'/')))));
+  if(!j||!Array.isArray(j.c)||j.c.length!==6) return false;
+  const st={emo:{}}; EMO.forEach((e,i)=>{ st.emo[e]={cen:j.c[i],mat:j.m[i]}; }); st.reg=j.r;
+  FORCED_ST=st; nome=j.n||""; return true;
+}catch(e){ return false; } }
 const app=document.getElementById("app");
 const $top=document.getElementById("top"), $bar=document.getElementById("bar"), $pct=document.getElementById("pct");
 
@@ -409,7 +417,7 @@ function Report(){
   setTimeout(()=>transition(renderReport),1300);
 }
 function renderReport(){
-  const st=score(), Nm=nome||"Você", C=CONTENT;
+  const st=FORCED_ST||score(), Nm=nome||"Você", C=CONTENT;
   const ord=EMO.slice().sort((a,b)=>st.emo[b].cen-st.emo[a].cen);
   const dom=ord[0], seg=ord[1], A=C[dom], D=A.denso, dm=st.emo[dom].mat;
   const flavor= dm>=3?"e você tende a usá-la bem":(dm<=-3?"e hoje ela mais te custa do que te serve":"e o uso dela ainda está em construção");
@@ -495,6 +503,7 @@ function renderReport(){
   document.getElementById("det").onclick=()=>{const x=document.getElementById("detbox"); x.classList.toggle("hidden"); document.getElementById("det").textContent=x.classList.contains("hidden")?"Aprofundar →":"Recolher"; if(!x.classList.contains("hidden")) setTimeout(()=>x.scrollIntoView({behavior:"smooth"}),60);};
   document.getElementById("redo").onclick=()=>{ for(const k in ans) delete ans[k]; step=0; window.scrollTo({top:0}); transition(render); };
 }
+if(loadFromHash()) step=N+1;
 render();
 </script>
 </body>
