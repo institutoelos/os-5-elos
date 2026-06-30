@@ -242,6 +242,15 @@ h1 .it{font-style:italic;color:var(--gold)}
 .mt{flex:0 0 auto;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-2);background:rgba(0,0,0,.05);padding:2px 7px;border-radius:8px;min-width:74px;text-align:center}
 .mt.ok{color:#3a6b4a;background:rgba(60,120,80,.12)} .mt.bad{color:var(--excesso);background:rgba(180,80,60,.10)}
 .mt.off{color:var(--ink-3);background:transparent;font-weight:600;text-transform:none;letter-spacing:0;font-style:italic}
+.eixleg{font-size:11px;color:var(--ink-3);line-height:1.45;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.eixleg b{color:var(--ink-2);font-weight:600}
+.plano{margin:16px 0 4px;padding:19px 21px;border-radius:18px;background:var(--gold-bg);border:1px solid var(--gold-soft)}
+.plano .pk{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.plano .pmv{display:flex;gap:13px;align-items:flex-start;padding:8px 0}
+.plano .pn{flex:none;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#fff;font-family:Fraunces,serif;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center;line-height:1}
+.plano .pmt{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.plano .pmt b{color:var(--ink);font-weight:600}
+.plano .pwatch{margin-top:11px;padding-top:12px;border-top:1px solid var(--gold-soft);font-size:12.5px;color:#9a6a31;line-height:1.45}
 .frow.lowf .fbar i{opacity:.55} .frow.lowf .fnum{color:var(--ink-3)}
 .falta{margin:12px 0 4px;padding:14px 17px;border-radius:15px;background:#fbf5ec;border:1px solid var(--line);border-left:3px solid #bb8a4c}
 .falta .fk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a6a31;font-weight:700;margin-bottom:8px}
@@ -317,6 +326,7 @@ const EMO=["raiva","medo","tristeza","alegria","cuidado","busca"];
 const GLOSS={raiva:"confrontar e cobrar",medo:"prever o risco",tristeza:"sentir a fundo",alegria:"energia e ânimo",cuidado:"cuidar das pessoas",busca:"buscar o novo"};
 const DEFICIT={raiva:"Você evita o confronto que o time às vezes precisa, e deixa o medíocre passar.",medo:"Você arrisca sem calcular, e o perigo chega sem aviso.",tristeza:"Você passa por cima do que dói — seu e dos outros — sem registrar.",alegria:"Falta o ânimo que contagia; o clima pesa sem alguém puxar pra cima.",cuidado:"As pessoas se sentem cobradas sem se sentir cuidadas.",busca:"Você se acomoda no que já funciona, e o novo passa enquanto você fica."};
 const COMPLEMENT={raiva:"alguém que confronta e cobra sem dó — pro padrão não cair",medo:"alguém que enxerga o risco antes de você pisar nele",tristeza:"alguém que lê o clima e o que não foi dito na sala",alegria:"alguém que traz energia e levanta o astral quando pesa",cuidado:"alguém que cuida das pessoas enquanto você cobra resultado",busca:"alguém que traz o novo e questiona o que já está posto"};
+const DEVELOP={raiva:"escolha uma situação por semana pra dizer o 'não' que você engoliria — confronto pequeno, treinado",medo:"antes de cada decisão grande, escreva os 3 jeitos de aquilo dar errado antes de seguir",tristeza:"reserve 5 minutos depois das reuniões tensas pra perguntar: o que ninguém disse aqui?",alegria:"abra uma reunião por semana pelo que está dando certo, não pelo problema",cuidado:"uma vez por semana, pergunte a alguém do time como ELE está — antes da tarefa",busca:"separe 1h por semana pra um 'e se?' fora do operacional, sem culpa"};
 const LOWCEN=18;   /* abaixo disso: a falta pesa + selo de uso fica mudo (sinal fino demais) — faixa 10..40 */
 function buildQuestions(){
   const fc=shuffle((BANK.blocos||[]).map(bl=>({type:"q4",area:"Você",texto:"Qual é MAIS e qual é MENOS a sua cara?",opts:shuffle(bl.opts.map(o=>({t:o.t,emo:o.emo})))})));
@@ -420,8 +430,9 @@ function renderReport(){
   const st=FORCED_ST||score(), Nm=nome||"Você", C=CONTENT;
   const ord=EMO.slice().sort((a,b)=>st.emo[b].cen-st.emo[a].cen);
   const dom=ord[0], seg=ord[1], A=C[dom], D=A.denso, dm=st.emo[dom].mat;
+  const masc=(dom==='cuidado'), Susu=masc?'O seu':'A sua', dadu=masc?'do seu':'da sua', artA=masc?'o':'a';  /* concordância: só Acolhimento é masculino */
   const flavor= dm>=3?"e você tende a usá-la bem":(dm<=-3?"e hoje ela mais te custa do que te serve":"e o uso dela ainda está em construção");
-  const matTag=m=> m>=3?'<span class="mt ok">uso forte</span>':(m<=-3?'<span class="mt bad">te custa</span>':'<span class="mt">em construção</span>');
+  const matTag=m=> m>=3?'<span class="mt ok">bem usada</span>':(m<=-3?'<span class="mt bad">mal usada</span>':'<span class="mt">em construção</span>');
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom),low=(s.cen<=LOWCEN);
     const tag = low ? '<span class="mt off">pouco te move</span>' : matTag(s.mat);
     return `<div class="frow ${pri?'pri':''} ${low?'lowf':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||""}</i></span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span>${tag}</div>`;};
@@ -429,8 +440,12 @@ function renderReport(){
   const baixas=EMO.filter(e=>st.emo[e].cen<=LOWCEN).sort((a,b)=>st.emo[a].cen-st.emo[b].cen);
   const faltaHTML = baixas.length ? `<div class="falta"><div class="fk">⚠ Onde a falta também pesa</div><ul>${baixas.map(e=>`<li><b>${C[e].mercado}</b> — ${DEFICIT[e]}<span class="cmp">↳ quem te complementa: ${COMPLEMENT[e]}</span></li>`).join("")}</ul><div class="fkn">Extremo dos dois lados é risco: emoção demais te governa; de menos, te falta a função dela na hora certa.</div></div>` : "";
   /* ── combinações / tensões: leituras cruzadas mais salientes (deriva dos scores, zero item novo) ── */
-  const cc=e=>st.emo[e].cen, REG=st.reg, HI=29, LO=20, RHI=32;   /* limiares na faixa 10..40 */
+  const cc=e=>st.emo[e].cen, REG=st.reg, HI=29, LO=20, RHI=32, lo=baixas[0];   /* limiares na faixa 10..40 */
   const PAT=[
+    /* correlações entre os eixos: a força dominante × o quanto você a usa bem; o ponto cego × o uso */
+    ()=> dm>=3 ? {t:'A sua maior força está afiada',x:`${Susu} ${A.mercado} é o que mais te move, e você já conduz isso bem — é daqui que sai o seu melhor. O cuidado é não depender só dessa força: quando ela não resolve, falta repertório.`,s:(cc(dom)-18)+dm}:null,
+    ()=> dm<=-3 ? {t:'O seu maior potencial está preso',x:`${Susu} ${A.mercado} te move forte, mas hoje ${masc?'ele joga':'ela joga'} mais contra você do que a favor — é o ponto onde mexer rende mais. Afiar essa força vale mais que corrigir qualquer fraqueza.`,s:(cc(dom)-18)+(-dm)}:null,
+    ()=> lo&&st.emo[lo].mat<=0 ? {t:`${C[lo].mercado}: ponto cego duplo`,x:`${C[lo].mercado} quase não te move E é onde você menos exercita o uso — some das suas decisões por dois caminhos ao mesmo tempo. Ou você desenvolve de propósito, ou cerca com alguém que tenha.`,s:(LO-cc(lo))+6}:null,
     ()=> cc('cuidado')>=HI&&cc('raiva')<=LO ? {t:'Cuida muito, confronta pouco',x:'Você é o porto seguro do time — mas engole o que precisaria cobrar, e o medíocre se acomoda na sua bondade.',s:(cc('cuidado')-HI)+(LO-cc('raiva'))}:null,
     ()=> cc('raiva')>=HI&&cc('cuidado')<=LO ? {t:'Cobra forte, acolhe pouco',x:'Você levanta o padrão — mas as pessoas se sentem cobradas sem se sentir cuidadas, e a lealdade não cola.',s:(cc('raiva')-HI)+(LO-cc('cuidado'))}:null,
     ()=> cc('busca')>=HI&&REG<=LO ? {t:'Acende rápido, fecha devagar',x:'Você abre frente atrás de frente — mas a execução repetitiva te entedia, e o que começa nem sempre fecha.',s:(cc('busca')-HI)+(LO-REG)}:null,
@@ -445,21 +460,33 @@ function renderReport(){
     ()=> REG>=RHI&&['raiva','medo','tristeza'].includes(dom) ? {t:'Sente forte e ainda conduz',x:'A sua força dominante é das intensas — e mesmo assim você a rege. Isso é raro.',s:(REG-RHI)+8}:null,
     ()=> REG<=LO ? {t:'Hoje a emoção te conduz',x:'A sua força dominante te governa mais do que você a governa — o passo é a regência, não trocar de emoção.',s:(LO-REG)+6}:null,
   ];
-  const combos=PAT.map(f=>f()).filter(Boolean).filter(o=>o.s>=3).sort((a,b)=>b.s-a.s).slice(0,3);
+  const combos=PAT.map(f=>f()).filter(Boolean).filter(o=>o.s>=2).sort((a,b)=>b.s-a.s).slice(0,4);
   const combosHTML = combos.length ? `<div class="combos"><div class="ck">As suas combinações — o que as forças dizem juntas</div>${combos.map(o=>`<div class="cmb"><b>${o.t}</b><p>${o.x}</p></div>`).join("")}</div>` : "";
+  /* ── O SEU PLANO: síntese acionável do todo (força dominante + ponto cego + maestria + risco a vigiar) ── */
+  const regMove = st.reg>=32
+    ? {t:'Empreste a sua maestria ao time',x:'Você já conduz bem o que sente. O próximo nível é ser o termômetro que mantém a sala inteira no eixo quando aperta.'}
+    : (st.reg<=18
+    ? {t:'Pare de ser levado',x:'Quando a emoção subir, dê um passo de respiro antes de agir — é o que separa reagir de decidir. Comece pela situação que mais te tira do sério.'}
+    : {t:'Segure o leme sob pressão',x:'Você conduz bem nos dias calmos. Escolha a situação que mais te desestabiliza e ensaie a sua resposta antes de ela acontecer.'});
+  const gap = baixas[0];
+  const planoHTML = `<div class="plano"><div class="pk">O seu plano — por onde começar</div>
+    <div class="pmv"><span class="pn">1</span><div class="pmt"><b>Jogue a favor ${dadu} ${A.mercado}.</b> ${D.alavanca}</div></div>
+    ${gap?`<div class="pmv"><span class="pn">2</span><div class="pmt"><b>Cubra o seu ponto cego: ${C[gap].mercado}.</b> Desenvolva — ${DEVELOP[gap]}. E, no time, ${COMPLEMENT[gap]}.</div></div>`:''}
+    <div class="pmv"><span class="pn">${gap?3:2}</span><div class="pmt"><b>${regMove.t}.</b> ${regMove.x}</div></div>
+    <div class="pwatch">⚠ Vigie: ${(((D.pontosAtencao&&D.pontosAtencao[0])||'a sombra da sua força dominante quando ela vira excesso')).replace(/[.;]+$/,'')}.</div></div>`;
   const reg=st.reg, regCls=reg>=32?"hi":(reg<=18?"lo":"mid");
   const regTtl=reg>=32?"Você conduz o que sente":(reg<=18?"Hoje a emoção conduz você":"Às vezes você conduz, às vezes não");
   const regTxt=reg>=32
-      ?`${Nm}, você sente forte e ainda assim conduz: as emoções são instrumento na sua mão, não o contrário. É a sua força mais silenciosa — e a mais rara.`
+      ?`${Nm}, você sente forte e ainda mantém o leme na mão. É a sua força mais silenciosa, e a mais rara de achar num líder.`
       :(reg<=18
-      ?`Hoje as suas emoções costumam conduzir você mais do que o contrário. A força está toda aí; o que falta é a maestria — usar cada uma na hora e na medida certa.`
-      :`Em alguns dias você conduz, em outros a emoção assume. Você já sabe conduzir — só ainda não de forma constante, sob pressão.`);
+      ?`Hoje as suas emoções costumam assumir o leme. A força está toda aí; falta usar cada uma na hora e na medida certa, em vez de ser levado por ela.`
+      :`Em dias calmos você conduz bem; sob pressão, a emoção às vezes assume. A meta é segurar o leme também quando aperta.`);
   const regBand=`
     <div class="reg ${regCls}">
       <div class="regtop"><span class="rk">A sua Maestria</span><span class="rnum">${reg}<i>/50</i></span></div>
       <div class="rbar"><i data-w="${reg*2}"></i></div>
       <div class="rtt">${regTtl}</div><p class="rtx">${regTxt}</p>
-      <div class="rsub">Não é uma sétima emoção — é a <b>maestria com que você usa as outras seis</b>: o quanto conduz o que sente, em vez de ser conduzido por isso.</div>
+      <div class="rsub">A <b>maestria com que você conduz o que sente</b>: usar cada emoção na hora e na medida certa, em vez de ser levado por ela.</div>
     </div>`;
   const bul=a=>`<ul class="bul">${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
   const paras=t=>{ const parts=String(t).split('. '); let out='',buf=[]; for(let i=0;i<parts.length;i++){ let seg=parts[i]; if(i<parts.length-1 && !seg.endsWith('.')) seg+='.'; buf.push(seg); if(buf.length>=2||i===parts.length-1){ if(buf.length){ out+='<p>'+buf.join(' ')+'</p>'; buf=[]; } } } return out; };
@@ -467,33 +494,33 @@ function renderReport(){
   const fundoHTML=`
     <div class="lyr"><span class="h">Quem você é por baixo</span>${paras(F.essencia)}</div>
     <div class="lyr"><span class="h">Como isso aparece</span>${paras(F.comportamentos)}</div>
-    <div class="lbl">Os dois usos da sua ${A.mercado}</div>
+    <div class="lbl">Os dois usos ${dadu} ${A.mercado}</div>
     <div class="lyr gr"><span class="h">No uso maduro — a sua força${dm>=3?' · é aqui que você está':''}</span>${paras(F.usoMaduro)}</div>
     <div class="lyr w"><span class="h">No uso imaturo — a sombra${dm<=-3?' · é aqui que você está hoje':''}</span>${paras(F.usoImaturo)}</div>
     <div class="lyr w"><span class="h">A sua fonte de sofrimento, mais fundo</span>${paras(F.sofrimento)}</div>`;
   app.innerHTML=`<section class="screen enter stagger">
     <div class="eyebrow">O seu mapa das emoções</div>
-    <h1>${Nm}, o seu motor é a <span class="it">${A.mercado}</span></h1>
-    <p class="sub">Por baixo do seu jeito de liderar, a emoção que mais te move é a <b>${dom}</b> — ${flavor}. Logo atrás vem a <b>${C[seg].mercado}</b>.</p>
-    <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 50</b></div>${chart}</div>
+    <h1>${Nm}, o seu motor é ${artA} <span class="it">${A.mercado}</span></h1>
+    <p class="sub">Por baixo do seu jeito de liderar, a sua força nº 1 é <b>${A.mercado}</b> — ${flavor}. Logo atrás, <b>${C[seg].mercado}</b>.</p>
+    <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 50</b></div>${chart}<div class="eixleg">A <b>barra</b> mostra o quanto cada emoção te move. A <b>etiqueta</b> diz outra coisa: se você usa essa emoção bem ou mal — são dois eixos diferentes.</div></div>
     ${faltaHTML}
     ${regBand}
     ${combosHTML}
+    ${planoHTML}
     <div class="hero"><div class="k">O seu arquétipo</div><div class="name">${A.nome}</div><p>${A.frase}</p></div>
     <div class="lyr"><span class="h">O que essa emoção move em você</span><p>${D.oQueMove}</p></div>
     <div class="cols">
       <div class="cbox"><span class="h">A força que ela te dá</span>${bul(D.forcas)}</div>
       <div class="cbox"><span class="h gold2">Onde ela vira sombra</span>${bul(D.pontosAtencao)}</div>
     </div>
-    <div class="lbl">A sua ${A.mercado}, nos dois usos</div>
+    <div class="lbl">${Susu} ${A.mercado}, nos dois usos</div>
     <div class="cols">
       <div class="cbox usocard ${dm>=3?'aqui':''}"><span class="h">Bem usada — a sua força${dm>=3?' · é aqui que você está':''}</span><p>${A.curto.comportamentos}</p></div>
       <div class="cbox usocard sombra ${dm<=-3?'aqui':''}"><span class="h gold2">Mal usada — a sombra${dm<=-3?' · é aqui que você está hoje':''}</span><p>${A.curto.sofrimento}</p></div>
     </div>
     <div class="lyr w"><span class="h">A ferida por baixo</span><p>${D.feridaCurta}</p></div>
-    <div class="prio"><div class="k">⬇ O seu próximo passo</div><p>${D.alavanca}</p></div>
     <div class="lcta"><div class="t">Como conduzir você pra um lugar melhor</div>${bul(D.comoConduzir)}</div>
-    <div class="lcta apro"><div class="t">Quer ir a fundo?</div><p>Quem você é por baixo, os dois usos da sua ${A.mercado}, e a ferida — com calma.</p><button id="det">Aprofundar →</button></div>
+    <div class="lcta apro"><div class="t">Quer ir a fundo?</div><p>Quem você é por baixo, os dois usos ${dadu} ${A.mercado}, e a ferida — com calma.</p><button id="det">Aprofundar →</button></div>
     <div id="detbox" class="hidden">${fundoHTML}</div>
     <div class="close">${Nm}, a emoção não é boa nem ruim — o que muda tudo é o uso. O seu mapa não é um rótulo; é onde mexer primeiro.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button><button class="btn ghost" id="redo">Refazer</button></div>
