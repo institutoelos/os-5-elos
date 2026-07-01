@@ -293,6 +293,16 @@ h1 .it{font-style:italic;color:var(--gold)}
 .qbox .qrow b{color:var(--ink);font-weight:700}
 .qbox .qtom{font-size:12px;color:var(--excesso);margin-top:9px;padding-top:9px;border-top:1px solid rgba(180,80,60,.15);font-weight:600}
 .qbox .qsint{font-size:13px;color:var(--ink-2);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid rgba(60,120,80,.18);font-style:italic}
+.qbox.a{background:var(--gold-bg);border-color:var(--gold-soft)}
+.qbox.a .qrow b{color:#8a5f22}
+.qbox.a .qsint{border-top-color:var(--gold-soft)}
+.em30{margin:14px 0 6px;padding:16px 19px;border-radius:16px;background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);color:#e7dcc9}
+.em30 .e30k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);font-weight:700;margin-bottom:9px}
+.em30 .e30r{font-size:14px;line-height:1.5;padding:3px 0}
+.em30 .e30r b{color:#fff;font-weight:700}
+.genrow{display:flex;align-items:center;gap:8px;margin:4px 0 18px;font-size:13px;color:var(--ink-3)}
+.genc{font:inherit;font-size:13px;font-weight:600;color:var(--ink-2);background:var(--card);border:1.5px solid var(--line-2);border-radius:99px;padding:7px 14px;cursor:pointer}
+.genc.sel{border-color:var(--gold);background:var(--gold-bg);color:var(--ink)}
 .qbox.g .qrow b{color:#2c6045}
 .frow .fbar.q-g i{background:linear-gradient(90deg,#3E7A5C,#5a9a76)}
 .frow .fbar.q-r i{background:linear-gradient(90deg,#b4503c,#c86a55)}
@@ -485,6 +495,7 @@ const LOWCEN=20;   /* piso = 5 pontos ABAIXO do centro pessoal (25). A centralid
 /* ═══════════ MÉTODO VETOR COMPLETO ═══════════ */
 const HICEN=30;  /* alta = 5 pontos ACIMA do centro pessoal (25). Régua intra-pessoa (dado ipsativo); a maturidade (Likert) é normativa: madura ≥+3, imatura ≤−3. */
 const IDN={raiva:"um inconformado",medo:"um guardião",tristeza:"um profundo",alegria:"um catalisador",cuidado:"um cuidador",busca:"um explorador"};
+const IDNF={raiva:"uma inconformada",medo:"uma guardiã",tristeza:"uma profunda",alegria:"uma catalisadora",cuidado:"uma cuidadora",busca:"uma exploradora"};
 const MOD={raiva:"não foge da briga que precisa comprar",medo:"calcula bem antes de saltar",tristeza:"sente o peso e o não-dito",alegria:"traz energia e leva o time junto",cuidado:"traz as pessoas junto e cuida de quem é seu",busca:"está sempre atrás do próximo novo"};
 const SB={raiva:"dureza e explosão",medo:"trava e paralisia",tristeza:"peso e recolhimento",alegria:"dispersão",cuidado:"esgotamento",busca:"frentes abertas sem fechar"};
 /* leituras curtas de quadrante (neutras: servem pro relatório e pro guia) */
@@ -523,7 +534,27 @@ const NOMES={
   alegria:{raiva:"O Mobilizador",medo:"O Farol",tristeza:"O Inspirador",cuidado:"O Anfitrião",busca:"O Instigador"},
   cuidado:{raiva:"O Mentor",medo:"O Porto",tristeza:"O Conselheiro",alegria:"O Cultivador",busca:"O Formador"}
 };
-/* ── a engine: lê o vetor inteiro ── */
+/* formas femininas dos 30 nomes (metáforas de objeto, Farol e Porto, ficam invariantes) */
+const NOMESF={
+  busca:{raiva:"A Insurgente",medo:"A Cientista",tristeza:"A Visionária",alegria:"A Evangelista",cuidado:"A Desbravadora"},
+  raiva:{medo:"A Comandante",tristeza:"A Juíza",alegria:"A Técnica",cuidado:"A Capitã",busca:"A Reformadora"},
+  medo:{raiva:"A Sentinela",tristeza:"A Estrategista",alegria:"A Equilibrista",cuidado:"A Protetora",busca:"A Engenheira"},
+  tristeza:{raiva:"A Idealista",medo:"A Investigadora",alegria:"A Harmonizadora",cuidado:"A Confidente",busca:"A Pensadora"},
+  alegria:{raiva:"A Mobilizadora",medo:"O Farol",tristeza:"A Inspiradora",cuidado:"A Anfitriã",busca:"A Instigadora"},
+  cuidado:{raiva:"A Mentora",medo:"O Porto",tristeza:"A Conselheira",alegria:"A Cultivadora",busca:"A Formadora"}
+};
+/* flexão de gênero: dicionário curado (frases exatas do nosso conteúdo) + pronomes. Aplicado só quando gen==='f'. */
+function flexG(s){
+  const D=[["movido por","movida por"],["líder caloroso e aberto","líder calorosa e aberta"],["líder intenso e guardado","líder intensa e guardada"],
+    ["é puxado por outras","é puxada por outras"],["ser levado por ela","ser levada por ela"],["de ser levado","de ser levada"],
+    ["Ser abandonado","Ser abandonada"],["visto como fraco","vista como fraca"],["pego desprevenido","pega desprevenida"],
+    ["preso, pequeno, ultrapassado","presa, pequena, ultrapassada"],["ser rejeitado","ser rejeitada"],["isolado e apagado","isolada e apagada"],
+    ["Esgotado e ressentido","Esgotada e ressentida"],["entediado e irritado","entediada e irritada"],["não ser visto de verdade","não ser vista de verdade"],
+    ["de não ser necessário","de não ser necessária"],["nenhuma força o domina","nenhuma força a domina"]];
+  D.forEach(([a,b])=>{ s=s.split(a).join(b); });
+  s=s.replace(/\bdele\b/g,"dela").replace(/\bnele\b/g,"nela").replace(/\bele\b/g,"ela").replace(/-lo\b/g,"-la");
+  return s;
+}
 function analyze(st){
   const cn=e=>st.emo[e].cen, mt=e=>st.emo[e].mat;
   const ord=EMO.slice().sort((a,b)=>cn(b)-cn(a));
@@ -537,7 +568,7 @@ function analyze(st){
   const dom=ord[0], sec=ord[1];
   const exp=cn('alegria')+cn('cuidado')+cn('busca'), con=cn('raiva')+cn('medo')+cn('tristeza');
   const temp= (exp-con>10)?'exp':((con-exp>10)?'con':'bal');
-  const ampl=cn(dom)-cn(ord[5]);
+  const cens=ord.map(cn), ampl=cn(dom)-(cens[2]+cens[3])/2;   /* pico − mediana: robusto a um único piso fundo (pico − vale era refém do outlier) */
   const mats=EMO.map(mt), reg=(Math.max(...mats)-Math.min(...mats))>=6?'irregular':'solida';
   const hi=e=>cn(e)>=HICEN, tens=[], alli=[];
   const duoKey=[dom,sec].sort().join('|'), duo=PAIRS[duoKey]||null;   /* o par da identidade enriquece o combo, não repete nas "forças juntas" */
@@ -554,7 +585,7 @@ function analyze(st){
 }
 /* Temperatura = os 2 fatores de ordem superior VALIDADOS da ANPS: afeto positivo (SEEKING+CARE+PLAY = busca/cuidado/alegria) × negativo (FEAR+ANGER+SADNESS = medo/raiva/tristeza). Não é invenção nossa; é a estrutura fatorial documentada. */
 const TEMP={exp:"Temperatura expansiva: líder caloroso e aberto, movido por futuro e por gente.",con:"Temperatura contractiva: líder intenso e guardado, movido por padrão, risco e profundidade.",bal:"Temperatura equilibrada: você transita entre o caloroso e o guardado, conforme a sala."};
-const AMPL=v=>v>=22?"Perfil concentrado: especialista, intenso onde atua.":(v<=14?"Perfil versátil: acessa muitas forças, generalista adaptável.":"Perfil com um foco claro e um leque de apoio.");
+const AMPL=v=>v>=10?"Perfil concentrado: especialista, intenso onde atua.":(v<=5?"Perfil versátil: acessa muitas forças, generalista adaptável.":"Perfil com um foco claro e um leque de apoio.");
 const REGT={solida:"Autogestão sólida: você regula o que sente de forma parelha.",irregular:"Autocontrole seletivo: você domina umas emoções e é puxado por outras."};
 function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1);}
 function buildQuestions(){
@@ -580,15 +611,15 @@ function score(){
 }
 
 const Q = buildQuestions(); const N = Q.length;
-const ans = {}; let step=0, nome="", leaderOpen=false, FORCED_ST=null, GUIA=false;
-/* via link: #r=<base64> = relatório (espelho); #g=<base64> = Guia de Condução (pra quem lidera). Mesmo payload {n,c[6],m[6],r} */
+const ans = {}; let step=0, nome="", gen="m", leaderOpen=false, FORCED_ST=null, GUIA=false;
+/* via link: #r=<base64> = relatório (espelho); #g=<base64> = Guia de Condução (pra quem lidera). Payload {n,g,c[6],m[6],r} */
 function loadFromHash(){ try{
   const mt=(location.hash||"").match(/^#(r|g)=(.+)$/); if(!mt) return false;
   GUIA=(mt[1]==="g");
   const j=JSON.parse(decodeURIComponent(escape(atob(mt[2].replace(/-/g,'+').replace(/_/g,'/')))));
   if(!j||!Array.isArray(j.c)||j.c.length!==6) return false;
   const st={emo:{}}; EMO.forEach((e,i)=>{ st.emo[e]={cen:j.c[i],mat:j.m[i]}; }); st.reg=j.r;
-  FORCED_ST=st; nome=j.n||""; return true;
+  FORCED_ST=st; nome=j.n||""; gen=(j.g==='f')?'f':'m'; return true;
 }catch(e){ return false; } }
 const app=document.getElementById("app");
 const $top=document.getElementById("top"), $bar=document.getElementById("bar"), $pct=document.getElementById("pct");
@@ -608,8 +639,10 @@ function Intro(){
     <p class="sub">Não pense muito: escolha o que você <b>realmente faria</b>. Leva uns 5 minutos, e passa voando.</p>
     <label style="font-size:14px;color:var(--ink-2);font-weight:600">Como você se chama?</label>
     <input class="field" id="nm" placeholder="Seu primeiro nome" autocomplete="given-name" />
+    <div class="genrow"><span>Como falamos de você?</span><button class="genc ${gen==='m'?'sel':''}" data-g="m">no masculino</button><button class="genc ${gen==='f'?'sel':''}" data-g="f">no feminino</button></div>
     <div class="row"><button class="btn gold" id="go">Começar &nbsp;→</button></div>`);
   const inp=document.getElementById("nm"); inp.value=nome;
+  app.querySelectorAll('.genc').forEach(b=>b.onclick=()=>{ gen=b.dataset.g; app.querySelectorAll('.genc').forEach(x=>x.classList.toggle('sel',x===b)); });
   const begin=()=>{ nome=inp.value.trim(); transition(()=>goto(1)); };
   document.getElementById("go").onclick=begin;
   inp.addEventListener("keydown",e=>{ if(e.key==="Enter") begin(); });
@@ -661,6 +694,9 @@ function renderReport(){
   const dom=V.dom, sec=V.sec, A=C[dom], D=A.denso, dm=st.emo[dom].mat;
   const masc=(dom==='cuidado'), dadu=masc?'do seu':'da sua', Susu=masc?'O seu':'A sua';
   const cn=e=>st.emo[e].cen;
+  const nomeX=(gen==='f'&&NOMESF[dom]&&NOMESF[dom][sec])||V.nome;
+  const essX=((gen==='f'?IDNF[dom]:IDN[dom])||'')+" que "+MOD[sec];
+  const nomeFlip=(gen==='f'?(NOMESF[sec]&&NOMESF[sec][dom]):(NOMES[sec]&&NOMES[sec][dom]))||"";
   const matTag=m=> m>=3?'<span class="mt ok">bem usada</span>':(m<=-3?'<span class="mt bad">mal usada</span>':'<span class="mt">em construção</span>');
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom),low=(s.cen<=LOWCEN);
     const tag = low ? '<span class="mt off">pouco te move</span>' : matTag(s.mat);
@@ -669,11 +705,11 @@ function renderReport(){
   const bul=a=>`<ul class="bul">${(a||[]).map(x=>`<li>${x}</li>`).join("")}</ul>`;
   /* ── SEÇÃO: a sua combinação (dom ⊗ 2º ⊗ piso + temperatura) ── */
   const piso=V.ord[5], temPiso=cn(piso)<=LOWCEN;
-  const lacTxt = V.lac<=3 ? "Os dois eixos estão praticamente empatados em você: é mistura de verdade, não um dominante com tempero."
+  const lacTxt = V.lac<=3 ? `Empate técnico entre os dois eixos: você transita entre <b>${nomeX}</b> e <b>${nomeFlip}</b>. É mistura de verdade, não um dominante com tempero, e este mapa assume as duas.`
     : (V.lac>=10 ? `O primeiro eixo manda com folga; ${C[sec].mercado} entra como tempero, não como sócio.` : "");
-  const combinaHTML=`<div class="combo2"><div class="c2t">${V.nome}</div>
+  const combinaHTML=`<div class="combo2"><div class="c2t">${nomeX}</div>
     <div class="c2sub">${C[dom].mercado} + ${C[sec].mercado}</div>
-    <p>Você é <b>${V.essencia}</b>.${V.duo?` ${cap(V.duo.x)}.`:''}</p>
+    <p>Você é <b>${essX}</b>.${V.duo?` ${cap(V.duo.x)}.`:''}</p>
     ${lacTxt?`<p>${lacTxt}</p>`:''}
     ${temPiso?`<p class="c2low">E como <b>${C[piso].mercado}</b> está no chão, ${DEFICIT[piso].charAt(0).toLowerCase()+DEFICIT[piso].slice(1)}</p>`:''}</div>`;
   /* ── SEÇÃO: superpoderes (altas E maduras) ── */
@@ -681,19 +717,24 @@ function renderReport(){
     :(V.green.length===2?'Dois eixos de excelência clara: é daqui que sai o seu melhor trabalho.'
     :'A sua excelência está concentrada numa força só. Afie e proteja essa vantagem, e cerque o resto.');
   const superHTML = V.green.length ? `<div class="lbl">Os seus superpoderes</div><div class="qbox g">${V.green.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> ${cap(QUAD[e].g)}.</div>`).join("")}<div class="qsint">${superSint}</div></div>` : "";
-  /* ── SEÇÃO: onde você se sabota (altas E imaturas + altas em construção) × Maestria ── */
-  const sab=[...V.red.map(e=>({e,txt:QUAD[e].r})), ...V.hiBuild.map(e=>({e,txt:'te move forte, mas o uso ainda está em construção; sob pressão vira '+SB[e]}))];
-  const sabTom = st.reg<=24 ? 'Hoje, ativo: com a sua Maestria mais baixa, está te custando agora.' : 'Risco latente: a sua Maestria segura, mas fique de olho.';
-  const sabHTML = sab.length
-    ? `<div class="lbl">Onde você se sabota</div><div class="qbox r">${sab.map(o=>`<div class="qrow"><b>${C[o.e].mercado}.</b> ${cap(o.txt)}.</div>`).join("")}<div class="qtom">${sabTom}</div></div>`
-    : `<div class="lyr"><span class="h">Onde você se sabota</span><p>Raro: <b>nenhuma força te domina hoje</b>. O seu risco não é uma sombra ativa; é depender demais das forças que já funcionam e nunca desenvolver as que faltam.</p></div>`;
+  /* ── SEÇÃO: matéria-prima (altas em construção): força com dignidade, ninguém sai sem seção de força ── */
+  const materiaHTML = V.hiBuild.length ? `<div class="lbl">A sua matéria-prima</div><div class="qbox a">${V.hiBuild.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> Força de sobra, lapidação em curso. Lapidada, ${QUAD[e].g}. Hoje, sob pressão, ainda escorrega pra ${SB[e]}.</div>`).join("")}<div class="qsint">Matéria-prima não é defeito: é a força que já te move antes de você dominá-la. É o investimento de maior retorno do seu mapa.</div></div>` : "";
+  /* ── SEÇÃO: onde você se sabota (só as altas E imaturas) × Maestria — tons alinhados com a caixa da Maestria ── */
+  const sabTom = st.reg<=18 ? 'Hoje, ativo: com a Maestria baixa, está te custando agora.' : (st.reg>=32 ? 'Risco latente: a sua Maestria segura, mas fique de olho.' : 'Oscila com a pressão: nos dias tensos, é isso que aparece.');
+  const sabHTML = V.red.length
+    ? `<div class="lbl">Onde você se sabota</div><div class="qbox r">${V.red.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> ${cap(QUAD[e].r)}.</div>`).join("")}<div class="qtom">${sabTom}</div></div>`
+    : (V.hiBuild.length ? "" : `<div class="lyr"><span class="h">Onde você se sabota</span><p>Raro: <b>nenhuma força te domina hoje</b>. O seu risco não é uma sombra ativa; é depender demais das forças que já funcionam e nunca desenvolver as que faltam.</p></div>`);
   /* ── SEÇÃO: pontos cegos (pisos) ── */
   const qLow=e=>QUAD[e][V.Q[e]==='k'?'k':(V.Q[e]==='b'?'b':'n')];   /* kb recebe o texto neutro, não o azul (que afirma maturidade) */
   const cegoHTML = V.lows.length ? `<div class="falta"><div class="fk">Os seus pontos cegos</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(qLow(e))}.<span class="cmp">↳ quem te complementa: ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>` : "";
   /* ── SEÇÃO: tensões & alianças (pares altos) ── */
   const combosHTML = (V.tens.length||V.alli.length) ? `<div class="combos"><div class="ck">O que as suas forças dizem juntas</div>${V.alli.map(o=>`<div class="cmb"><b>🔗 ${o.t}</b><p>${o.x}.</p></div>`).join("")}${V.tens.map(o=>`<div class="cmb"><b>⚡ ${o.t}</b><p>${o.x}.</p></div>`).join("")}</div>` : "";
-  /* ── SEÇÃO: temperatura & autogestão (agregados) ── */
-  const aggHTML=`<div class="lyr"><span class="h">A sua temperatura &amp; autogestão</span><p>${TEMP[V.temp]} ${AMPL(V.ampl)}</p><p>${REGT[V.reg]}</p></div>`;
+  /* ── SEÇÃO: temperatura & autogestão (agregados) + elenco de apoio (médios com maturidade notável) ── */
+  const mids=EMO.filter(e=>V.Q[e]==='mid'&&Math.abs(st.emo[e].mat)>=5).slice(0,2);
+  const midTxt=mids.map(e=> st.emo[e].mat>0
+    ? `<p><b>${C[e].mercado}</b> fica no meio do seu mapa, mas com uso afiado: não é o seu motor, e mesmo assim sai limpa quando o jogo pede. É o seu elenco de apoio mais confiável.</p>`
+    : `<p><b>${C[e].mercado}</b> fica no meio do seu mapa e o uso ainda tropeça: quando ela é chamada, sai torta. Vale um olho.</p>`).join("");
+  const aggHTML=`<div class="lyr"><span class="h">A sua temperatura &amp; autogestão</span><p>${TEMP[V.temp]} ${AMPL(V.ampl)}</p><p>${REGT[V.reg]}</p>${midTxt}</div>`;
   /* ── plano de ação (síntese) ── */
   const regMove = st.reg>=32 ? {t:'Empreste a sua Maestria ao time',x:'Você já conduz bem o que sente. O próximo nível é ser o termômetro que mantém a sala no eixo quando aperta.'}
     : (st.reg<=18 ? {t:'Pare de ser levado',x:'Quando a emoção subir, dê um passo de respiro antes de agir, é o que separa reagir de decidir.'}
@@ -721,24 +762,39 @@ function renderReport(){
     <div class="lyr gr"><span class="h">No uso maduro, a sua força</span>${paras(F.usoMaduro)}</div>
     <div class="lyr w"><span class="h">No uso imaturo, a sombra</span>${paras(F.usoImaturo)}</div>
     <div class="lyr w"><span class="h">A sua fonte de sofrimento, mais fundo</span>${paras(F.sofrimento)}</div>`;
-  app.innerHTML=`<section class="screen enter stagger">
+  /* ── EM 30 SEGUNDOS: a leitura mínima (identidade + força + risco + passo) ── */
+  const f30 = V.green[0]||V.hiBuild[0]||dom;
+  const r30e = V.red[0]||V.hiBuild[0]||piso;
+  const r30 = V.red[0] ? QUAD[r30e].r.split(':')[0] : (V.hiBuild[0] ? 'sob pressão, '+SB[r30e] : 'a falta de '+C[piso].mercado.toLowerCase()+' cobra preço');
+  const em30=`<div class="em30"><div class="e30k">Em 30 segundos</div>
+    <div class="e30r"><b>Você é</b> ${nomeX}: ${essX}.</div>
+    <div class="e30r"><b>A sua força</b>: ${C[f30].mercado}, ${GLOSS[f30]}.</div>
+    <div class="e30r"><b>O seu risco</b>: ${r30}.</div>
+    <div class="e30r"><b>O passo nº 1</b>: ${D.alavanca}</div></div>`;
+  const feridaHTML = V.lac<=3 && C[sec].denso && C[sec].denso.feridaCurta
+    ? `<p>${D.feridaCurta}</p><p>E, empatada com ela, a ferida do segundo eixo: ${C[sec].denso.feridaCurta.charAt(0).toLowerCase()+C[sec].denso.feridaCurta.slice(1)}</p>`
+    : `<p>${D.feridaCurta}</p>`;
+  const _html=`<section class="screen enter stagger">
     <div class="eyebrow">O seu mapa das emoções</div>
-    <h1>Você é <span class="it">${V.nome}</span></h1>
-    <p class="sub">${cap(V.essencia)}. Abaixo, o seu mapa lido por inteiro: cada força, como você a usa, e onde isso te leva.</p>
+    <h1>Você é <span class="it">${nomeX}</span></h1>
+    <p class="sub">${cap(essX)}. Abaixo, o seu mapa lido por inteiro: cada força, como você a usa, e onde isso te leva.</p>
+    ${em30}
     <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 50</b></div>${chart}<div class="qleg"><span class="qd g"></span>domina <span class="qd r"></span>te domina <span class="qd lo"></span>piso/ponto cego</div><div class="eixleg">O <b>tamanho</b> da barra é o quanto te move. A <b>cor</b> é como você usa: verde você domina, vermelho te domina.</div></div>
     ${combinaHTML}
     ${superHTML}
+    ${materiaHTML}
     ${sabHTML}
     ${cegoHTML}
     ${combosHTML}
     ${aggHTML}
     ${regBand}
     ${planoHTML}
-    <div class="lyr w"><span class="h">A ferida por baixo</span><p>${D.feridaCurta}</p></div>
+    <div class="lyr w"><span class="h">A ferida por baixo</span>${feridaHTML}</div>
     <div class="close">${Nm}, a emoção não é boa nem ruim; o que muda tudo é o uso. O seu mapa não é um rótulo, é onde mexer primeiro.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button><button class="btn ghost" id="redo">Refazer</button></div>
     <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>O Mapa das Emoções · V4.3</div>
   </section>`;
+  app.innerHTML = gen==='f' ? flexG(_html) : _html;
   setTimeout(()=>app.querySelectorAll(".fbar i,.reg .rbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
   document.getElementById("redo").onclick=()=>{ for(const k in ans) delete ans[k]; step=0; window.scrollTo({top:0}); transition(render); };
 }
@@ -751,17 +807,26 @@ function renderGuia(){
     return `<div class="frow ${pri?'pri':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||''}</i></span><span class="fbar q-${V.Q[e]}"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span></div>`;};
   const mn=MANUAL[dom]||{}, al=ALERTA[dom]||{}, dl=DELEGAR[dom]||{}, mo=MOTIVADOR[dom]||{}, me=MEDO[dom]||{};
   const mo2=MOTIVADOR[sec]||{}, mn2=MANUAL[sec]||{};   /* o tempero do 2º eixo: o kit não pode ser dominante-only */
+  const nomeX=(gen==='f'&&NOMESF[dom]&&NOMESF[dom][sec])||V.nome;
+  const essX=((gen==='f'?IDNF[dom]:IDN[dom])||'')+" que "+MOD[sec];
   const superG = V.green.length?`<div class="lbl">Onde ${Nm} brilha (forças que domina)</div><div class="qbox g">${V.green.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> ${cap(QUAD[e].g)}.</div>`).join("")}</div>`:"";
-  const sab=[...V.red.map(e=>({e,txt:QUAD[e].r})), ...V.hiBuild.map(e=>({e,txt:'força forte, uso ainda em construção; sob pressão vira '+SB[e]}))];
-  const sabG = sab.length?`<div class="lbl">Onde ${Nm} se sabota</div><div class="qbox r">${sab.map(o=>`<div class="qrow"><b>${C[o.e].mercado}.</b> ${cap(o.txt)}.</div>`).join("")}<div class="qtom">${st.reg<=24?'Hoje ativo: a Maestria mais baixa deixa isso à mostra.':'Risco latente: a Maestria segura, mas fique de olho.'}</div></div>`:`<div class="lyr"><span class="h">Onde ${Nm} se sabota</span><p>Raro: nenhuma força o domina hoje. O risco é depender demais das que já funcionam.</p></div>`;
-  app.innerHTML=`<section class="screen enter stagger">
+  const materiaG = V.hiBuild.length?`<div class="lbl">A matéria-prima de ${Nm}</div><div class="qbox a">${V.hiBuild.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> Força de sobra, lapidação em curso. Lapidada, ${QUAD[e].g}. Sob pressão, ainda escorrega pra ${SB[e]}.</div>`).join("")}<div class="qsint">Não trate como defeito: é a força que já move ${Nm} antes de dominá-la. Lapidar isso é o maior retorno que você tem como líder.</div></div>`:"";
+  const sabG = V.red.length?`<div class="lbl">Onde ${Nm} se sabota</div><div class="qbox r">${V.red.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> ${cap(QUAD[e].r)}.</div>`).join("")}<div class="qtom">${st.reg<=18?'Hoje ativo: a Maestria baixa deixa isso à mostra.':(st.reg>=32?'Risco latente: a Maestria segura, mas fique de olho.':'Oscila com a pressão: nos dias tensos, é isso que aparece.')}</div></div>`:(V.hiBuild.length?"":`<div class="lyr"><span class="h">Onde ${Nm} se sabota</span><p>Raro: nenhuma força o domina hoje. O risco é depender demais das que já funcionam.</p></div>`);
+  /* modulador de feedback: o vetor muda como a pessoa recebe dureza (não só o dominante) */
+  const fbMod=[];
+  if(cn('medo')>=25) fbMod.push("Pressão direta funciona no curto prazo (o medo responde com entrega), mas cobra juros em ansiedade. Use com parcimônia e feche sempre reafirmando a confiança.");
+  if(cn('raiva')>=25) fbMod.push("Aguenta franqueza dura melhor que a maioria; rodeio é o que irrita.");
+  if(cn('tristeza')>=25) fbMod.push("Feedback em público custa caro pra essa pessoa; em particular, sempre.");
+  const fbModHTML = fbMod.length?`<div class="falta"><div class="fk">Como a dureza cai nessa pessoa</div><ul>${fbMod.slice(0,2).map(x=>`<li>${x}</li>`).join("")}</ul></div>`:"";
+  const _g=`<section class="screen enter stagger">
     <div class="eyebrow">Guia de Condução · pra quem lidera</div>
     <h1>Como conduzir <span class="it">${Nm}</span></h1>
     <p class="sub">O mapa de operação de <b>${Nm}</b>: quem é, o que move, como tirar o melhor, o que evitar e quando intervir.</p>
-    <div class="hero"><div class="k">O tipo</div><div class="name">${V.nome}</div><p>${C[dom].mercado} + ${C[sec].mercado}. ${cap(V.essencia)}.</p></div>
+    <div class="hero"><div class="k">O tipo</div><div class="name">${nomeX}</div><p>${C[dom].mercado} + ${C[sec].mercado}. ${cap(essX)}.</p></div>
     <div class="obra"><div class="eixo"><span>O que mais move ${Nm}</span><b>de 0 a 50</b></div>${EMO.map(frow).join("")}<div class="qleg"><span class="qd g"></span>domina <span class="qd r"></span>te domina <span class="qd lo"></span>piso/ponto cego</div></div>
-    <div class="lyr"><span class="h">Quem é</span><p>${cap(V.essencia)}. ${TEMP[V.temp]}</p><p>${REGT[V.reg]}</p></div>
+    <div class="lyr"><span class="h">Quem é</span><p>${cap(essX)}. ${TEMP[V.temp]}</p><p>${REGT[V.reg]}</p></div>
     ${superG}
+    ${materiaG}
     ${sabG}
     <div class="cols">
       <div class="cbox motiv"><span class="h">🎯 O maior motivador</span><p>${mo.o||""}</p><p class="csub"><b>Como usar:</b> ${mo.como||""}</p><p class="csub"><b>Segundo motor (${C[sec].mercado}):</b> ${(mo2.o||"").charAt(0).toLowerCase()+(mo2.o||"").slice(1)}</p></div>
@@ -772,6 +837,7 @@ function renderGuia(){
       <div class="cbox do"><span class="h">✓ O que falar</span>${bul(FBDO[dom])}</div>
       <div class="cbox dont"><span class="h">✕ O que NÃO falar</span>${bul(FBDONT[dom])}</div>
     </div>
+    ${fbModHTML}
     <div class="manual"><div class="mk">Como trabalhar com ${Nm}</div>
       <div class="mrow"><b>O que evitar</b><p>${mn.ev||""}</p></div>
       <div class="mrow"><b>O ambiente que faz render</b><p>${mn.am||""}</p></div>
@@ -791,6 +857,7 @@ function renderGuia(){
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button></div>
     <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução · V4.3</div>
   </section>`;
+  app.innerHTML = gen==='f' ? flexG(_g) : _g;
   setTimeout(()=>app.querySelectorAll(".fbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
 }
 if(loadFromHash()) step=N+1;
