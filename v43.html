@@ -225,7 +225,13 @@ h1 .it{font-style:italic;color:var(--gold)}
 .foot b{color:var(--ink-2)}
 .hidden{display:none!important}
 @media(max-width:480px){.wrap{padding:0 18px}}
-@media print{.top,.nav,.row,.lcta button,.skip{display:none!important}.hidden{display:block!important}body{background:#fff}.hero,.rep,.lcta{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media print{
+  .top,.nav,.row,.lcta button,.skip{display:none!important}
+  .hidden{display:block!important}
+  body{background:#fff}
+  .em30,.combo2,.reg,.qbox,.plano,.falta,.combos,.alerta,.manual,.prio,.hero,.cbox,.mt,.pn,.fbar,.fbar i,.rbar,.rbar i,.qd,.lcta,.lyr{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .em30,.combo2,.reg,.qbox,.plano,.falta,.combos,.alerta,.manual,.obra,.prio,.hero,.cbox{break-inside:avoid;page-break-inside:avoid}
+}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 .obra{margin:14px 0;padding:14px 16px;border:1px solid rgba(0,0,0,.08);border-radius:18px;background:#fff}
