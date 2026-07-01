@@ -481,9 +481,9 @@ const EXTRAIR={
   cuidado:"O máximo dele vem quando você dá pessoas pra desenvolver e reconhece o cuidado que ele dá. Ele constrói lealdade e segura o time nas horas difíceis. O seu papel é protegê-lo do esgotamento, devolva o que não é dele, cuide dele de volta, e dê licença pra ele cobrar quando precisar.",
   busca:"O máximo dele vem quando você dá um problema grande e aberto, tira a burocracia do caminho e cobra uma coisa só: linha de chegada. Ele voa na descoberta; o seu papel é garantir que ele feche antes de abrir a próxima. Dê o novo como recompensa e um parceiro executor que ame terminar o que ele começa."
 };
-const LOWCEN=18;   /* abaixo disso: a falta pesa + selo de uso fica mudo (sinal fino demais), faixa 10..40 */
+const LOWCEN=20;   /* piso = tercil inferior (P33 ≈ cen 20). norma-referenciado, não no olho */
 /* ═══════════ MÉTODO VETOR COMPLETO ═══════════ */
-const HICEN=28;  /* alta ≥28 · piso ≤18 · maturidade: madura ≥+3, imatura ≤−3 */
+const HICEN=30;  /* cortes por percentil (tercis): alta = P66 (cen ≥30), piso = P33 (cen ≤20). Maturidade: madura ≥+3, imatura ≤−3. Provisório até normas próprias; ancorado na distribuição da ANPS. */
 const IDN={raiva:"um inconformado",medo:"um guardião",tristeza:"um profundo",alegria:"um catalisador",cuidado:"um cuidador",busca:"um explorador"};
 const MOD={raiva:"não foge da briga que precisa comprar",medo:"calcula bem antes de saltar",tristeza:"sente o peso e o não-dito",alegria:"traz energia e leva o time junto",cuidado:"traz as pessoas junto e cuida de quem é seu",busca:"está sempre atrás do próximo novo"};
 const SB={raiva:"dureza e explosão",medo:"trava e paralisia",tristeza:"peso e recolhimento",alegria:"dispersão",cuidado:"esgotamento",busca:"frentes abertas sem fechar"};
