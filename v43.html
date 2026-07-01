@@ -713,7 +713,7 @@ function renderReport(){
     <div class="lyr w"><span class="h">A ferida por baixo</span><p>${D.feridaCurta}</p></div>
     <div class="close">${Nm}, a emoção não é boa nem ruim; o que muda tudo é o uso. O seu mapa não é um rótulo, é onde mexer primeiro.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button><button class="btn ghost" id="redo">Refazer</button></div>
-    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>O Mapa das Emoções · V4.3</div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>O Mapa das Emoções · V4.3.1</div>
   </section>`;
   setTimeout(()=>app.querySelectorAll(".fbar i,.reg .rbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
   document.getElementById("redo").onclick=()=>{ for(const k in ans) delete ans[k]; step=0; window.scrollTo({top:0}); transition(render); };
@@ -763,7 +763,7 @@ function renderGuia(){
     <div class="prio"><div class="k">🏆 Como reconhecer de um jeito que importa</div><p>${RECONHECER[dom]||""}</p></div>
     <div class="close">${Nm} não é um rótulo. Este guia é onde apoiar, o que evitar e como conduzir. O resto é presença.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button></div>
-    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução · V4.3</div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução · V4.3.1</div>
   </section>`;
   setTimeout(()=>app.querySelectorAll(".fbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
 }
