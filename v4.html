@@ -265,6 +265,21 @@ h1 .it{font-style:italic;color:var(--gold)}
 .alerta .arow:first-of-type{border-top:none;padding-top:0}
 .alerta .arow b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);font-weight:700;margin-bottom:2px}
 .alerta .arow p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.46}
+.carac{display:grid;grid-template-columns:1fr 1fr;gap:7px 16px;margin:2px 0 6px}
+.carac .crow{font-size:13px;color:var(--ink-2);line-height:1.4;padding:3px 0}
+.carac .crow b{color:var(--ink);font-weight:700}
+@media(max-width:520px){.carac{grid-template-columns:1fr}}
+.cbox.do{background:var(--green-bg);border-color:var(--green-soft)} .cbox.do .h{color:#2c6045}
+.cbox.dont{background:rgba(180,80,60,.06);border-color:rgba(180,80,60,.18)} .cbox.dont .h{color:var(--excesso)}
+.cbox.motiv{background:var(--gold-bg);border-color:var(--gold-soft)}
+.cbox.medo{background:rgba(180,80,60,.06);border-color:rgba(180,80,60,.18)} .cbox.medo .h{color:var(--excesso)}
+.cbox .csub{margin:8px 0 0;font-size:12px;color:var(--ink-3);line-height:1.4} .cbox .csub b{color:var(--ink-2)}
+.prio{margin:14px 0 4px;padding:16px 19px;border-radius:15px;background:var(--gold-bg);border:1px solid var(--gold-soft)}
+.prio .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.prio p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.5}
+.prio .csub{font-size:12.5px;color:var(--ink-3);margin-top:6px}
+.prio.big{background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);color:#f7eede;border:none;padding:19px 21px}
+.prio.big .k{color:var(--gold-2)} .prio.big p{color:#e7dcc9}
 .frow.lowf .fbar i{opacity:.55} .frow.lowf .fnum{color:var(--ink-3)}
 .falta{margin:12px 0 4px;padding:14px 17px;border-radius:15px;background:#fbf5ec;border:1px solid var(--line);border-left:3px solid #bb8a4c}
 .falta .fk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a6a31;font-weight:700;margin-bottom:8px}
@@ -391,6 +406,54 @@ const RECONHECER={
   alegria:"Reconheça em público, com calor — floresce no reconhecimento vivo.",
   cuidado:"Reconheça o cuidado invisível, em voz alta. Quase nunca há cobrança por isso.",
   busca:"Reconheça a solução original, não só o resultado. Dê o próximo desafio como prêmio."
+};
+const CARACTERISTICAS={
+  raiva:["Frontal — fala o que pensa, na hora, sem rodeio","Exigente — o padrão dele é alto, e ele cobra","Justo — reage forte à injustiça, defende o certo","Corajoso — não foge do confronto, às vezes até busca","Impaciente — corpo mole e enrolação o tiram do sério","Direto demais às vezes — pode ferir sem perceber"],
+  medo:["Cauteloso — pensa nas consequências antes de agir","Preparado — mapeia o cenário e guarda margem","Confiável — raramente é pego desprevenido","Analítico — quer os fatos antes de decidir","Avesso ao susto — resiste a decisão empurrada na pressa","Pode travar — o excesso de cautela vira paralisia"],
+  tristeza:["Sensível — lê o clima e o não-dito antes de todos","Profundo — não se contenta com a superfície","Sério — leva as coisas e as pessoas a peito","Reservado — fala pouco, mas com peso","Empático — sente o que o outro carrega","Pode se recolher — some quando o ambiente fica raso ou duro"],
+  alegria:["Enérgico — chega, e o astral sobe","Sociável — puxa conversa, conecta gente","Otimista — enxerga a saída, mantém o ânimo na pressão","Contagiante — o humor dele move o time","Espontâneo — leve, improvisa bem","Pode dispersar — foge do sério pela brincadeira"],
+  cuidado:["Acolhedor — a pessoa antes da tarefa","Leal — protege quem é dele, não abandona","Atento — lembra do detalhe pessoal","Generoso — dá muito, cobra pouco de volta","Desenvolvedor — gosta de ver o outro crescer","Pode se anular — esgota cuidando e não sobra pra si"],
+  busca:["Inquieto — o status quo o incomoda; sempre há um jeito melhor","Rápido de cabeça — conecta ideias que os outros não juntam","Questionador — não aceita 'é assim porque sempre foi'","Iniciador — abre frente com facilidade, empolga rápido","Independente — trabalha melhor solto do que vigiado","Disperso no tédio — perde o interesse quando vira rotina"]
+};
+const MOTIVADOR={
+  raiva:{o:"Fazer o certo prevalecer e ver o padrão subir — ser reconhecido como quem não deixa a peteca cair.",como:"Dê a missão de elevar o nível de algo, e o poder real pra cobrar isso."},
+  medo:{o:"Proteger o que importa e evitar o desastre — sentir que a empresa está segura por causa dele.",como:"Dê a guarda do que não pode falhar, e reconheça o estrago que ele evitou."},
+  tristeza:{o:"Sentido e verdade no que faz — trabalho raso o esvazia; propósito o acende.",como:"Conecte a tarefa a um porquê real e dê espaço pra profundidade, não só volume."},
+  alegria:{o:"Energia, gente e reconhecimento vivo — ser a chama que mantém o time pra cima.",como:"Dê palco e causa: deixe ele mobilizar, e reconheça em público."},
+  cuidado:{o:"Ser necessário e ver as pessoas florescerem — o vínculo vale mais que o aplauso.",como:"Dê pessoas pra desenvolver, e reconheça o cuidado invisível em voz alta."},
+  busca:{o:"Descobrir e resolver o que ninguém resolveu — o tédio, pra ele, é pior que o risco.",como:"Dê o problema mais difícil do time: é o maior presente que você pode dar."}
+};
+const MEDO={
+  raiva:{o:"Ser passado para trás, injustiçado, ou visto como fraco.",evite:"Humilhá-lo em público, tolerar injustiça contra ele, ou tratá-lo como peça substituível."},
+  medo:{o:"Ser pego desprevenido por um desastre que ele poderia ter evitado.",evite:"Empurrá-lo pro escuro sem preparo, mudar as regras no meio, ou punir a cautela dele."},
+  tristeza:{o:"Não ser visto de verdade — que o que ele sente e carrega não importe.",evite:"Tratar as coisas (e ele) com frieza, pressa e superficialidade."},
+  alegria:{o:"Ser rejeitado, o clima virar contra ele, ficar isolado e apagado.",evite:"Humilhá-lo, deixá-lo de fora, ou instalar um clima pesado e sem reconhecimento."},
+  cuidado:{o:"Ser abandonado, deixar de ser necessário, dar e não receber.",evite:"Ignorar o que ele dá, descartá-lo depois de usar, ou nunca cuidar dele de volta."},
+  busca:{o:"Ficar preso, pequeno, ultrapassado — virar mais um na rotina que já dominou.",evite:"Prendê-lo no operacional repetitivo, ou sinalizar que o futuro dele é 'mais do mesmo'."}
+};
+const FBDO={
+  raiva:["Seja reto e olho no olho — ele respeita coragem, despreza rodeio","Justifique pelo padrão e pelo certo, não por preferência pessoal","Reconheça o que ele já elevou antes de apontar o que falta","Se ele errou no modo e não no ponto, separe as duas coisas"],
+  medo:["Dê contexto e antecedência — nada de feedback de emboscada","Traga dados e o cenário: ele confia no que é fundamentado","Aponte o próximo passo seguro, não só o problema","Valorize a cautela dele antes de pedir mais ousadia"],
+  tristeza:["Com presença e verdade — ele sente a intenção antes das palavras","Em particular e com tempo — não no corredor, não com pressa","Reconheça a leitura fina dele, valorize a profundidade","Diga o que sente, não só o que pensa: ele lê a sinceridade"],
+  alegria:["Comece pelo que foi bem — o tom abre ou fecha a escuta dele","Seja leve mas claro: envolva sem afundar o astral","Transforme o ajuste em desafio animado, não em peso","Reconheça em público quando merecer — é combustível puro"],
+  cuidado:["Com cuidado e reconhecimento — ele dá muito e cobra pouco","Comece agradecendo o que ele carrega pelos outros","Aponte o ajuste como cuidado com ELE, não como cobrança fria","Garanta que ele se sinta visto antes de qualquer 'mas'"],
+  busca:["Vá direto e traga o desafio junto: 'tenho um problema difícil pra você'","Enquadre a correção como um enigma a resolver, não como bronca","Mostre o porquê — ele engaja pela lógica, não pela ordem","Dê autonomia no como: diga o alvo, deixe o caminho com ele"]
+};
+const FBDONT={
+  raiva:["Não enrole nem amacie demais — ele lê como falta de coragem","Não o corrija em público — vira ferida e rancor","Não minimize a causa que ele defende ('deixa isso pra lá')"],
+  medo:["Não jogue a decisão em cima dele no susto","Não trate a cautela como fraqueza ou lentidão","Não mude o combinado sem avisar"],
+  tristeza:["Não seja raso nem apressado — ele desconfia do que é leve demais","Não exponha o que ele sente na frente dos outros","Não force positividade ('anima que não é nada')"],
+  alegria:["Não abra com o problema seco — apaga o motor dele","Não ignore as pequenas vitórias","Não o isole nem instale um clima pesado sem retorno"],
+  cuidado:["Não trate o cuidado dele como óbvio ou automático","Não cobre friamente, como se ele fosse só função","Não o deixe virar o pano de prato de todos sem reconhecer"],
+  busca:["Não microgerencie o passo a passo — soa como desconfiança","Não diga 'faça porque eu mandei' — ele desliga","Não prometa 'mais do mesmo' como futuro"]
+};
+const EXTRAIR={
+  raiva:"O máximo dele vem quando você aponta um padrão pra elevar e dá poder real pra cobrar. Ele vira o jogo quando a causa é clara e a autoridade é dele. O seu papel é canalizar a intensidade pro alvo certo e proteger a relação — dê a briga que vale a pena e ajude a escolher as que não valem.",
+  medo:"O máximo dele vem quando você o coloca como guardião do que não pode falhar e dá tempo de preparo. Ele blinda a empresa contra o desastre que os outros nem viram. O seu papel é empurrar de leve pra ação quando a análise já foi longe demais — dê segurança pra dar o passo e reconheça o estrago evitado.",
+  tristeza:"O máximo dele vem quando você dá sentido ao trabalho e espaço pra profundidade. Ele lê pessoas e situações como ninguém e sustenta o que é difícil. O seu papel é não deixá-lo afundar no peso — dê propósito claro, conversas de verdade, e puxe-o de volta quando ele se recolher.",
+  alegria:"O máximo dele vem quando você dá palco, gente e uma causa pra animar. Ele levanta o time e mantém o ritmo na pressão. O seu papel é ancorar a energia numa entrega concreta — deixe ele mobilizar e ajude a aterrissar a empolgação em resultado.",
+  cuidado:"O máximo dele vem quando você dá pessoas pra desenvolver e reconhece o cuidado que ele dá. Ele constrói lealdade e segura o time nas horas difíceis. O seu papel é protegê-lo do esgotamento — devolva o que não é dele, cuide dele de volta, e dê licença pra ele cobrar quando precisar.",
+  busca:"O máximo dele vem quando você dá um problema grande e aberto, tira a burocracia do caminho e cobra uma coisa só: linha de chegada. Ele voa na descoberta; o seu papel é garantir que ele feche antes de abrir a próxima. Dê o novo como recompensa e um parceiro executor que ame terminar o que ele começa."
 };
 const LOWCEN=18;   /* abaixo disso: a falta pesa + selo de uso fica mudo (sinal fino demais) — faixa 10..40 */
 function buildQuestions(){
@@ -615,26 +678,38 @@ function renderGuia(){
   const baixas=EMO.filter(e=>st.emo[e].cen<=LOWCEN).sort((a,b)=>st.emo[a].cen-st.emo[b].cen);
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
     return `<div class="frow ${pri?'pri':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||''}</i></span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span></div>`;};
-  const mn=MANUAL[dom]||{}, al=ALERTA[dom]||{}, dl=DELEGAR[dom]||{};
+  const mn=MANUAL[dom]||{}, al=ALERTA[dom]||{}, dl=DELEGAR[dom]||{}, mo=MOTIVADOR[dom]||{}, me=MEDO[dom]||{};
+  const carac=(CARACTERISTICAS[dom]||[]).map(c=>{const p=c.split(' — '); return `<div class="crow"><b>${p[0]}</b>${p.length>1?' — '+p.slice(1).join(' — '):''}</div>`;}).join("");
   app.innerHTML=`<section class="screen enter stagger">
     <div class="eyebrow">Guia de Condução · pra quem lidera</div>
     <h1>Como conduzir <span class="it">${Nm}</span></h1>
-    <p class="sub">O mapa de operação de <b>${Nm}</b>: o que move, como tirar o melhor, o que evitar e quando intervir.</p>
+    <p class="sub">O mapa de operação de <b>${Nm}</b>: quem é, o que move, como tirar o melhor, o que evitar e quando intervir.</p>
     <div class="hero"><div class="k">O arquétipo</div><div class="name">${A.nome}</div><p>Movido por ${A.mercado.toLowerCase()} — ${GLOSS[dom]}.</p></div>
     <div class="obra"><div class="eixo"><span>O que mais move ${Nm}</span><b>de 0 a 50</b></div>${EMO.map(frow).join("")}</div>
+    <div class="lbl">Principais características</div>
+    <div class="carac">${carac}</div>
     <div class="lbl">O retrato — como aparece no dia a dia</div>
     <div class="lyr"><p>${RETRATO[dom]||""}</p></div>
-    <div class="lbl">O que acende, o que apaga</div>
+    <div class="lbl">O que empolga, o que irrita</div>
     <div class="cols">
-      <div class="cbox"><span class="h">🔥 Acende</span>${bul(FUEL[dom])}</div>
-      <div class="cbox"><span class="h gold2">🪫 Apaga</span>${bul(DRAIN[dom])}</div>
+      <div class="cbox"><span class="h">🔥 O que empolga</span>${bul(FUEL[dom])}</div>
+      <div class="cbox"><span class="h gold2">😤 O que irrita</span>${bul(DRAIN[dom])}</div>
+    </div>
+    <div class="cols">
+      <div class="cbox motiv"><span class="h">🎯 O maior motivador</span><p>${mo.o||""}</p><p class="csub"><b>Como usar:</b> ${mo.como||""}</p></div>
+      <div class="cbox medo"><span class="h">🚫 O maior medo — não acione</span><p>${me.o||""}</p><p class="csub"><b>Evite:</b> ${me.evite||""}</p></div>
+    </div>
+    <div class="lbl">Como dar feedback</div>
+    <div class="cols">
+      <div class="cbox do"><span class="h">✓ O que falar</span>${bul(FBDO[dom])}</div>
+      <div class="cbox dont"><span class="h">✕ O que NÃO falar</span>${bul(FBDONT[dom])}</div>
     </div>
     <div class="manual"><div class="mk">Como trabalhar com ${Nm}</div>
-      <div class="mrow"><b>Como dar feedback</b><p>${mn.fb||""}</p></div>
       <div class="mrow"><b>O que evitar</b><p>${mn.ev||""}</p></div>
       <div class="mrow"><b>O ambiente que faz render</b><p>${mn.am||""}</p></div>
       <div class="mrow"><b>Como delegar</b><p><b class="ok2">Dê:</b> ${dl.serve||""} <b class="no2">Mantenha longe:</b> ${dl.longe||""}</p></div>
     </div>
+    <div class="prio big"><div class="k">🔑 Como extrair o máximo</div><p>${EXTRAIR[dom]||""}</p></div>
     <div class="alerta"><div class="ak">⚠ Sinais de alerta — quando caiu na sombra</div>
       <div class="arow"><b>Você percebe assim</b><p>${al.sinal||""}</p></div>
       <div class="arow"><b>O que fazer</b><p>${al.acao||""}</p></div>
