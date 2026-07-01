@@ -258,6 +258,13 @@ h1 .it{font-style:italic;color:var(--gold)}
 .manual .mrow:first-of-type{border-top:none;padding-top:0}
 .manual .mrow b{display:block;font-size:11.5px;letter-spacing:.02em;color:var(--ink);font-weight:700;margin-bottom:2px;text-transform:uppercase}
 .manual .mrow p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.46}
+.manual .mrow p b.ok2{color:#3a6b4a;font-weight:700} .manual .mrow p b.no2{color:var(--excesso);font-weight:700}
+.alerta{margin:16px 0 4px;padding:17px 20px;border-radius:16px;background:rgba(180,80,60,.06);border:1px solid rgba(180,80,60,.18)}
+.alerta .ak{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--excesso);font-weight:700;margin-bottom:12px}
+.alerta .arow{padding:8px 0;border-top:1px solid rgba(180,80,60,.14)}
+.alerta .arow:first-of-type{border-top:none;padding-top:0}
+.alerta .arow b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);font-weight:700;margin-bottom:2px}
+.alerta .arow p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.46}
 .frow.lowf .fbar i{opacity:.55} .frow.lowf .fnum{color:var(--ink-3)}
 .falta{margin:12px 0 4px;padding:14px 17px;border-radius:15px;background:#fbf5ec;border:1px solid var(--line);border-left:3px solid #bb8a4c}
 .falta .fk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a6a31;font-weight:700;margin-bottom:8px}
@@ -334,15 +341,56 @@ const GLOSS={raiva:"confrontar e cobrar",medo:"prever o risco",tristeza:"sentir 
 const DEFICIT={raiva:"Você evita o confronto que o time às vezes precisa, e deixa o medíocre passar.",medo:"Você arrisca sem calcular, e o perigo chega sem aviso.",tristeza:"Você passa por cima do que dói — seu e dos outros — sem registrar.",alegria:"Falta o ânimo que contagia; o clima pesa sem alguém puxar pra cima.",cuidado:"As pessoas se sentem cobradas sem se sentir cuidadas.",busca:"Você se acomoda no que já funciona, e o novo passa enquanto você fica."};
 const COMPLEMENT={raiva:"alguém que confronta e cobra sem dó — pro padrão não cair",medo:"alguém que enxerga o risco antes de você pisar nele",tristeza:"alguém que lê o clima e o que não foi dito na sala",alegria:"alguém que traz energia e levanta o astral quando pesa",cuidado:"alguém que cuida das pessoas enquanto você cobra resultado",busca:"alguém que traz o novo e questiona o que já está posto"};
 const DEVELOP={raiva:"escolha uma situação por semana pra dizer o 'não' que você engoliria — confronto pequeno, treinado",medo:"antes de cada decisão grande, escreva os 3 jeitos de aquilo dar errado antes de seguir",tristeza:"reserve 5 minutos depois das reuniões tensas pra perguntar: o que ninguém disse aqui?",alegria:"abra uma reunião por semana pelo que está dando certo, não pelo problema",cuidado:"uma vez por semana, pergunte a alguém do time como ELE está — antes da tarefa",busca:"separe 1h por semana pra um 'e se?' fora do operacional, sem culpa"};
-const FUEL={raiva:["Um padrão pra defender","Injustiça pra corrigir","Poder de decidir e cobrar"],medo:["Tempo pra preparar","Cenário mapeado","Margem de segurança antes do salto"],tristeza:["Conversa de verdade","Sentido no que faz","Espaço pra processar o que pesa"],alegria:["Gente e movimento","Reconhecimento","Um clima que ele possa levantar"],cuidado:["Ver alguém crescer","Ser necessário de verdade","Vínculo, não só tarefa"],busca:["Problema novo pra destrinchar","Autonomia pra experimentar","Terreno que ninguém mapeou"]};
+const FUEL={raiva:["Um padrão pra defender","Injustiça pra corrigir","Poder de decidir e cobrar"],medo:["Tempo pra preparar","Cenário mapeado","Margem de segurança antes do salto"],tristeza:["Conversa de verdade","Sentido no que faz","Espaço pra processar o que pesa"],alegria:["Gente e movimento","Reconhecimento","Um clima pra levantar"],cuidado:["Ver alguém crescer","Ser necessário de verdade","Vínculo, não só tarefa"],busca:["Problema novo pra destrinchar","Autonomia pra experimentar","Terreno que ninguém mapeou"]};
 const DRAIN={raiva:["Mediocridade tolerada","Engolir o que está errado","Política e panos quentes"],medo:["Decisão no susto","Risco que ninguém calculou","Mudança de última hora"],tristeza:["Superficialidade e barulho","Fingir que está tudo bem","Pressa que atropela o sentido"],alegria:["Ambiente pesado e monótono","Isolamento","Esforço sem retorno visível"],cuidado:["Dar e não receber","Frieza","Cobrar sem poder cuidar"],busca:["Rotina e execução repetitiva","Ter que pedir permissão","Terminar sem novidade à vista"]};
 const MANUAL={
-  raiva:{fb:"Reto e no olho — rodeio ele lê como falta de coragem. Justifique pelo padrão.",ev:"Injustiça e mediocridade sem resposta — é o que mais o tira do sério.",am:"Poder real de decidir e cobrar, com um padrão claro pra defender."},
-  medo:{fb:"Com contexto e antecedência — feedback de emboscada trava ele.",ev:"Empurrar decisão no susto e mudar as regras no meio do jogo.",am:"Previsibilidade, tempo de preparo e margem pra checar antes de agir."},
-  tristeza:{fb:"Com verdade e presença — ele sente a intenção antes das palavras.",ev:"Superficialidade e resolver por cima; ele desconfia do que é raso demais.",am:"Espaço pra profundidade, sentido claro no trabalho, conversas de verdade."},
-  alegria:{fb:"Comece pelo que foi bem, depois o ajuste — o tom pesa tanto quanto o conteúdo.",ev:"Peso constante e ignorar as pequenas vitórias — apaga o motor dele.",am:"Gente, movimento, reconhecimento e uma causa pra animar."},
-  cuidado:{fb:"Com cuidado e reconhecimento — ele dá muito e raramente cobra de volta.",ev:"Tratar o cuidado dele como óbvio; ele some por dentro quando passa despercebido.",am:"Vínculo, gente pra desenvolver, e alguém que cuide dele também."},
-  busca:{fb:"Direto e com o desafio junto — ele engaja pelo 'e se?', não pela ordem.",ev:"Microgerenciar e prender no operacional repetitivo — é cortar o oxigênio dele.",am:"Autonomia pra experimentar, problemas novos, liberdade de trocar o caminho."}
+  raiva:{fb:"Reto e no olho — rodeio é lido como falta de coragem. Justifique pelo padrão.",ev:"Injustiça e mediocridade sem resposta — é o que mais tira do sério.",am:"Poder real de decidir e cobrar, com um padrão claro pra defender."},
+  medo:{fb:"Com contexto e antecedência — feedback de emboscada trava.",ev:"Empurrar decisão no susto e mudar as regras no meio do jogo.",am:"Previsibilidade, tempo de preparo e margem pra checar antes de agir."},
+  tristeza:{fb:"Com verdade e presença — a intenção é sentida antes das palavras.",ev:"Superficialidade e resolver por cima; há desconfiança do que é raso demais.",am:"Espaço pra profundidade, sentido claro no trabalho, conversas de verdade."},
+  alegria:{fb:"Comece pelo que foi bem, depois o ajuste — o tom pesa tanto quanto o conteúdo.",ev:"Peso constante e ignorar as pequenas vitórias — apaga o motor.",am:"Gente, movimento, reconhecimento e uma causa pra animar."},
+  cuidado:{fb:"Com cuidado e reconhecimento — dá muito e raramente cobra de volta.",ev:"Tratar o cuidado como óbvio; recolhe-se por dentro quando passa despercebido.",am:"Vínculo, gente pra desenvolver, e alguém que também cuide de volta."},
+  busca:{fb:"Direto e com o desafio junto — engaja pelo 'e se?', não pela ordem.",ev:"Microgerenciar e prender no operacional repetitivo — corta o oxigênio.",am:"Autonomia pra experimentar, problemas novos, liberdade de trocar o caminho."}
+};
+/* ── mapas do GUIA DE CONDUÇÃO (virado pra quem lidera) — gênero-neutro ── */
+const RETRATO={
+  raiva:"Vai direto ao ponto, sem amaciar. Não engole o que está errado: fala na hora, às vezes antes de pensar. Cobra padrão alto e se incomoda visivelmente com corpo mole. Bate de frente diante de injustiça, e não recua fácil.",
+  medo:"Antes de decidir, quer o cenário inteiro — pergunta 'e se der errado?' mais de uma vez. Guarda margem, confere duas vezes, resiste a ser empurrado pro susto. Parece cauteloso demais pros afoitos, mas raramente é pego desprevenido.",
+  tristeza:"Percebe o clima da sala antes de qualquer palavra. Fala pouco, mas o que fala tem peso. Incomoda-se com superficialidade e pressa. Leva as coisas a sério — às vezes até demais — e se recolhe quando o ambiente fica raso.",
+  alegria:"Chega, e o astral sobe. Puxa conversa, brinca, mantém o ritmo mesmo na pressão. Contagia o time quando o clima cai. O risco é dispersar no meio da empolgação, ou desconversar o que é sério.",
+  cuidado:"Pergunta como você está antes de falar de tarefa. Lembra do detalhe pessoal, protege quem é próximo, segura a barra dos outros. Raramente pede pra si. Recolhe-se por dentro quando o cuidado que dá passa despercebido.",
+  busca:"Vive com várias abas abertas, na cabeça e na tela. Larga o que ficou chato assim que aparece um problema mais interessante. Questiona 'por que assim e não de outro jeito?' antes de aceitar qualquer processo. Empolga rápido — e o time corre atrás pra fechar o que foi aberto."
+};
+const ALERTA={
+  raiva:{sinal:"Explodiu ou intimidou; guardando rancor; a cobrança virou ataque pessoal.",acao:"Acolha a causa (quase sempre há razão no fundo), mas nomeie o custo do modo — separe o certo do jeito."},
+  medo:{sinal:"Uma decisão travada; adiando; a preocupação virou paralisia.",acao:"Diminua o cenário: qual o menor passo seguro? Dê prazo curto e companhia na decisão."},
+  tristeza:{sinal:"Fechou-se, isolou-se, parou de responder; o peso virou desânimo.",acao:"Procure — não espere vir. Uma conversa de verdade, sem pauta, destrava mais que qualquer meta."},
+  alegria:{sinal:"Empolgação sem entrega; fugindo do sério pela brincadeira; energia que não vira resultado.",acao:"Valide a energia e ancore num compromisso concreto: 'ótimo — e o que fica pronto até sexta?'"},
+  cuidado:{sinal:"Esgotado e ressentido; virou gargalo resolvendo o que é dos outros; parou de cuidar de si.",acao:"Devolva os problemas dos outros, proteja o tempo dessa pessoa, e dê licença explícita pra cobrar."},
+  busca:{sinal:"Cinco frentes abertas e nenhuma fechada; sumiu do operacional; entediado e irritado com rotina.",acao:"Traga um problema novo de verdade — e, junto, cobre uma entrega fechada antes da próxima."}
+};
+const DELEGAR={
+  raiva:{serve:"Cobrar padrão, negociar duro, defender o certo, virar o jogo.",longe:"Contextos que pedem paciência com processo lento e diplomacia prolongada."},
+  medo:{serve:"Gestão de risco, planejamento, revisão, tudo que não pode falhar.",longe:"Decisões relâmpago sem preparo, terreno de pura aposta."},
+  tristeza:{serve:"Leitura de pessoas e clima, conversas difíceis, o que exige profundidade.",longe:"Volume alto e raso sob pressa, ambientes barulhentos e impessoais."},
+  alegria:{serve:"Mobilizar gente, animar o time, frente que precisa de energia.",longe:"Tarefa solitária e monótona, sem retorno visível por muito tempo."},
+  cuidado:{serve:"Desenvolver pessoas, cuidar de cliente, segurar vínculo e lealdade.",longe:"Papel que exige cobrar forte sem espaço pra cuidar."},
+  busca:{serve:"Problemas abertos, projetos de descoberta, 'como resolver o que ninguém resolveu'.",longe:"Rotina repetitiva de manutenção e execução longa sem novidade."}
+};
+const CONVERSA={
+  raiva:"Você tem razão no que te incomoda. Vamos usar essa força pra corrigir, sem queimar a relação.",
+  medo:"Não precisa de tudo garantido pra dar o passo. Eu vou junto — e o menor passo já conta.",
+  tristeza:"O que você sente aqui importa e é levado a sério. Fala comigo de verdade.",
+  alegria:"A sua energia move o time — e vale ouro quando vira entrega. Bora aterrissar junto.",
+  cuidado:"O que você faz pelas pessoas é visto. E alguém precisa cuidar de você também.",
+  busca:"Aqui você tem espaço pra inventar — e eu conto com você pra fechar o que abrir."
+};
+const RECONHECER={
+  raiva:"Reconheça a coragem de bater de frente pelo certo. Ofereça mais poder de decisão.",
+  medo:"Reconheça o desastre evitado — o que não aconteceu graças à cautela.",
+  tristeza:"Reconheça a leitura fina que ninguém mais teve. Valorize a profundidade, não só a entrega.",
+  alegria:"Reconheça em público, com calor — floresce no reconhecimento vivo.",
+  cuidado:"Reconheça o cuidado invisível, em voz alta. Quase nunca há cobrança por isso.",
+  busca:"Reconheça a solução original, não só o resultado. Dê o próximo desafio como prêmio."
 };
 const LOWCEN=18;   /* abaixo disso: a falta pesa + selo de uso fica mudo (sinal fino demais) — faixa 10..40 */
 function buildQuestions(){
@@ -368,11 +416,12 @@ function score(){
 }
 
 const Q = buildQuestions(); const N = Q.length;
-const ans = {}; let step=0, nome="", leaderOpen=false, FORCED_ST=null;
-/* modo "resultado via link": #r=<base64> com {n,c[6],m[6],r} renderiza o relatório direto, sem refazer o teste */
+const ans = {}; let step=0, nome="", leaderOpen=false, FORCED_ST=null, GUIA=false;
+/* via link: #r=<base64> = relatório (espelho); #g=<base64> = Guia de Condução (pra quem lidera). Mesmo payload {n,c[6],m[6],r} */
 function loadFromHash(){ try{
-  const h=(location.hash||"").replace(/^#r?=?/,""); if(!h) return false;
-  const j=JSON.parse(decodeURIComponent(escape(atob(h.replace(/-/g,'+').replace(/_/g,'/')))));
+  const mt=(location.hash||"").match(/^#(r|g)=(.+)$/); if(!mt) return false;
+  GUIA=(mt[1]==="g");
+  const j=JSON.parse(decodeURIComponent(escape(atob(mt[2].replace(/-/g,'+').replace(/_/g,'/')))));
   if(!j||!Array.isArray(j.c)||j.c.length!==6) return false;
   const st={emo:{}}; EMO.forEach((e,i)=>{ st.emo[e]={cen:j.c[i],mat:j.m[i]}; }); st.reg=j.r;
   FORCED_ST=st; nome=j.n||""; return true;
@@ -384,7 +433,7 @@ function progress(){ const s = step===0?0:(step>N?100:Math.round(step/(N+1)*100)
 function paint(html,cls){ app.innerHTML=`<section class="screen ${cls||"enter"}">${html}</section>`; }
 function transition(next){ const s=app.firstElementChild; if(s){s.classList.add("leaving"); setTimeout(next,200);} else next(); }
 function goto(s){ step=Math.max(0,s); window.scrollTo({top:0,behavior:"instant"}); render(); }
-function render(){ progress(); if(step===0) return Intro(); if(step>=1&&step<=N) return Question(step-1); return Report(); }
+function render(){ progress(); if(step===0) return Intro(); if(step>=1&&step<=N) return Question(step-1); return GUIA?renderGuia():Report(); }
 
 /* ════════════════════════ TELAS ════════════════════════ */
 function Intro(){
@@ -556,6 +605,48 @@ function renderReport(){
   setTimeout(()=>app.querySelectorAll(".fbar i,.reg .rbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
   document.getElementById("det").onclick=()=>{const x=document.getElementById("detbox"); x.classList.toggle("hidden"); document.getElementById("det").textContent=x.classList.contains("hidden")?"Aprofundar →":"Recolher"; if(!x.classList.contains("hidden")) setTimeout(()=>x.scrollIntoView({behavior:"smooth"}),60);};
   document.getElementById("redo").onclick=()=>{ for(const k in ans) delete ans[k]; step=0; window.scrollTo({top:0}); transition(render); };
+}
+/* ══════════ GUIA DE CONDUÇÃO (visão pra quem lidera) ══════════ */
+function renderGuia(){
+  const st=FORCED_ST||score(), Nm=nome||"Esta pessoa", C=CONTENT;
+  const ord=EMO.slice().sort((a,b)=>st.emo[b].cen-st.emo[a].cen);
+  const dom=ord[0], A=C[dom], D=A.denso;
+  const bul=a=>`<ul class="bul">${(a||[]).map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  const baixas=EMO.filter(e=>st.emo[e].cen<=LOWCEN).sort((a,b)=>st.emo[a].cen-st.emo[b].cen);
+  const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
+    return `<div class="frow ${pri?'pri':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||''}</i></span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span></div>`;};
+  const mn=MANUAL[dom]||{}, al=ALERTA[dom]||{}, dl=DELEGAR[dom]||{};
+  app.innerHTML=`<section class="screen enter stagger">
+    <div class="eyebrow">Guia de Condução · pra quem lidera</div>
+    <h1>Como conduzir <span class="it">${Nm}</span></h1>
+    <p class="sub">O mapa de operação de <b>${Nm}</b>: o que move, como tirar o melhor, o que evitar e quando intervir.</p>
+    <div class="hero"><div class="k">O arquétipo</div><div class="name">${A.nome}</div><p>Movido por ${A.mercado.toLowerCase()} — ${GLOSS[dom]}.</p></div>
+    <div class="obra"><div class="eixo"><span>O que mais move ${Nm}</span><b>de 0 a 50</b></div>${EMO.map(frow).join("")}</div>
+    <div class="lbl">O retrato — como aparece no dia a dia</div>
+    <div class="lyr"><p>${RETRATO[dom]||""}</p></div>
+    <div class="lbl">O que acende, o que apaga</div>
+    <div class="cols">
+      <div class="cbox"><span class="h">🔥 Acende</span>${bul(FUEL[dom])}</div>
+      <div class="cbox"><span class="h gold2">🪫 Apaga</span>${bul(DRAIN[dom])}</div>
+    </div>
+    <div class="manual"><div class="mk">Como trabalhar com ${Nm}</div>
+      <div class="mrow"><b>Como dar feedback</b><p>${mn.fb||""}</p></div>
+      <div class="mrow"><b>O que evitar</b><p>${mn.ev||""}</p></div>
+      <div class="mrow"><b>O ambiente que faz render</b><p>${mn.am||""}</p></div>
+      <div class="mrow"><b>Como delegar</b><p><b class="ok2">Dê:</b> ${dl.serve||""} <b class="no2">Mantenha longe:</b> ${dl.longe||""}</p></div>
+    </div>
+    <div class="alerta"><div class="ak">⚠ Sinais de alerta — quando caiu na sombra</div>
+      <div class="arow"><b>Você percebe assim</b><p>${al.sinal||""}</p></div>
+      <div class="arow"><b>O que fazer</b><p>${al.acao||""}</p></div>
+    </div>
+    ${baixas.length?`<div class="falta"><div class="fk">O ponto cego — o que falta em ${Nm}</div><ul>${baixas.map(e=>`<li><b>${C[e].mercado}</b> — ${DEFICIT[e]}<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
+    <div class="prio"><div class="k">💬 A conversa que destrava</div><p>“${CONVERSA[dom]||""}”</p></div>
+    <div class="prio"><div class="k">🏆 Como reconhecer de um jeito que importa</div><p>${RECONHECER[dom]||""}</p></div>
+    <div class="close">${Nm} não é um rótulo. Este guia é onde apoiar, o que evitar e como conduzir — o resto é presença.</div>
+    <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button></div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução — V4.2</div>
+  </section>`;
+  setTimeout(()=>app.querySelectorAll(".fbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
 }
 if(loadFromHash()) step=N+1;
 render();
