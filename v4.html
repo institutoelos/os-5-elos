@@ -709,30 +709,24 @@ function renderReport(){
 }
 /* ══════════ GUIA DE CONDUÇÃO (visão pra quem lidera) ══════════ */
 function renderGuia(){
-  const st=FORCED_ST||score(), Nm=nome||"Esta pessoa", C=CONTENT;
-  const ord=EMO.slice().sort((a,b)=>st.emo[b].cen-st.emo[a].cen);
-  const dom=ord[0], A=C[dom], D=A.denso;
+  const st=FORCED_ST||score(), Nm=nome||"Esta pessoa", C=CONTENT, V=analyze(st);
+  const dom=V.dom, sec=V.sec, A=C[dom], D=A.denso, cn=e=>st.emo[e].cen;
   const bul=a=>`<ul class="bul">${(a||[]).map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  const baixas=EMO.filter(e=>st.emo[e].cen<=LOWCEN).sort((a,b)=>st.emo[a].cen-st.emo[b].cen);
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
     return `<div class="frow ${pri?'pri':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||''}</i></span><span class="fbar"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span></div>`;};
   const mn=MANUAL[dom]||{}, al=ALERTA[dom]||{}, dl=DELEGAR[dom]||{}, mo=MOTIVADOR[dom]||{}, me=MEDO[dom]||{};
-  const carac=(CARACTERISTICAS[dom]||[]).map(c=>{const p=c.split(' — '); return `<div class="crow"><b>${p[0]}</b>${p.length>1?' — '+p.slice(1).join(' — '):''}</div>`;}).join("");
+  const superG = V.green.length?`<div class="lbl">Onde ${Nm} brilha (forças que domina)</div><div class="qbox g">${V.green.map(e=>`<div class="qrow"><b>${C[e].mercado}</b> — ${QUAD[e].g}</div>`).join("")}</div>`:"";
+  const sab=[...V.red.map(e=>({e,txt:QUAD[e].r})), ...V.hiBuild.map(e=>({e,txt:'força forte, uso ainda em construção — sob pressão vira '+SB[e]}))];
+  const sabG = sab.length?`<div class="lbl">Onde ${Nm} se sabota</div><div class="qbox r">${sab.map(o=>`<div class="qrow"><b>${C[o.e].mercado}</b> — ${o.txt}</div>`).join("")}<div class="qtom">${st.reg<=24?'Hoje ativo — a Maestria mais baixa deixa isso à mostra.':'Risco latente — a Maestria segura, mas fique de olho.'}</div></div>`:`<div class="lyr"><span class="h">Onde ${Nm} se sabota</span><p>Raro: nenhuma força o domina hoje. O risco é depender demais das que já funcionam.</p></div>`;
   app.innerHTML=`<section class="screen enter stagger">
     <div class="eyebrow">Guia de Condução · pra quem lidera</div>
     <h1>Como conduzir <span class="it">${Nm}</span></h1>
     <p class="sub">O mapa de operação de <b>${Nm}</b>: quem é, o que move, como tirar o melhor, o que evitar e quando intervir.</p>
-    <div class="hero"><div class="k">O arquétipo</div><div class="name">${A.nome}</div><p>Movido por ${A.mercado.toLowerCase()} — ${GLOSS[dom]}.</p></div>
+    <div class="hero"><div class="k">O tipo</div><div class="name">${V.nome}</div><p>${C[dom].mercado} + ${C[sec].mercado} — ${V.essencia}.</p></div>
     <div class="obra"><div class="eixo"><span>O que mais move ${Nm}</span><b>de 0 a 50</b></div>${EMO.map(frow).join("")}</div>
-    <div class="lbl">Principais características</div>
-    <div class="carac">${carac}</div>
-    <div class="lbl">O retrato — como aparece no dia a dia</div>
-    <div class="lyr"><p>${RETRATO[dom]||""}</p></div>
-    <div class="lbl">O que empolga, o que irrita</div>
-    <div class="cols">
-      <div class="cbox"><span class="h">🔥 O que empolga</span>${bul(FUEL[dom])}</div>
-      <div class="cbox"><span class="h gold2">😤 O que irrita</span>${bul(DRAIN[dom])}</div>
-    </div>
+    <div class="lyr"><span class="h">Quem é</span><p>${V.essencia.charAt(0).toUpperCase()+V.essencia.slice(1)}. ${TEMP[V.temp]}</p><p>${REGT[V.reg]}</p></div>
+    ${superG}
+    ${sabG}
     <div class="cols">
       <div class="cbox motiv"><span class="h">🎯 O maior motivador</span><p>${mo.o||""}</p><p class="csub"><b>Como usar:</b> ${mo.como||""}</p></div>
       <div class="cbox medo"><span class="h">🚫 O maior medo — não acione</span><p>${me.o||""}</p><p class="csub"><b>Evite:</b> ${me.evite||""}</p></div>
@@ -752,12 +746,13 @@ function renderGuia(){
       <div class="arow"><b>Você percebe assim</b><p>${al.sinal||""}</p></div>
       <div class="arow"><b>O que fazer</b><p>${al.acao||""}</p></div>
     </div>
-    ${baixas.length?`<div class="falta"><div class="fk">O ponto cego — o que falta em ${Nm}</div><ul>${baixas.map(e=>`<li><b>${C[e].mercado}</b> — ${DEFICIT[e]}<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
+    ${V.lows.length?`<div class="falta"><div class="fk">O ponto cego — o que falta em ${Nm}</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}</b> — ${V.Q[e]==='k'?QUAD[e].k:QUAD[e].b}<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
+    ${(V.tens.length||V.alli.length)?`<div class="combos"><div class="ck">O que as forças dizem juntas</div>${V.alli.map(o=>`<div class="cmb"><b>🔗 ${o.t}</b><p>${o.x}.</p></div>`).join("")}${V.tens.map(o=>`<div class="cmb"><b>⚡ ${o.t}</b><p>${o.x}.</p></div>`).join("")}</div>`:""}
     <div class="prio"><div class="k">💬 A conversa que destrava</div><p>“${CONVERSA[dom]||""}”</p></div>
     <div class="prio"><div class="k">🏆 Como reconhecer de um jeito que importa</div><p>${RECONHECER[dom]||""}</p></div>
     <div class="close">${Nm} não é um rótulo. Este guia é onde apoiar, o que evitar e como conduzir — o resto é presença.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button></div>
-    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução — V4.2</div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução — V4.3</div>
   </section>`;
   setTimeout(()=>app.querySelectorAll(".fbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
 }
