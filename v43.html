@@ -481,20 +481,38 @@ const EXTRAIR={
   cuidado:"O máximo dele vem quando você dá pessoas pra desenvolver e reconhece o cuidado que ele dá. Ele constrói lealdade e segura o time nas horas difíceis. O seu papel é protegê-lo do esgotamento, devolva o que não é dele, cuide dele de volta, e dê licença pra ele cobrar quando precisar.",
   busca:"O máximo dele vem quando você dá um problema grande e aberto, tira a burocracia do caminho e cobra uma coisa só: linha de chegada. Ele voa na descoberta; o seu papel é garantir que ele feche antes de abrir a próxima. Dê o novo como recompensa e um parceiro executor que ame terminar o que ele começa."
 };
-const LOWCEN=20;   /* piso = tercil inferior (P33 ≈ cen 20). norma-referenciado, não no olho */
+const LOWCEN=20;   /* piso = 5 pontos ABAIXO do centro pessoal (25). A centralidade é IPSATIVA (escolha-forçada soma zero: o centro de todo perfil é 25) — os cortes são distância do PRÓPRIO centro, nunca "percentil da população". */
 /* ═══════════ MÉTODO VETOR COMPLETO ═══════════ */
-const HICEN=30;  /* cortes por percentil (tercis): alta = P66 (cen ≥30), piso = P33 (cen ≤20). Maturidade: madura ≥+3, imatura ≤−3. Provisório até normas próprias; ancorado na distribuição da ANPS. */
+const HICEN=30;  /* alta = 5 pontos ACIMA do centro pessoal (25). Régua intra-pessoa (dado ipsativo); a maturidade (Likert) é normativa: madura ≥+3, imatura ≤−3. */
 const IDN={raiva:"um inconformado",medo:"um guardião",tristeza:"um profundo",alegria:"um catalisador",cuidado:"um cuidador",busca:"um explorador"};
 const MOD={raiva:"não foge da briga que precisa comprar",medo:"calcula bem antes de saltar",tristeza:"sente o peso e o não-dito",alegria:"traz energia e leva o time junto",cuidado:"traz as pessoas junto e cuida de quem é seu",busca:"está sempre atrás do próximo novo"};
 const SB={raiva:"dureza e explosão",medo:"trava e paralisia",tristeza:"peso e recolhimento",alegria:"dispersão",cuidado:"esgotamento",busca:"frentes abertas sem fechar"};
 /* leituras curtas de quadrante (neutras: servem pro relatório e pro guia) */
 const QUAD={
-  raiva:{g:"confronta o que precisa e cobra o padrão sem queimar a relação. O time sabe onde pisa, e o medíocre não se acomoda",r:"a firmeza vira dureza: explode, intimida, guarda rancor. Quase sempre com razão no fundo, mas o modo cobra caro na confiança",b:"confrontar não é o instinto, mas quando o momento exige, cobra com justiça e sem drama. Só precisa perceber que a hora chegou",k:"a cobrança quase não vem, e quando vem sai torta: ou explode ou foge. O errado passa e ninguém corrige"},
-  medo:{g:"antecipa o que vai dar errado e blinda a empresa pro pior, sem deixar de agir. Raramente é pego desprevenido",r:"o medo assume o volante: adia, revisa demais, paralisa. A segurança vira estagnação e a janela passa",b:"risco não é o motor, mas calcula bem quando o jogo pede. Não gasta energia se preocupando à toa",k:"o perigo quase não entra na conta, e quando entra, congela ou é ignorado. O tombo chega sem aviso"},
-  tristeza:{g:"lê o clima e o não-dito antes de todos, e sustenta o que é difícil sem afundar. Enxerga a pessoa por trás da tarefa",r:"a sensibilidade vira ruminação e recolhimento: carrega tudo e some justo quando mais precisam. O peso ganha da leitura",b:"não mora na seriedade, mas acessa peso e verdade quando o momento pede. Sabe a hora de ir fundo",k:"passa por cima do que dói, o seu e o dos outros, sem registrar. O sofrimento no time vira um ruído que não se ouve"},
-  alegria:{g:"levanta o astral, contagia o time e mantém o ritmo na pressão, sem fugir do sério. O clima melhora quando chega",r:"a energia vira dispersão e fuga: anima, mas desconversa o difícil e não aterrissa em entrega",b:"não é a chama do ambiente, mas sabe puxar pra cima quando precisa. Só não é o modo natural",k:"falta o ânimo que contagia; ninguém levanta a sala. O time perde combustível e não sabe de onde tirar"},
-  cuidado:{g:"desenvolve gente e protege quem é seu, sem se anular nem se esgotar no caminho. Cria lealdade de verdade",r:"o cuidado consome: se dá até esgotar e vira gargalo, resolvendo o que é dos outros. Não sobra nada pra si",b:"cuidar não é o reflexo, mas quando decide, cuida bem e de verdade. Só precisa ser intencional",k:"as pessoas viram função; falta o olhar de cuidado. O time entrega, mas não se sente visto"},
-  busca:{g:"questiona o 'sempre foi assim' e acha o jeito melhor, com foco no que importa em vez de correr atrás de toda novidade",r:"a fome de novo dispersa: corre atrás de tudo que brilha e não aprofunda nada. Vira agitação sem entrega",b:"buscar o novo não é o motor; prefere o caminho testado, mas explora bem quando o problema pede",k:"acomoda no que já funciona. O novo passa, o mundo muda, e fica pra trás sem perceber"}
+  raiva:{g:"confronta o que precisa e cobra o padrão sem queimar a relação. O time sabe onde pisa, e o medíocre não se acomoda",r:"a firmeza vira dureza: explode, intimida, guarda rancor. Quase sempre com razão no fundo, mas o modo cobra caro na confiança",b:"confrontar não é o instinto, mas quando o momento exige, cobra com justiça e sem drama. Só precisa perceber que a hora chegou",k:"a cobrança quase não vem, e quando vem sai torta: ou explode ou foge. O errado passa e ninguém corrige",n:"confrontar quase não entra no seu jogo, e o pouco que aparece ainda sai destreinado: ou engole ou sai torto"},
+  medo:{g:"antecipa o que vai dar errado e blinda a empresa pro pior, sem deixar de agir. Raramente é pego desprevenido",r:"o medo assume o volante: adia, revisa demais, paralisa. A segurança vira estagnação e a janela passa",b:"risco não é o motor, mas calcula bem quando o jogo pede. Não gasta energia se preocupando à toa",k:"o perigo quase não entra na conta, e quando entra, congela ou é ignorado. O tombo chega sem aviso",n:"o risco quase não pauta as suas decisões, e o cálculo ainda é destreinado quando precisa"},
+  tristeza:{g:"lê o clima e o não-dito antes de todos, e sustenta o que é difícil sem afundar. Enxerga a pessoa por trás da tarefa",r:"a sensibilidade vira ruminação e recolhimento: carrega tudo e some justo quando mais precisam. O peso ganha da leitura",b:"não mora na seriedade, mas acessa peso e verdade quando o momento pede. Sabe a hora de ir fundo",k:"passa por cima do que dói, o seu e o dos outros, sem registrar. O sofrimento no time vira um ruído que não se ouve",n:"o peso quase não te habita; quando bate, você ainda não sabe bem o que fazer com ele"},
+  alegria:{g:"levanta o astral, contagia o time e mantém o ritmo na pressão, sem fugir do sério. O clima melhora quando chega",r:"a energia vira dispersão e fuga: anima, mas desconversa o difícil e não aterrissa em entrega",b:"não é a chama do ambiente, mas sabe puxar pra cima quando precisa. Só não é o modo natural",k:"falta o ânimo que contagia; ninguém levanta a sala. O time perde combustível e não sabe de onde tirar",n:"animar não é o seu papel natural, e ainda sai meio sem jeito quando você tenta"},
+  cuidado:{g:"desenvolve gente e protege quem é seu, sem se anular nem se esgotar no caminho. Cria lealdade de verdade",r:"o cuidado consome: se dá até esgotar e vira gargalo, resolvendo o que é dos outros. Não sobra nada pra si",b:"cuidar não é o reflexo, mas quando decide, cuida bem e de verdade. Só precisa ser intencional",k:"as pessoas viram função; falta o olhar de cuidado. O time entrega, mas não se sente visto",n:"cuidar quase não é reflexo, e ainda sai desajeitado quando você tenta"},
+  busca:{g:"questiona o 'sempre foi assim' e acha o jeito melhor, com foco no que importa em vez de correr atrás de toda novidade",r:"a fome de novo dispersa: corre atrás de tudo que brilha e não aprofunda nada. Vira agitação sem entrega",b:"buscar o novo não é o motor; prefere o caminho testado, mas explora bem quando o problema pede",k:"acomoda no que já funciona. O novo passa, o mundo muda, e fica pra trás sem perceber",n:"o novo quase não te puxa, e explorar ainda é terreno destreinado"}
+};
+/* leituras dos 15 pares (todas as combinações de forças altas). kind: aliança ou tensão */
+const PAIRS={
+  'cuidado|raiva':{k:'t',t:"Cuida muito, cobra pouco",x:"cuidar e confrontar puxam pra lados opostos; a bondade pode virar teto do padrão"},
+  'alegria|tristeza':{k:'t',t:"Leveza e peso ao mesmo tempo",x:"animar e sentir fundo brigam; você oscila entre o alto astral e o peso"},
+  'busca|medo':{k:'t',t:"Arriscar e proteger",x:"a fome de novo e a cautela se puxam; decisão vira cabo de guerra interno"},
+  'medo|tristeza':{k:'a',t:"Radar fino",x:"você sente o risco E o não-dito antes de todos; leitura rara do que vai dar errado"},
+  'alegria|busca':{k:'a',t:"Explorador contagiante",x:"você abre caminho e ainda arrasta gente pela ideia"},
+  'medo|raiva':{k:'a',t:"Firmeza calculada",x:"você cobra duro, mas mede o risco antes de bater"},
+  'cuidado|tristeza':{k:'a',t:"Cuidado que enxerga",x:"você cuida e ainda lê o que o outro não diz"},
+  'raiva|tristeza':{k:'a',t:"Justiça que sente",x:"a indignação vem com peso e leitura; você briga pelo certo porque sente o que o errado custa"},
+  'alegria|raiva':{k:'a',t:"Intensidade que arrasta",x:"você cobra alto e anima junto; o time sobe o padrão sem perder o ânimo"},
+  'busca|raiva':{k:'a',t:"Reforma em marcha",x:"o inconformismo encontra o novo; você não só aponta o errado, inventa o substituto"},
+  'alegria|medo':{k:'a',t:"Ânimo com pé no chão",x:"você levanta a sala sem perder o cálculo; entusiasmo que não atropela o risco"},
+  'cuidado|medo':{k:'a',t:"Proteção dupla",x:"você cuida das pessoas e blinda o terreno delas; quem é seu não é pego desprevenido"},
+  'busca|tristeza':{k:'a',t:"Busca com sentido",x:"você explora com profundidade; o novo só vale se tiver um porquê"},
+  'alegria|cuidado':{k:'a',t:"Calor que acolhe",x:"você anima cuidando; o clima sobe e as pessoas se sentem vistas"},
+  'busca|cuidado':{k:'a',t:"Desenvolve inovando",x:"você busca o caminho melhor pra cada pessoa crescer; o novo a serviço de gente"}
 };
 /* nomes próprios das 30 duplas: NOMES[dominante][secundário] */
 const NOMES={
@@ -522,17 +540,19 @@ function analyze(st){
   const ampl=cn(dom)-cn(ord[5]);
   const mats=EMO.map(mt), reg=(Math.max(...mats)-Math.min(...mats))>=6?'irregular':'solida';
   const hi=e=>cn(e)>=HICEN, tens=[], alli=[];
-  if(hi('cuidado')&&hi('raiva'))tens.push({t:"Cuida muito, cobra pouco",x:"cuidar e confrontar puxam pra lados opostos, a bondade pode virar teto do padrão"});
-  if(hi('alegria')&&hi('tristeza'))tens.push({t:"Leveza e peso ao mesmo tempo",x:"animar e sentir fundo brigam, você oscila entre o alto astral e o peso"});
-  if(hi('busca')&&hi('medo'))tens.push({t:"Arriscar e proteger",x:"a fome de novo e a cautela se puxam, decisão vira cabo de guerra interno"});
-  if(hi('medo')&&hi('tristeza'))alli.push({t:"Radar fino",x:"você sente o risco E o não-dito antes de todos, leitura rara do que vai dar errado"});
-  if(hi('busca')&&hi('alegria'))alli.push({t:"Explorador contagiante",x:"você abre caminho e ainda arrasta gente pela ideia"});
-  if(hi('raiva')&&hi('medo'))alli.push({t:"Firmeza calculada",x:"você cobra duro, mas mede o risco antes de bater"});
-  if(hi('cuidado')&&hi('tristeza'))alli.push({t:"Cuidado que enxerga",x:"você cuida e ainda lê o que o outro não diz"});
-  return {ord,dom,sec,Q,green,red,hiBuild,lows,temp,exp,con,ampl,reg,tens,alli,
+  const duoKey=[dom,sec].sort().join('|'), duo=PAIRS[duoKey]||null;   /* o par da identidade enriquece o combo, não repete nas "forças juntas" */
+  for(let i=0;i<EMO.length;i++)for(let j=i+1;j<EMO.length;j++){
+    const a=EMO[i],b=EMO[j]; if(!(hi(a)&&hi(b)))continue;
+    const key=[a,b].sort().join('|'); if(key===duoKey)continue;
+    const p=PAIRS[key]; if(!p)continue;
+    (p.k==='t'?tens:alli).push({t:p.t,x:p.x});
+  }
+  const lac=cn(dom)-cn(sec);   /* lacuna 1º–2º: ≤3 mistura de verdade; ≥10 dominante com tempero */
+  return {ord,dom,sec,Q,green,red,hiBuild,lows,temp,exp,con,ampl,reg,tens,alli,duo,lac,
     nome:(NOMES[dom]&&NOMES[dom][sec])||"O Líder", essencia:IDN[dom]+" que "+MOD[sec],
     band: st.reg>=32?'hi':(st.reg<=18?'lo':'mid') };
 }
+/* Temperatura = os 2 fatores de ordem superior VALIDADOS da ANPS: afeto positivo (SEEKING+CARE+PLAY = busca/cuidado/alegria) × negativo (FEAR+ANGER+SADNESS = medo/raiva/tristeza). Não é invenção nossa; é a estrutura fatorial documentada. */
 const TEMP={exp:"Temperatura expansiva: líder caloroso e aberto, movido por futuro e por gente.",con:"Temperatura contractiva: líder intenso e guardado, movido por padrão, risco e profundidade.",bal:"Temperatura equilibrada: você transita entre o caloroso e o guardado, conforme a sala."};
 const AMPL=v=>v>=22?"Perfil concentrado: especialista, intenso onde atua.":(v<=14?"Perfil versátil: acessa muitas forças, generalista adaptável.":"Perfil com um foco claro e um leque de apoio.");
 const REGT={solida:"Autogestão sólida: você regula o que sente de forma parelha.",irregular:"Autocontrole seletivo: você domina umas emoções e é puxado por outras."};
@@ -649,9 +669,12 @@ function renderReport(){
   const bul=a=>`<ul class="bul">${(a||[]).map(x=>`<li>${x}</li>`).join("")}</ul>`;
   /* ── SEÇÃO: a sua combinação (dom ⊗ 2º ⊗ piso + temperatura) ── */
   const piso=V.ord[5], temPiso=cn(piso)<=LOWCEN;
+  const lacTxt = V.lac<=3 ? "Os dois eixos estão praticamente empatados em você: é mistura de verdade, não um dominante com tempero."
+    : (V.lac>=10 ? `O primeiro eixo manda com folga; ${C[sec].mercado} entra como tempero, não como sócio.` : "");
   const combinaHTML=`<div class="combo2"><div class="c2t">${V.nome}</div>
     <div class="c2sub">${C[dom].mercado} + ${C[sec].mercado}</div>
-    <p>Você é <b>${V.essencia}</b>. É a mistura desses dois eixos que faz o seu jeito e te separa de qualquer outro ${(IDN[dom]||'').replace(/^(um|uma)\s/,'')}.</p>
+    <p>Você é <b>${V.essencia}</b>.${V.duo?` ${cap(V.duo.x)}.`:''}</p>
+    ${lacTxt?`<p>${lacTxt}</p>`:''}
     ${temPiso?`<p class="c2low">E como <b>${C[piso].mercado}</b> está no chão, ${DEFICIT[piso].charAt(0).toLowerCase()+DEFICIT[piso].slice(1)}</p>`:''}</div>`;
   /* ── SEÇÃO: superpoderes (altas E maduras) ── */
   const superSint = V.green.length>=3?'Três forças no verde é um perfil raro e redondo: você tem repertório pra quase tudo. O risco não é aqui; é deixar as fracas paradas por confiar demais nestas.'
@@ -665,7 +688,8 @@ function renderReport(){
     ? `<div class="lbl">Onde você se sabota</div><div class="qbox r">${sab.map(o=>`<div class="qrow"><b>${C[o.e].mercado}.</b> ${cap(o.txt)}.</div>`).join("")}<div class="qtom">${sabTom}</div></div>`
     : `<div class="lyr"><span class="h">Onde você se sabota</span><p>Raro: <b>nenhuma força te domina hoje</b>. O seu risco não é uma sombra ativa; é depender demais das forças que já funcionam e nunca desenvolver as que faltam.</p></div>`;
   /* ── SEÇÃO: pontos cegos (pisos) ── */
-  const cegoHTML = V.lows.length ? `<div class="falta"><div class="fk">Os seus pontos cegos</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(V.Q[e]==='k'?QUAD[e].k:QUAD[e].b)}.<span class="cmp">↳ quem te complementa: ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>` : "";
+  const qLow=e=>QUAD[e][V.Q[e]==='k'?'k':(V.Q[e]==='b'?'b':'n')];   /* kb recebe o texto neutro, não o azul (que afirma maturidade) */
+  const cegoHTML = V.lows.length ? `<div class="falta"><div class="fk">Os seus pontos cegos</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(qLow(e))}.<span class="cmp">↳ quem te complementa: ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>` : "";
   /* ── SEÇÃO: tensões & alianças (pares altos) ── */
   const combosHTML = (V.tens.length||V.alli.length) ? `<div class="combos"><div class="ck">O que as suas forças dizem juntas</div>${V.alli.map(o=>`<div class="cmb"><b>🔗 ${o.t}</b><p>${o.x}.</p></div>`).join("")}${V.tens.map(o=>`<div class="cmb"><b>⚡ ${o.t}</b><p>${o.x}.</p></div>`).join("")}</div>` : "";
   /* ── SEÇÃO: temperatura & autogestão (agregados) ── */
@@ -713,7 +737,7 @@ function renderReport(){
     <div class="lyr w"><span class="h">A ferida por baixo</span><p>${D.feridaCurta}</p></div>
     <div class="close">${Nm}, a emoção não é boa nem ruim; o que muda tudo é o uso. O seu mapa não é um rótulo, é onde mexer primeiro.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button><button class="btn ghost" id="redo">Refazer</button></div>
-    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>O Mapa das Emoções · V4.3.2</div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>O Mapa das Emoções · V4.3.3</div>
   </section>`;
   setTimeout(()=>app.querySelectorAll(".fbar i,.reg .rbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
   document.getElementById("redo").onclick=()=>{ for(const k in ans) delete ans[k]; step=0; window.scrollTo({top:0}); transition(render); };
@@ -726,6 +750,7 @@ function renderGuia(){
   const frow=e=>{ const s=st.emo[e],b=C[e],pri=(e===dom);
     return `<div class="frow ${pri?'pri':''}"><span class="fn"><b>${b.mercado}</b><i>${GLOSS[e]||''}</i></span><span class="fbar q-${V.Q[e]}"><i data-w="${Math.max(2,s.cen*2)}"></i></span><span class="fnum">${s.cen}</span></div>`;};
   const mn=MANUAL[dom]||{}, al=ALERTA[dom]||{}, dl=DELEGAR[dom]||{}, mo=MOTIVADOR[dom]||{}, me=MEDO[dom]||{};
+  const mo2=MOTIVADOR[sec]||{}, mn2=MANUAL[sec]||{};   /* o tempero do 2º eixo: o kit não pode ser dominante-only */
   const superG = V.green.length?`<div class="lbl">Onde ${Nm} brilha (forças que domina)</div><div class="qbox g">${V.green.map(e=>`<div class="qrow"><b>${C[e].mercado}.</b> ${cap(QUAD[e].g)}.</div>`).join("")}</div>`:"";
   const sab=[...V.red.map(e=>({e,txt:QUAD[e].r})), ...V.hiBuild.map(e=>({e,txt:'força forte, uso ainda em construção; sob pressão vira '+SB[e]}))];
   const sabG = sab.length?`<div class="lbl">Onde ${Nm} se sabota</div><div class="qbox r">${sab.map(o=>`<div class="qrow"><b>${C[o.e].mercado}.</b> ${cap(o.txt)}.</div>`).join("")}<div class="qtom">${st.reg<=24?'Hoje ativo: a Maestria mais baixa deixa isso à mostra.':'Risco latente: a Maestria segura, mas fique de olho.'}</div></div>`:`<div class="lyr"><span class="h">Onde ${Nm} se sabota</span><p>Raro: nenhuma força o domina hoje. O risco é depender demais das que já funcionam.</p></div>`;
@@ -739,7 +764,7 @@ function renderGuia(){
     ${superG}
     ${sabG}
     <div class="cols">
-      <div class="cbox motiv"><span class="h">🎯 O maior motivador</span><p>${mo.o||""}</p><p class="csub"><b>Como usar:</b> ${mo.como||""}</p></div>
+      <div class="cbox motiv"><span class="h">🎯 O maior motivador</span><p>${mo.o||""}</p><p class="csub"><b>Como usar:</b> ${mo.como||""}</p><p class="csub"><b>Segundo motor (${C[sec].mercado}):</b> ${(mo2.o||"").charAt(0).toLowerCase()+(mo2.o||"").slice(1)}</p></div>
       <div class="cbox medo"><span class="h">🚫 O maior medo, não acione</span><p>${me.o||""}</p><p class="csub"><b>Evite:</b> ${me.evite||""}</p></div>
     </div>
     <div class="lbl">Como dar feedback</div>
@@ -751,19 +776,20 @@ function renderGuia(){
       <div class="mrow"><b>O que evitar</b><p>${mn.ev||""}</p></div>
       <div class="mrow"><b>O ambiente que faz render</b><p>${mn.am||""}</p></div>
       <div class="mrow"><b>Como delegar</b><p><b class="ok2">Dê:</b> ${dl.serve||""} <b class="no2">Mantenha longe:</b> ${dl.longe||""}</p></div>
+      <div class="mrow"><b>O tempero do 2º eixo (${C[sec].mercado})</b><p>${mn2.fb||""}</p></div>
     </div>
     <div class="prio big"><div class="k">🔑 Como extrair o máximo</div><p>${EXTRAIR[dom]||""}</p></div>
     <div class="alerta"><div class="ak">⚠ Sinais de alerta, quando caiu na sombra</div>
       <div class="arow"><b>Você percebe assim</b><p>${al.sinal||""}</p></div>
       <div class="arow"><b>O que fazer</b><p>${al.acao||""}</p></div>
     </div>
-    ${V.lows.length?`<div class="falta"><div class="fk">O ponto cego: o que falta em ${Nm}</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(V.Q[e]==='k'?QUAD[e].k:QUAD[e].b)}.<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
+    ${V.lows.length?`<div class="falta"><div class="fk">O ponto cego: o que falta em ${Nm}</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(QUAD[e][V.Q[e]==='k'?'k':(V.Q[e]==='b'?'b':'n')])}.<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
     ${(V.tens.length||V.alli.length)?`<div class="combos"><div class="ck">O que as forças dizem juntas</div>${V.alli.map(o=>`<div class="cmb"><b>🔗 ${o.t}</b><p>${o.x}.</p></div>`).join("")}${V.tens.map(o=>`<div class="cmb"><b>⚡ ${o.t}</b><p>${o.x}.</p></div>`).join("")}</div>`:""}
     <div class="prio"><div class="k">💬 A conversa que destrava</div><p>“${CONVERSA[dom]||""}”</p></div>
     <div class="prio"><div class="k">🏆 Como reconhecer de um jeito que importa</div><p>${RECONHECER[dom]||""}</p></div>
     <div class="close">${Nm} não é um rótulo. Este guia é onde apoiar, o que evitar e como conduzir. O resto é presença.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button></div>
-    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução · V4.3.2</div>
+    <div class="foot"><b>Instituto ELOS</b> · ELO Business<br>Guia de Condução · V4.3.3</div>
   </section>`;
   setTimeout(()=>app.querySelectorAll(".fbar i").forEach(n=>{n.style.width=n.dataset.w+"%";}),120);
 }
