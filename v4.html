@@ -251,6 +251,13 @@ h1 .it{font-style:italic;color:var(--gold)}
 .plano .pmt{font-size:14px;line-height:1.5;color:var(--ink-2)}
 .plano .pmt b{color:var(--ink);font-weight:600}
 .plano .pwatch{margin-top:11px;padding-top:12px;border-top:1px solid var(--gold-soft);font-size:12.5px;color:#9a6a31;line-height:1.45}
+.manual{margin:16px 0 4px;padding:18px 20px;border-radius:16px;background:#fff;border:1px dashed #cdae7e}
+.manual .mk{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:13px}
+.manual .mk span{text-transform:none;letter-spacing:0;color:var(--ink-3);font-weight:500;font-size:11.5px}
+.manual .mrow{padding:9px 0;border-top:1px solid var(--line)}
+.manual .mrow:first-of-type{border-top:none;padding-top:0}
+.manual .mrow b{display:block;font-size:11.5px;letter-spacing:.02em;color:var(--ink);font-weight:700;margin-bottom:2px;text-transform:uppercase}
+.manual .mrow p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.46}
 .frow.lowf .fbar i{opacity:.55} .frow.lowf .fnum{color:var(--ink-3)}
 .falta{margin:12px 0 4px;padding:14px 17px;border-radius:15px;background:#fbf5ec;border:1px solid var(--line);border-left:3px solid #bb8a4c}
 .falta .fk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a6a31;font-weight:700;margin-bottom:8px}
@@ -327,6 +334,16 @@ const GLOSS={raiva:"confrontar e cobrar",medo:"prever o risco",tristeza:"sentir 
 const DEFICIT={raiva:"Você evita o confronto que o time às vezes precisa, e deixa o medíocre passar.",medo:"Você arrisca sem calcular, e o perigo chega sem aviso.",tristeza:"Você passa por cima do que dói — seu e dos outros — sem registrar.",alegria:"Falta o ânimo que contagia; o clima pesa sem alguém puxar pra cima.",cuidado:"As pessoas se sentem cobradas sem se sentir cuidadas.",busca:"Você se acomoda no que já funciona, e o novo passa enquanto você fica."};
 const COMPLEMENT={raiva:"alguém que confronta e cobra sem dó — pro padrão não cair",medo:"alguém que enxerga o risco antes de você pisar nele",tristeza:"alguém que lê o clima e o que não foi dito na sala",alegria:"alguém que traz energia e levanta o astral quando pesa",cuidado:"alguém que cuida das pessoas enquanto você cobra resultado",busca:"alguém que traz o novo e questiona o que já está posto"};
 const DEVELOP={raiva:"escolha uma situação por semana pra dizer o 'não' que você engoliria — confronto pequeno, treinado",medo:"antes de cada decisão grande, escreva os 3 jeitos de aquilo dar errado antes de seguir",tristeza:"reserve 5 minutos depois das reuniões tensas pra perguntar: o que ninguém disse aqui?",alegria:"abra uma reunião por semana pelo que está dando certo, não pelo problema",cuidado:"uma vez por semana, pergunte a alguém do time como ELE está — antes da tarefa",busca:"separe 1h por semana pra um 'e se?' fora do operacional, sem culpa"};
+const FUEL={raiva:["Um padrão pra defender","Injustiça pra corrigir","Poder de decidir e cobrar"],medo:["Tempo pra preparar","Cenário mapeado","Margem de segurança antes do salto"],tristeza:["Conversa de verdade","Sentido no que faz","Espaço pra processar o que pesa"],alegria:["Gente e movimento","Reconhecimento","Um clima que ele possa levantar"],cuidado:["Ver alguém crescer","Ser necessário de verdade","Vínculo, não só tarefa"],busca:["Problema novo pra destrinchar","Autonomia pra experimentar","Terreno que ninguém mapeou"]};
+const DRAIN={raiva:["Mediocridade tolerada","Engolir o que está errado","Política e panos quentes"],medo:["Decisão no susto","Risco que ninguém calculou","Mudança de última hora"],tristeza:["Superficialidade e barulho","Fingir que está tudo bem","Pressa que atropela o sentido"],alegria:["Ambiente pesado e monótono","Isolamento","Esforço sem retorno visível"],cuidado:["Dar e não receber","Frieza","Cobrar sem poder cuidar"],busca:["Rotina e execução repetitiva","Ter que pedir permissão","Terminar sem novidade à vista"]};
+const MANUAL={
+  raiva:{fb:"Reto e no olho — rodeio ele lê como falta de coragem. Justifique pelo padrão.",ev:"Injustiça e mediocridade sem resposta — é o que mais o tira do sério.",am:"Poder real de decidir e cobrar, com um padrão claro pra defender."},
+  medo:{fb:"Com contexto e antecedência — feedback de emboscada trava ele.",ev:"Empurrar decisão no susto e mudar as regras no meio do jogo.",am:"Previsibilidade, tempo de preparo e margem pra checar antes de agir."},
+  tristeza:{fb:"Com verdade e presença — ele sente a intenção antes das palavras.",ev:"Superficialidade e resolver por cima; ele desconfia do que é raso demais.",am:"Espaço pra profundidade, sentido claro no trabalho, conversas de verdade."},
+  alegria:{fb:"Comece pelo que foi bem, depois o ajuste — o tom pesa tanto quanto o conteúdo.",ev:"Peso constante e ignorar as pequenas vitórias — apaga o motor dele.",am:"Gente, movimento, reconhecimento e uma causa pra animar."},
+  cuidado:{fb:"Com cuidado e reconhecimento — ele dá muito e raramente cobra de volta.",ev:"Tratar o cuidado dele como óbvio; ele some por dentro quando passa despercebido.",am:"Vínculo, gente pra desenvolver, e alguém que cuide dele também."},
+  busca:{fb:"Direto e com o desafio junto — ele engaja pelo 'e se?', não pela ordem.",ev:"Microgerenciar e prender no operacional repetitivo — é cortar o oxigênio dele.",am:"Autonomia pra experimentar, problemas novos, liberdade de trocar o caminho."}
+};
 const LOWCEN=18;   /* abaixo disso: a falta pesa + selo de uso fica mudo (sinal fino demais) — faixa 10..40 */
 function buildQuestions(){
   const fc=shuffle((BANK.blocos||[]).map(bl=>({type:"q4",area:"Você",texto:"Qual é MAIS e qual é MENOS a sua cara?",opts:shuffle(bl.opts.map(o=>({t:o.t,emo:o.emo})))})));
@@ -509,6 +526,11 @@ function renderReport(){
     ${planoHTML}
     <div class="hero"><div class="k">O seu arquétipo</div><div class="name">${A.nome}</div><p>${A.frase}</p></div>
     <div class="lyr"><span class="h">O que essa emoção move em você</span><p>${D.oQueMove}</p></div>
+    <div class="lbl">O que te acende, o que te apaga</div>
+    <div class="cols">
+      <div class="cbox"><span class="h">🔥 O que te acende</span>${bul(FUEL[dom]||[])}</div>
+      <div class="cbox"><span class="h gold2">🪫 O que te apaga</span>${bul(DRAIN[dom]||[])}</div>
+    </div>
     <div class="cols">
       <div class="cbox"><span class="h">A força que ela te dá</span>${bul(D.forcas)}</div>
       <div class="cbox"><span class="h gold2">Onde ela vira sombra</span>${bul(D.pontosAtencao)}</div>
@@ -519,6 +541,11 @@ function renderReport(){
       <div class="cbox usocard sombra ${dm<=-3?'aqui':''}"><span class="h gold2">Mal usada — a sombra${dm<=-3?' · é aqui que você está hoje':''}</span><p>${A.curto.sofrimento}</p></div>
     </div>
     <div class="lyr w"><span class="h">A ferida por baixo</span><p>${D.feridaCurta}</p></div>
+    <div class="manual"><div class="mk">Manual de instruções de você <span>— mostre pra quem te lidera</span></div>
+      <div class="mrow"><b>Como me dar feedback</b><p>${(MANUAL[dom]||{}).fb||''}</p></div>
+      <div class="mrow"><b>O que evitar comigo</b><p>${(MANUAL[dom]||{}).ev||''}</p></div>
+      <div class="mrow"><b>O ambiente que me faz render</b><p>${(MANUAL[dom]||{}).am||''}</p></div>
+    </div>
     <div class="lcta"><div class="t">Como conduzir você pra um lugar melhor</div>${bul(D.comoConduzir)}</div>
     <div class="lcta apro"><div class="t">Quer ir a fundo?</div><p>Quem você é por baixo, os dois usos ${dadu} ${A.mercado}, e a ferida — com calma.</p><button id="det">Aprofundar →</button></div>
     <div id="detbox" class="hidden">${fundoHTML}</div>
