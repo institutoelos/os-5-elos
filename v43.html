@@ -329,6 +329,7 @@ h1 .it{font-style:italic;color:var(--gold)}
 .selo.ok{background:var(--green-bg);border:1px solid var(--green-soft);color:#2c6045}
 .selo.warn{background:rgba(180,80,60,.06);border:1px solid rgba(180,80,60,.2);color:var(--ink-2)}
 .selo.warn b{color:var(--excesso)}
+.fkn2{font-size:11.5px;color:var(--ink-3);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
 .plink{display:none}
 @media print{.plink{display:block;font-size:8.5px;color:#a89e8e;line-height:1.4;word-break:break-all;margin-top:10px;text-align:center}}
 .qbox.g .qrow b{color:#2c6045}
@@ -463,12 +464,12 @@ const DRAIN={raiva:["Mediocridade tolerada","Engolir o que está errado","Polít
 /* ── HIPÓTESES A VERIFICAR: sombras prováveis do perfil que o autorrelato NÃO mede sozinho.
    Formuladas como perguntas pra validar com quem convive — honestidade psicométrica sem cegueira comercial. ── */
 const HIPO={
-  raiva:["O padrão alto já virou impaciência que humilha? Pergunte a quem erra perto dessa pessoa.","A franqueza já queimou pontes que faziam falta? Pergunte a quem saiu do time."],
-  medo:["A cautela já virou controle excessivo sobre o trabalho dos outros? Pergunte a quem é revisado por ela.","O preparo já virou desculpa pra adiar? Pergunte a quem espera as decisões."],
-  tristeza:["O peso que carrega já virou distância ou frieza aparente? Pergunte a quem precisa de resposta rápida dela.","A leitura fina já virou julgamento silencioso? Pergunte a quem se sente observado."],
-  alegria:["O charme já virou ferramenta de contornar em vez de resolver? Pergunte a quem já discordou dessa pessoa.","O brilho já precisa de plateia? Pergunte se ela some quando ninguém aplaude."],
-  cuidado:["O cuidado já virou controle ou dependência? Pergunte a quem é protegido por ela.","A lealdade já protege quem devia ter saído? Pergunte a quem vê o time de fora."],
-  busca:["A fome de novo já virou desprezo pelo que sustenta a casa? Pergunte a quem cuida do operacional.","O questionamento já soa como arrogância? Pergunte a quem defende o processo atual."]
+  raiva:["Impaciência que humilha: quando alguém erra, essa pessoa corrige o erro ou esmaga a pessoa? Pergunte a quem já errou perto dela.","Rancor: ela perdoa de verdade ou mantém lista? Pergunte a quem já a decepcionou.","Inflexibilidade: quando foi a última vez que ela mudou de ideia em público?"],
+  medo:["Controle excessivo: ela delega ou só distribui tarefa vigiada? Pergunte a quem é revisado por ela.","Adiamento vestido de prudência: quantas decisões estão paradas esperando 'mais dados'? Conte.","Ansiedade que contagia: o time fica mais calmo ou mais tenso depois de falar com ela?"],
+  tristeza:["Frieza aparente: quem precisa de resposta rápida a percebe como distante? Pergunte.","Julgamento silencioso: ela discorda na sala ou só no olhar? Pergunte se o time sente que é avaliado sem saber o critério.","Ressentimento acumulado: o que ela engoliu nos últimos meses e nunca disse?"],
+  alegria:["Manipulação pelo charme: ela convence pelo argumento ou pela simpatia? Pergunte a quem já discordou dela e perdeu.","Vaidade: como ela reage quando o mérito é de outra pessoa? Observe na próxima vitória do time.","Fuga pelo humor: qual foi o último assunto grave que ela deixou sério do começo ao fim?"],
+  cuidado:["Cuidado que vira controle ou dependência: as pessoas que ela protege crescem ou continuam precisando dela? Olhe os últimos 2 anos.","Lealdade que protege quem devia sair: quem está no time hoje só porque ela defende? Seja honesto.","Mártir silencioso: ela pede ajuda ou acumula e cobra depois?"],
+  busca:["Desprezo pelo operacional: quem sustenta a rotina se sente valorizado por ela? Pergunte direto.","Arrogância intelectual: questionar processo é diferente de desdenhar de quem o segue. Qual dos dois o time percebe?","Compromisso com o que brilha: dos projetos que ela abriu este ano, quantos ela mesma terminou?"]
 };
 /* estilo de comunicação preferencial + necessidades pra produtividade máxima (átomos operacionais, língua de gestor) */
 const COMM={raiva:"Direto, objetivo, sem rodeio: vá ao ponto e sustente o argumento. Diplomacia excessiva soa como enrolação.",medo:"Estruturado e com antecedência: contexto, dados e tempo pra digerir. Surpresa em reunião é sabotagem.",tristeza:"Em particular, com calma e verdade: essa pessoa lê o tom antes do conteúdo. Pressa e superficialidade fecham a porta.",alegria:"Com energia e presença: comece pelo positivo, mantenha leveza mesmo no difícil. Frieza burocrática desliga.",cuidado:"Pessoal antes de profissional: pergunte da vida antes da tarefa. Cobrança seca sem vínculo soa como descarte.",busca:"Pelo problema, não pela ordem: apresente o desafio e o porquê. 'Faça porque sim' mata o engajamento."};
@@ -921,6 +922,7 @@ function renderReport(){
     ${em30}
     <div class="obra"><div class="eixo"><span>O que mais te move</span><b>de 0 a 50</b></div>${chart}<div class="qleg"><span class="qd g"></span>domina <span class="qd r"></span>te domina <span class="qd lo"></span>piso/ponto cego</div><div class="eixleg">O <b>tamanho</b> da barra é o quanto te move. A <b>cor</b> é como você usa: verde você domina, vermelho te domina.</div></div>
     ${combinaHTML}
+    <div class="lyr"><span class="h">Como isso aparece numa terça-feira</span><p>${RETRATO[dom]||""}</p></div>
     ${bizHTML}
     ${flatHTML}
     ${superHTML}
@@ -931,7 +933,7 @@ function renderReport(){
     ${aggHTML}
     ${regBand}
     ${planoHTML}
-    <div class="lyr w"><span class="h">A ferida por baixo</span>${feridaHTML}</div>
+    <div class="lyr w"><span class="h">A ferida por baixo</span>${feridaHTML}<p class="fkn2">Isto é a leitura mais funda e menos garantida do mapa. Se não doeu, descarte sem culpa; se doeu, é sua.</p></div>
     <div class="agora"><div class="ak2">E agora? Os próximos 90 dias</div>
       <div class="arow2"><span class="an">1</span><p><b>Esta semana:</b> ${D.alavanca}</p></div>
       <div class="arow2"><span class="an">2</span><p><b>Mostre o seu mapa</b> pro seu sócio ou pra quem trabalha do seu lado, e pergunte: "bate?". O olhar de fora confirma (ou corrige) o espelho.</p></div>
@@ -1016,7 +1018,8 @@ function renderGuia(){
       <div class="arow"><b>Você percebe assim</b><p>${al.sinal||""}</p></div>
       <div class="arow"><b>O que fazer</b><p>${al.acao||""}</p></div>
     </div>
-    <div class="falta"><div class="fk">Hipóteses a verificar (o que teste nenhum mede sozinho)</div><ul>${[...(HIPO[dom]||[]).slice(0,2),...(HIPO[sec]||[]).slice(0,1)].map(h=>`<li>${h}</li>`).join("")}</ul><div class="fkn">Autorrelato honesto não enxerga as próprias sombras relacionais. Estas são as sombras estatisticamente prováveis deste perfil: valide com o time antes de assumir que existem ou que não existem.</div></div>
+    <div class="falta"><div class="fk">⚠ Sombras prováveis deste perfil (o autorrelato não mede; verifique)</div><ul>${[...(HIPO[dom]||[]).slice(0,3),...(HIPO[sec]||[]).slice(0,2)].map(x=>`<li>${x}</li>`).join("")}</ul><div class="fkn">Perfis com estas forças costumam desenvolver estas sombras, e quem as tem quase nunca as vê em si. Não assuma que existem; não assuma que não existem: verifique com o time antes da próxima conversa importante.</div></div>
+
     ${V.lows.length?`<div class="falta"><div class="fk">O ponto cego: o que falta em ${Nm}</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(QUAD[e][V.Q[e]==='k'?'k':(V.Q[e]==='b'?'b':'n')])}.<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
     ${(V.tens.length||V.alli.length)?`<div class="combos"><div class="ck">O que as forças dizem juntas</div>${V.alli.map(o=>`<div class="cmb"><b>🔗 ${o.t}</b><p>${o.x}.</p></div>`).join("")}${V.tens.map(o=>`<div class="cmb"><b>⚡ ${o.t}</b><p>${o.x}.</p></div>`).join("")}</div>`:""}
     <div class="prio"><div class="k">💬 A conversa que destrava</div><p>“${CONVERSA[dom]||""}”</p></div>
