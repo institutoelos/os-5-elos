@@ -330,6 +330,12 @@ h1 .it{font-style:italic;color:var(--gold)}
 .selo.warn{background:rgba(180,80,60,.06);border:1px solid rgba(180,80,60,.2);color:var(--ink-2)}
 .selo.warn b{color:var(--excesso)}
 .fkn2{font-size:11.5px;color:var(--ink-3);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.ficha{margin:16px 0 6px;padding:14px 17px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+.ficha .fik{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:9px}
+.fitab{width:100%;border-collapse:collapse;font-size:12.5px}
+.fitab th{text-align:left;color:var(--ink-3);font-weight:600;font-size:11px;text-transform:uppercase;padding:3px 6px;border-bottom:1px solid var(--line)}
+.fitab td{padding:4px 6px;color:var(--ink-2);border-bottom:1px solid rgba(0,0,0,.04)}
+.ficha .fin{font-size:10.5px;color:var(--ink-3);margin-top:8px;line-height:1.4}
 .plink{display:none}
 @media print{.plink{display:block;font-size:8.5px;color:#a89e8e;line-height:1.4;word-break:break-all;margin-top:10px;text-align:center}}
 .qbox.g .qrow b{color:#2c6045}
@@ -819,6 +825,7 @@ function renderReport(){
     ${uso2?`<p>${uso2}</p>`:''}
     ${lacTxt?`<p>${lacTxt}</p>`:''}
     ${V.tie2?`<p class="c2low">E o posto de sócio está em disputa: <b>${C[V.tie2].mercado}</b> empata tecnicamente com ${C[sec].mercado}. Você também carrega traços de <b>${(gen==='f'?(NOMESF[dom]&&NOMESF[dom][V.tie2]):(NOMES[dom]&&NOMES[dom][V.tie2]))||''}</b>.</p>`:''}
+    ${(cn(V.ord[2])>=24&&!V.flat)?`<p>O tripé fecha com <b>${C[V.ord[2]].mercado}</b> (${cn(V.ord[2])}): ${GLOSS[V.ord[2]]} também faz parte de como você opera, mesmo sem ser o motor.</p>`:''}
     ${temPiso?`<p class="c2low">E com <b>${C[piso].mercado}</b> no chão, ${styleTxt||(DEFICIT[piso].charAt(0).toLowerCase()+DEFICIT[piso].slice(1))}${styleTxt?'.':''}</p>`:''}</div>`;
   /* ── SEÇÃO: na sua empresa (língua de dono: onde ganha, o gargalo, o que assumir/delegar) ── */
   const worstHi = V.red[0]||V.hiBuild[0]||null;
@@ -943,6 +950,11 @@ function renderReport(){
     ${seloHTML}
     <div class="close">${Nm}, uma força não é boa nem ruim; o que muda tudo é o uso. O seu mapa não é um rótulo, é onde mexer primeiro.</div>
     <div class="row"><button class="btn gold" onclick="window.print()">Salvar / imprimir</button><button class="btn ghost" id="redo">Refazer</button></div>
+    <div class="ficha"><div class="fik">Ficha técnica (os seus 13 números)</div>
+      <table class="fitab"><tr><th>Força</th><th>Te move</th><th>Uso</th></tr>
+      ${EMO.map(e=>`<tr><td>${C[e].mercado}</td><td>${st.emo[e].cen}/50</td><td>${st.emo[e].mat>0?'+':''}${st.emo[e].mat}</td></tr>`).join('')}
+      <tr><td><b>Maestria</b></td><td colspan="2"><b>${st.reg}/50</b></td></tr></table>
+      <div class="fin">"Te move" é escala ipsativa 10-40 (compara as forças dentro de você). "Uso" vai de −10 (te domina) a +10 (você domina).</div></div>
     <div class="foot"><b>Instituto ELOS</b> · ELO Assessment<br>O Mapa das Forças · V5.0</div>
     <div class="plink">O seu mapa vivo (abra este link pra ver a versão sempre atualizada e gerar o Guia de Condução):<br>${mkLink('r')}</div>
   </section>`;
