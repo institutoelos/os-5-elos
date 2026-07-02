@@ -416,6 +416,27 @@ const GLOSS={raiva:"confrontar e cobrar",medo:"prever o risco",tristeza:"sentir 
 const DEFICIT={raiva:"Você evita o confronto que o time às vezes precisa, e deixa o medíocre passar.",medo:"Você arrisca sem calcular, e o perigo chega sem aviso.",tristeza:"Você passa por cima do que dói, o seu e o dos outros, sem registrar.",alegria:"Falta o ânimo que contagia; o clima pesa sem alguém puxar pra cima.",cuidado:"As pessoas se sentem cobradas sem se sentir cuidadas.",busca:"Você se acomoda no que já funciona, e o novo passa enquanto você fica."};
 const COMPLEMENT={raiva:"alguém que confronta e cobra sem dó, pro padrão não cair",medo:"alguém que enxerga o risco antes de você pisar nele",tristeza:"alguém que lê o clima e o que não foi dito na sala",alegria:"alguém que traz energia e levanta o astral quando pesa",cuidado:"alguém que cuida das pessoas enquanto você cobra resultado",busca:"alguém que traz o novo e questiona o que já está posto"};
 const DEVELOP={raiva:"escolha uma situação por semana pra dizer o 'não' que você engoliria, num confronto pequeno e treinado",medo:"antes de cada decisão grande, escreva os 3 jeitos de aquilo dar errado antes de seguir",tristeza:"reserve 5 minutos depois das reuniões tensas pra perguntar: o que ninguém disse aqui?",alegria:"abra uma reunião por semana pelo que está dando certo, não pelo problema",cuidado:"uma vez por semana, pergunte a alguém do time como ELE está, antes da tarefa",busca:"separe 1h por semana pra um 'e se?' fora do operacional, sem culpa"};
+/* ── ESTILO alta×piso: a leitura-fusão (o que a força alta faz SEM a função do piso) ── */
+const STYLE={
+  busca:{raiva:"você inova sem romper: muda as coisas por sedução, não por confronto. O risco: a mudança que precisava de briga não acontece",medo:"você explora sem rede: aposta rápido onde outros pediriam garantia. O risco: o tombo que ninguém calculou",tristeza:"você avança sem olhar pra trás: o novo te puxa e o luto fica pra depois. O risco: atropelar o que o time ainda está digerindo",alegria:"você busca o novo em silêncio: a descoberta te move mais que a celebração. O risco: o time nem fica sabendo da conquista",cuidado:"você inova pelo problema, não pelas pessoas: a ideia vem antes de quem vai vivê-la. O risco: a mudança tecnicamente certa que o time rejeita"},
+  raiva:{medo:"você briga sem medir: compra a briga certa na hora errada. O risco: ganhar a discussão e perder o contrato",tristeza:"você cobra sem sentir o clima: o padrão sobe e a sala esfria. O risco: não perceber quem feriu no caminho",alegria:"você cobra sem aliviar: só aparece pra apontar. O risco: o time só te associar a problema",cuidado:"você cobra sem vínculo: as pessoas obedecem, não seguem. O risco: perder os bons pra quem os enxerga",busca:"você defende o padrão de ontem: cobra com excelência um jogo que pode estar acabando. O risco: ser o melhor no obsoleto"},
+  medo:{raiva:"você protege sem confrontar: vê o risco e não briga pra ser ouvido. O risco: o alerta certo que ninguém escutou",tristeza:"você calcula números, não pessoas: o risco humano fica fora da planilha. O risco: a demissão-surpresa que os dados não mostravam",alegria:"você protege num tom que pesa: a cautela vira clima de alerta permanente. O risco: um time tão ansioso quanto o cenário",cuidado:"você protege o negócio mais que as pessoas: o caixa blindado, o time exposto. O risco: sobreviver à crise sem sobrar ninguém",busca:"você defende tão bem o que existe que o novo não entra. O risco: segurança hoje, irrelevância amanhã"},
+  tristeza:{raiva:"você sente tudo e não confronta nada: o incômodo vira peso, não conversa. O risco: implodir em silêncio",medo:"você sente fundo e mergulha sem calcular: o coração decide sozinho. O risco: apostar caro no que emociona",alegria:"você carrega o peso sem contrapeso: falta leveza pra respirar. O risco: afundar junto com o problema",cuidado:"você sente pelo outro, mas de longe: percebe a dor e não se aproxima. O risco: virar espectador do sofrimento do time",busca:"você aprofunda o conhecido e evita o novo: profundidade em círculos. O risco: entender tudo do jogo errado"},
+  alegria:{raiva:"você anima sem cobrar: o clima é ótimo e a régua é baixa. O risco: um time feliz e medíocre",medo:"você contagia sem freio: o entusiasmo compra apostas que a prudência recusaria. O risco: a festa que o caixa não banca",tristeza:"você levanta o astral por cima da dor: alegria como tampa. O risco: o problema que apodrece sorrindo",cuidado:"você anima a plateia sem ver as pessoas: energia pra todos, atenção pra ninguém. O risco: brilho sem vínculo",busca:"você celebra o que existe e não caça o próximo: energia girando em círculo. O risco: ânimo sem fronteira nova"},
+  cuidado:{raiva:"você cuida sem cobrar: colo tem, régua não. O risco: proteger a mediocridade de quem você ama",medo:"você cuida sem calcular: dá o que não pode pra quem precisa. O risco: a generosidade que quebra o caixa",tristeza:"você cuida pela ação, não pela escuta: resolve antes de sentir. O risco: ajudar errado por não ter ouvido",alegria:"você cuida em tom grave: proteção sem leveza. O risco: um cuidado que pesa em vez de aliviar",busca:"você cuida do que a pessoa é, não do que pode ser: protege o presente e esquece o futuro dela. O risco: lealdade sem crescimento"}
+};
+/* ── PADRÃO DE USO da dupla: como os quadrantes das duas forças do topo se combinam (9 estados) ── */
+const USO2={
+  'g|g':"E as duas estão afiadas: motor e modificador jogando a favor. É a combinação madura, e é rara.",
+  'g|gb':"A primeira está afiada; a segunda ainda em lapidação: o seu segundo eixo promete mais do que entrega hoje.",
+  'g|r':"Atenção ao par: a primeira você domina, mas a segunda te domina. Ela suja o que a primeira constrói.",
+  'gb|g':"Curioso: a segunda força está mais afiada que a primeira. O motor ainda é bruto; o tempero, maduro. Encoste na segunda enquanto lapida a primeira.",
+  'gb|gb':"As duas ainda em lapidação: identidade forte, uso em construção. É a fase de maior potencial, e de maior desperdício.",
+  'gb|r':"A primeira em construção e a segunda te dominando: o par que te define hoje joga mais contra do que a favor.",
+  'r|g':"A sua força maior te domina; é a segunda que está madura. Hoje, quem segura o seu jogo é ela.",
+  'r|gb':"As duas fora de controle em graus diferentes: o par que te define é também o que mais te custa.",
+  'r|r':"As duas te dominam: identidade intensa com o leme solto. Prioridade absoluta: maestria antes de estratégia."
+};
 /* ── camada de negócio: o que cada força significa PRA EMPRESA (língua de dono) ── */
 const BIZWIN={raiva:"padrão alto que não desce: o time entrega porque sabe que você cobra",medo:"caixa protegido e risco calculado: o tombo que quebra os outros não te pega",tristeza:"leitura fina de gente e clima: você percebe o problema antes de virar pedido de demissão",alegria:"energia comercial e time engajado: gente boa gosta de trabalhar aí",cuidado:"retenção e lealdade: o seu time veste a camisa e fica",busca:"inovação de verdade: você enxerga o movimento do mercado antes da concorrência"};
 const BIZRISK={raiva:"rotatividade dos bons e um time com medo de errar, que só anda quando você aperta",medo:"crescimento devagar: oportunidade boa morre engavetada esperando garantia",tristeza:"decisão dura adiada por empatia: você demora demais pra cortar o que precisa",alegria:"clima ótimo, meta frouxa: o desconforto é varrido pra baixo do tapete",cuidado:"gente medíocre protegida porque 'é boa gente': a folha engorda e o padrão desce",busca:"cemitério de projetos começados: o time confuso com a prioridade que muda toda semana"};
@@ -738,16 +759,22 @@ function renderReport(){
   const piso=V.ord[5], temPiso=cn(piso)<=LOWCEN;
   const lacTxt = V.lac<=3 ? `Empate técnico entre os dois eixos: você transita entre <b>${nomeX}</b> e <b>${nomeFlip}</b>. É mistura de verdade, não um dominante com tempero, e este mapa assume as duas.`
     : (V.lac>=10 ? `O primeiro eixo manda com folga; ${C[sec].mercado} entra como tempero, não como sócio.` : "");
+  const qs=e=>{ const q=V.Q[e]; return q==='g'?'g':(q==='r'?'r':(q==='gb'?'gb':null)); };   /* quadrante simples do topo */
+  const uso2 = (!V.flat && qs(dom) && cn(sec)>=HICEN && qs(sec)) ? USO2[qs(dom)+'|'+qs(sec)] : null;
+  const styleTxt = (!V.flat && temPiso && STYLE[dom] && STYLE[dom][piso]) ? STYLE[dom][piso] : null;
   const combinaHTML=`<div class="combo2"><div class="c2t">${nomeX}</div>
     <div class="c2sub">${C[dom].mercado} + ${C[sec].mercado}</div>
     <p>Você é <b>${essX}</b>.${V.duo?` ${cap(V.duo.x)}.`:''}</p>
+    ${uso2?`<p>${uso2}</p>`:''}
     ${lacTxt?`<p>${lacTxt}</p>`:''}
-    ${temPiso?`<p class="c2low">E como <b>${C[piso].mercado}</b> está no chão, ${DEFICIT[piso].charAt(0).toLowerCase()+DEFICIT[piso].slice(1)}</p>`:''}</div>`;
+    ${temPiso?`<p class="c2low">E com <b>${C[piso].mercado}</b> no chão, ${styleTxt||(DEFICIT[piso].charAt(0).toLowerCase()+DEFICIT[piso].slice(1))}${styleTxt?'.':''}</p>`:''}</div>`;
   /* ── SEÇÃO: na sua empresa (língua de dono: onde ganha, o gargalo, o que assumir/delegar) ── */
   const worstHi = V.red[0]||V.hiBuild[0]||null;
   const bizGarg = worstHi ? BIZRISK[worstHi] : (temPiso ? BIZPISO[piso] : BIZRISK[dom]);
+  const bizCaveat = V.Q[dom]==='r' ? ' <i>Hoje, esse ganho está no contrato e não na entrega: a força te domina mais do que serve. Recupere o leme e ele vira regra.</i>'
+    : (V.Q[dom]==='gb' ? ' <i>Hoje, esse ganho aparece nos dias bons: o uso ainda está em construção. Lapide e ele vira regra.</i>' : '');
   const bizHTML=`<div class="biz"><div class="bk">Na sua empresa</div>
-    <div class="brow"><b>Onde ela ganha com você</b><p>${cap(BIZWIN[dom])}.${cn(sec)>=HICEN?` E ${BIZWIN[sec]}.`:''}</p></div>
+    <div class="brow"><b>Onde ela ganha com você</b><p>${cap(BIZWIN[dom])}.${(cn(sec)>=HICEN&&V.Q[sec]==='g')?` E ${BIZWIN[sec]}.`:''}${bizCaveat}</p></div>
     <div class="brow"><b>O gargalo que o seu perfil cria</b><p>${cap(bizGarg)}.</p></div>
     ${temPiso&&worstHi?`<div class="brow"><b>O custo do seu ponto cego</b><p>${cap(BIZPISO[piso])}.</p></div>`:''}
     <div class="brow"><b>Assuma / delegue</b><p><b class="ok2">Assuma:</b> ${BIZROLE[dom]}. <b class="no2">Delegue com dono:</b> ${temPiso?BIZROLE[piso]:BIZROLE[V.ord[4]]}, é onde o seu perfil menos aparece.</p></div></div>`;
