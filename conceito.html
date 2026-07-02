@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#faf7f2;--card:#fff;--ink:#2b2620;--ink-2:#5c554b;--ink-3:#8a8175;--gold:#b8862e;--gold-2:#d4a94e;--gold-bg:#faf3e6;--gold-soft:#e8d5ae;--green:#3a6b4a;--green-bg:#eef4ef;--green-soft:#cfe0d3;--line:#eee8de;--dark:#28221b;--red:#a84f3d;--blue:#3d5578}
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2620;--ink-2:#5c554b;--ink-3:#8a8175;--gold:#b8862e;--gold-2:#d4a94e;--gold-bg:#faf3e6;--gold-soft:#e8d5ae;--green:#3a6b4a;--green-bg:#eef4ef;--green-soft:#cfe0d3;--line:#eee8de;--dark:#28221b;--red:#a84f3d}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
 .wrap{max-width:780px;margin:0 auto;padding:44px 22px 60px}
@@ -23,7 +23,7 @@ h1 .it{font-style:italic;color:var(--gold)}
 .card p+p{margin-top:9px}
 .card b{color:var(--ink)}
 .card ul{margin-left:18px}
-.card li{margin-bottom:7px}
+.card li{margin-bottom:8px}
 .pitch{background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);color:#e7dcc9;border-radius:18px;padding:26px 28px;margin-bottom:12px}
 .pitch .pk{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);font-weight:700;margin-bottom:12px}
 .pitch .fala{font-family:Fraunces,serif;font-style:italic;font-size:17.5px;line-height:1.6;color:#f2e9d8}
@@ -36,167 +36,163 @@ h1 .it{font-style:italic;color:var(--gold)}
 .soc .sk{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px}
 .soc.a .sk{color:#2c6045}.soc.b .sk{color:var(--red)}
 .soc p{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.dec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 21px;margin-bottom:10px}
+.dec .dk{display:flex;align-items:baseline;gap:9px;margin-bottom:7px}
+.dec .dn{font-family:Fraunces,serif;font-size:15px;color:var(--gold);font-weight:600;white-space:nowrap}
+.dec .dt{font-weight:700;font-size:14.5px;color:var(--ink)}
+.dec p{font-size:13.5px;color:var(--ink-2)}
+.dec p+p{margin-top:7px}
+.dec b{color:var(--ink)}
+.dec .desc{font-size:12.5px;color:var(--ink-3);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);padding:7px 9px;border-bottom:2px solid var(--line)}
 td{padding:7px 9px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top}
 td:first-child{font-weight:600;color:var(--ink)}
-.gbox{background:var(--gold-bg);border:1.5px solid var(--gold-soft);border-radius:16px;padding:20px 22px;margin-bottom:12px}
-.gbox p,.gbox li{font-size:13.8px;color:var(--ink-2)}
-.gbox b{color:var(--ink)}
-.gbox ul{margin-left:18px}
-.gbox li{margin-bottom:7px}
-.quads{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.qd{border-radius:10px;padding:9px 12px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line)}
-.qd span{display:block;font-weight:400;font-size:11px;color:var(--ink-3)}
-.qd.g{border-color:var(--green-soft)}.qd.g b{color:#2c6045}
-.qd.r{border-color:rgba(168,79,61,.25)}.qd.r b{color:var(--red)}
-.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
-.num{background:var(--dark);color:#e7dcc9;border-radius:14px;padding:15px 13px;text-align:center}
-.num b{display:block;font-family:Fraunces,serif;font-size:24px;color:var(--gold-2)}
-.num span{font-size:10.5px;line-height:1.35;display:block;margin-top:4px;color:#c9bda6}
-.lim{background:#fff;border:1.5px dashed var(--gold-soft);border-radius:16px;padding:18px 21px;margin-bottom:12px}
-.lim li{font-size:13.5px;color:var(--ink-2);margin:0 0 8px 18px}
-.lim b{color:var(--ink)}
-.alvo{background:rgba(168,79,61,.05);border:1.5px solid rgba(168,79,61,.25);border-radius:16px;padding:20px 22px;margin-bottom:12px}
-.alvo li{font-size:13.8px;color:var(--ink-2);margin:0 0 10px 18px}
-.alvo b{color:var(--red)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.chip{background:var(--green-bg);border:1px solid var(--green-soft);color:#2c6045;border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:600}
+.forte{background:var(--green-bg);border:1.5px solid var(--green-soft);border-radius:16px;padding:18px 21px;margin-bottom:12px}
+.forte li{font-size:13.8px;color:var(--ink-2);margin:0 0 9px 18px}
+.forte b{color:#2c6045}
+.fraco{background:rgba(168,79,61,.05);border:1.5px solid rgba(168,79,61,.22);border-radius:16px;padding:18px 21px;margin-bottom:12px}
+.fraco li{font-size:13.8px;color:var(--ink-2);margin:0 0 9px 18px}
+.fraco b{color:var(--red)}
+.pede{background:var(--gold-bg);border:1.5px solid var(--gold-soft);border-radius:16px;padding:18px 21px;margin-bottom:12px}
+.pede li{font-size:13.8px;color:var(--ink-2);margin:0 0 9px 18px}
+.pede b{color:var(--ink)}
 .foot{text-align:center;font-size:12px;color:var(--ink-3);margin-top:36px;padding-top:16px;border-top:1px solid var(--line)}
-.foot a{color:var(--gold)}
-@media(max-width:560px){.socios{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.socios{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <div class="eyebrow">ELO Assessment · dossiê do método · fase conceitual</div>
-<h1>O método, aberto<br><span class="it">pra crítica até o osso.</span></h1>
-<p class="sub">Primeiro o valor, depois o desenho metodológico, no fim os limites e os pontos onde a crítica é mais bem-vinda.</p>
+<h1>O método, visto <span class="it">de cima.</span></h1>
+<p class="sub">Escrito pra quem não participou da construção: o que está por trás, quais as intenções, quais decisões foram tomadas e por quê, onde o método é forte e onde ainda é fraco.</p>
 
-<!-- ============ 1. O VALOR ============ -->
-<div class="sec"><span class="n">1</span> O valor em 30 segundos (pro empresário que não nos conhece)</div>
+<!-- ============ 1. O QUE ESTÁ POR TRÁS ============ -->
+<div class="sec"><span class="n">1</span> O que está por trás</div>
+<div class="card">
+  <p>A ELOS ensina há anos uma leitura de gente que funciona na sala: cada pessoa carrega um conjunto de temperos em intensidades diferentes, e cada tempero tem um lado de luz e um lado de sombra. Desenvolvimento de verdade é tirar cada tempero da sombra.</p>
+  <p>Essa leitura nunca teve um instrumento de medida próprio. Usávamos um teste de mercado (o DNA comportamental), que serviu, mas com dois incômodos permanentes. Primeiro, pontos de incoerência com a linguagem da casa: termos que o laudo usa de um jeito e nós ensinamos de outro. Segundo, e mais grave: o teste diz QUAIS temperos a pessoa tem, e cala sobre a pergunta que a casa mais valoriza: <b>a pessoa usa o tempero, ou é usada por ele?</b></p>
+  <p>O método nasceu pra fechar essa lacuna: transformar a leitura que já praticamos num instrumento que mede, com rigor, o que os testes de mercado deixam de medir.</p>
+</div>
+
+<!-- ============ 2. AS INTENÇÕES ============ -->
+<div class="sec"><span class="n">2</span> As intenções (o que o instrumento precisa fazer)</div>
+<div class="card">
+  <ul>
+    <li><b>Servir o empresário frio.</b> Precisa funcionar pra quem nunca ouviu falar da ELOS, como porta de entrada, antes de qualquer formação.</li>
+    <li><b>Ser simples de aplicar como um DISC e mais profundo que um DISC.</b> O DISC venceu o mercado pela praticidade; qualquer coisa mais difícil de usar perde antes de começar.</li>
+    <li><b>Medir o uso, além do perfil.</b> A distinção sombra/luz por tempero precisa virar número, porque é ela que separa o líder que constrói do que destrói.</li>
+    <li><b>Gerar ação de segunda-feira.</b> O resultado precisa dizer o que a pessoa faz com aquilo e o que o gestor dela faz com aquilo, sem tradutor.</li>
+    <li><b>Medir evolução.</b> Se o uso melhora com trabalho direcionado, o teste refeito meses depois precisa mostrar o ponteiro se movendo. É o elo natural com a formação.</li>
+    <li><b>Falar a língua da casa.</b> Sombra e luz, forças, uso: o instrumento mede o que a esteira já ensina, sem termos órfãos.</li>
+  </ul>
+</div>
 <div class="pitch">
-  <div class="pk">A fala, palavra por palavra</div>
+  <div class="pk">Onde essas intenções querem chegar: a fala de 28 segundos pra um empresário frio</div>
   <p class="fala">"Problema de gente é o mais caro da sua empresa: o gerente por quem o time inteiro pediu demissão, o vendedor bom rendendo médio na cadeira errada, a conversa com o sócio que nunca acontece. A gente criou um teste de 12 minutos que mostra <b>as forças que movem cada pessoa e, o que ninguém mede: se cada força trabalha a favor ou contra ela</b>. Sai o mapa da pessoa: onde brilha, onde se sabota; e o manual de condução pro gestor: o que falar, o que delegar, onde intervir. E como esse uso melhora com trabalho direcionado, <b>em 90 dias você mede de novo e vê o ponteiro mexer</b>."</p>
-  <p class="nota">28 segundos falados. Abre na dor de gente. DISC, neurociência e ELOS ficam de fora da primeira conversa, porque o empresário frio pode nunca ter ouvido falar de nenhum dos três.</p>
+  <p class="nota">A fala abre na dor de gente. DISC, neurociência e ELOS ficam de fora da primeira conversa, porque o empresário frio pode nunca ter ouvido falar de nenhum dos três.</p>
 </div>
 <div class="socios">
-  <div class="soc a"><div class="sk">A imagem que carrega o conceito</div><p><b>Sócio 1, "dominante":</b> cobra o padrão sem humilhar. O time sabe onde pisa, os bons ficam.</p></div>
-  <div class="soc b"><div class="sk">Mesmo laudo em qualquer teste de perfil</div><p><b>Sócio 2, "dominante":</b> explode, intimida, guarda rancor. O time só anda com medo, os bons saem primeiro.</p></div>
+  <div class="soc a"><div class="sk">A imagem que resume o método</div><p><b>Sócio 1, "dominante" no teste comum:</b> cobra o padrão sem humilhar. O time sabe onde pisa, os bons ficam.</p></div>
+  <div class="soc b"><div class="sk">Mesmo laudo no teste comum</div><p><b>Sócio 2, "dominante" no teste comum:</b> explode, intimida, guarda rancor. O time só anda com medo, os bons saem primeiro.</p></div>
 </div>
 
-<!-- ============ 2. A LACUNA ============ -->
-<div class="sec"><span class="n">2</span> A lacuna que o mercado tem</div>
-<div class="card">
-  <p><b>O DISC venceu o mercado</b> porque é simples, prático e adaptado sob medida à linguagem que a empresa quer ouvir (eles trocaram até "Submisso" por "Estável"). Mas ele mede UMA dimensão: o temperamento. Por isso o laudo dos dois sócios sai igual.</p>
-  <p><b>O Eneagrama tem profundidade</b> (inclusive a leitura de sombra e luz), mas nunca venceu o DISC porque fala a língua do autoconhecimento, não a língua da operação. O gestor lê e não sabe o que fazer terça-feira.</p>
-  <p><b>A lacuna:</b> ninguém entrega as duas coisas ao mesmo tempo: a simplicidade operacional do DISC com a profundidade do uso (sombra e luz) medida de verdade. É essa lacuna que o método ataca: <b>fácil e prático como DISC, mais profundo que DISC.</b></p>
+<!-- ============ 3. AS DECISÕES ============ -->
+<div class="sec"><span class="n">3</span> As decisões de construção (o que escolhemos, por quê, e o que descartamos)</div>
+
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 1</span><span class="dt">A base: seis sistemas emocionais primários</span></div>
+  <p>Os "temperos" precisavam de uma lista definitiva: quantos são e quais são. Adotamos os sistemas emocionais primários mapeados pelo neurocientista Jaak Panksepp: circuitos identificados em laboratório no cérebro de mamíferos (busca, medo, raiva, cuidado, tristeza, brincadeira). A lista não é uma taxonomia de marketing: é biologia, e a escala que mede esses sistemas em humanos foi validada contra o Big Five numa meta-análise com 9.939 pessoas.</p>
+  <p class="desc"><b>Descartamos:</b> inventar fatores próprios do zero (sem lastro, indefensável diante de qualquer especialista) e herdar os 4 fatores do DISC (caixas largas demais: o mesmo "influente" contém o vendedor carismático e o líder que desenvolve pessoas).</p>
 </div>
 
-<!-- ============ 3. A TESE ============ -->
-<div class="sec"><span class="n">3</span> A tese metodológica: dois eixos ortogonais + o leme</div>
-<div class="gbox">
-  <p><b>Eixo 1, CENTRALIDADE ("o quê te move"):</b> quanto cada força pesa no jeito da pessoa operar. É o "quanto do tempero" que a pessoa tem: estável o bastante pra ser identidade. De onde vem (genética, história, ambos) é debate que o método não precisa comprar: medimos o que está aí. E força baixa não é sentença: quem tem pouco de um tempero cobre pela maturidade e pelo complemento no time.</p>
-  <p style="margin-top:9px"><b>Eixo 2, MATURIDADE ("como você usa"):</b> se a força aparece pelo lado da luz ou da sombra. É habilidade: <b>sobe com trabalho direcionado</b>, e é o mapa que dá a direção. É o eixo que nenhum concorrente mede, e é onde a formação da casa atua.</p>
-  <p style="margin-top:9px"><b>MAESTRIA (o leme):</b> definição operacional: 60% vem de itens próprios de condução sob pressão (manter o combinado, o prazo e o plano quando a emoção sobe) e 40% da média das maturidades. Mede <b>o leme do conjunto</b>: se a pessoa conduz o que sente ou é conduzida. Como agrega só o que muda com trabalho direcionado, é o número do reteste.</p>
-  <div class="quads">
-    <div class="qd g"><b>Superpoder</b><span>move muito + uso maduro</span></div>
-    <div class="qd r"><b>Sabotagem</b><span>move muito + uso imaturo</span></div>
-    <div class="qd"><b>Ferramenta na gaveta</b><span>move pouco + uso maduro</span></div>
-    <div class="qd"><b>Ponto cego</b><span>move pouco + uso imaturo</span></div>
-  </div>
-  <p style="margin-top:12px;font-size:12.5px;font-style:italic">Coerência com a casa: é a leitura da sombra pra luz que já ensinamos, virando número. O assessment mede o que a esteira já trabalha.</p>
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 2</span><span class="dt">O recorte: LUST fica fora, PLAY fica dentro</span></div>
+  <p>Panksepp mapeou sete sistemas. O sétimo, LUST (o desejo sexual), fica fora de qualquer instrumento corporativo, por razões óbvias. A subdivisão dele também resolve um problema clássico: a "alegria" genérica mistura coisas muito diferentes; PLAY (a energia da brincadeira, do vínculo e do ânimo) é um sistema próprio, separado do desejo, e é esse que entra.</p>
+  <p class="desc"><b>Descartamos:</b> trabalhar com "alegria" como bloco único, que era o ponto mal resolvido das teorias de emoções básicas.</p>
 </div>
 
-<!-- ============ 4. POR QUE 6 ============ -->
-<div class="sec"><span class="n">4</span> Por que 6 forças (o caminho científico)</div>
-<div class="card">
-  <p><b>Partimos das emoções primárias</b> mapeadas em neurociência afetiva por Jaak Panksepp: sistemas emocionais identificados no cérebro de mamíferos, não categorias inventadas pra teste. Sete sistemas; um deles (LUST, o desejo sexual) fica deliberadamente fora de qualquer instrumento corporativo. Sobram seis, e a subdivisão que ele fez resolve o problema clássico da "alegria": PLAY (a energia da brincadeira e do vínculo) é sistema próprio, separado do desejo.</p>
-  <p><b>O lastro estatístico:</b> a escala que mede esses sistemas em humanos (ANPS) foi validada contra o Big Five numa meta-análise com 9.939 pessoas. Dois achados sustentam o desenho. Primeiro: os 6 sistemas cobrem <b>os motores emocionais</b> do comportamento (não "toda a personalidade": disciplina e método, por exemplo, não são um sétimo motor, são o eixo 2, o uso). Segundo, e é a prova disso: a dimensão de autodisciplina do Big Five correlaciona fraco com TODAS as emoções, ou seja, <b>o "como usa" é estatisticamente independente do "quanto move"</b>. Os dois eixos aparecem separados nos dados.</p>
-  <p><b>Por que não 4 (DISC)?</b> Porque 4 mistura gente diferente na mesma caixa: o mesmo "I" contém o vendedor carismático e o líder que desenvolve pessoas. E por que não 9 (Eneagrama)? Porque 9 tipos fixos sem eixo de uso confundem essência com comportamento. Seis forças COM eixo de uso separam mais fino que ambos, sem pedir que ninguém decore seis coisas: a pessoa recebe UMA identidade nomeada.</p>
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 3</span><span class="dt">Dois eixos independentes: o quanto move e o como usa</span></div>
+  <p><b>Centralidade</b> é o quanto cada força pesa no jeito da pessoa operar. É identidade: estável. De onde vem (genética, história, ambos) é debate que o método não compra: medimos o que está aí. <b>Maturidade</b> é se a força aparece pela luz ou pela sombra. É habilidade: sobe com trabalho direcionado. O cruzamento gera quatro leituras por força: superpoder (move muito, usa bem), sabotagem (move muito, usa mal), ferramenta na gaveta (move pouco, usa bem) e ponto cego (move pouco, sai torto).</p>
+  <p>Os dados sustentam a separação: a dimensão de autodisciplina do Big Five correlaciona fraco com todas as seis emoções. O "como usa" e o "quanto move" são coisas diferentes também na estatística, e é por isso que dá pra medir os dois sem que um contamine o outro.</p>
+  <p class="desc"><b>Descartamos:</b> o eixo único dos testes de mercado, que é a raiz do problema dos dois sócios: perfil igual, empresas opostas, laudo idêntico.</p>
 </div>
 
-<!-- ============ 5. TRADUÇÃO ============ -->
-<div class="sec"><span class="n">5</span> A tradução pro mercado (a lição do DISC, aplicada)</div>
-<div class="card">
-  <p>A palavra "emoção" não aparece pro cliente, pelo mesmo motivo que o DISC aposentou "Submisso": terminologia define destino comercial. Cada sistema virou uma <b>força com nome de mesa de reunião</b>:</p>
-  <div style="margin-top:10px">
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 4</span><span class="dt">A vitrine: forças com nome de mesa de reunião</span></div>
+  <p>A palavra "emoção" não aparece pro cliente. O DISC nos ensinou que terminologia define destino comercial (eles aposentaram "Submisso" e criaram "Estável"). Cada sistema virou uma força com nome que se fala numa reunião:</p>
+  <div style="margin-top:9px">
   <table>
-    <tr><th>Sistema (motor)</th><th>Força (vitrine)</th><th>Na prática</th></tr>
-    <tr><td>RAGE / raiva</td><td>Governança</td><td>confrontar e cobrar o padrão</td></tr>
-    <tr><td>FEAR / medo</td><td>Prudência</td><td>prever o risco e proteger</td></tr>
-    <tr><td>GRIEF / tristeza</td><td>Profundidade</td><td>ler gente e sentir o não-dito</td></tr>
-    <tr><td>PLAY / alegria</td><td>Vivacidade</td><td>energia, ânimo, ritmo</td></tr>
-    <tr><td>CARE / cuidado</td><td>Acolhimento</td><td>cuidar e desenvolver gente</td></tr>
-    <tr><td>SEEKING / busca</td><td>Curiosidade</td><td>caçar o novo e o melhor</td></tr>
+    <tr><th>Sistema (o motor, invisível)</th><th>Força (a vitrine)</th><th>Na prática</th></tr>
+    <tr><td>Raiva</td><td>Governança</td><td>confrontar e cobrar o padrão</td></tr>
+    <tr><td>Medo</td><td>Prudência</td><td>prever o risco e proteger</td></tr>
+    <tr><td>Tristeza</td><td>Profundidade</td><td>ler gente e sentir o não-dito</td></tr>
+    <tr><td>Brincadeira</td><td>Vivacidade</td><td>energia, ânimo, ritmo</td></tr>
+    <tr><td>Cuidado</td><td>Acolhimento</td><td>cuidar e desenvolver gente</td></tr>
+    <tr><td>Busca</td><td>Curiosidade</td><td>caçar o novo e o melhor</td></tr>
   </table>
   </div>
-  <p style="margin-top:12px"><b>Ponte com quem já fala DISC</b> (levantada empiricamente com 24 laudos reais): Dominante ↔ Governança alta · Influente ↔ Vivacidade + Acolhimento · Estável ↔ Prudência · Analista ↔ Prudência + Profundidade. Tudo que um time já sabe fazer com DISC continua valendo aqui; ganha o eixo do uso por cima.</p>
+  <p class="desc"><b>Descartamos:</b> vender "emoções primárias" na porta. É a nossa fundação e a nossa língua interna, mas na mesa do empresário frio soa consultório.</p>
 </div>
 
-<!-- ============ 6. ENGENHARIA ============ -->
-<div class="sec"><span class="n">6</span> A engenharia psicométrica (por que dá pra confiar no número)</div>
-<div class="card">
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 5</span><span class="dt">A medição: formatos diferentes pra perguntas diferentes</span></div>
+  <p><b>60 itens, uns 12 minutos no celular.</b> O tamanho veio da linha de abandono do público (o DISC comum leva uns 10 minutos; o Big Five completo passa de 20). O tempo real será medido no teste em escala.</p>
+  <p><b>A centralidade é medida por escolha forçada:</b> blocos de 4 frases igualmente elogiosas, onde a pessoa marca a que MAIS e a que MENOS tem a ver com ela. Perguntar "você é enérgico?" direto infla tudo; obrigar a escolher entre quatro qualidades revela a prioridade real. <b>A maturidade é medida por afirmações de frequência</b>, metade delas invertidas, incluindo 12 armadilhas: sombras vestidas de virtude ("gosto de manter várias frentes abertas pra nenhuma oportunidade escapar"). Quem responde pra ficar bonito concorda com a armadilha e se denuncia. Cada resultado sai com um selo de consistência das respostas.</p>
+  <p class="desc"><b>Descartamos:</b> questionário de concordância simples do começo ao fim (fácil de inflar) e teste longo (morre na taxa de abandono).</p>
+</div>
+
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 6</span><span class="dt">Os números: estatística no lugar de régua no olho</span></div>
+  <p>"Força alta" e "força no chão" são definidas pelo que o acaso não explica (desvio com p ≈ 0,04 sob resposta indiferente). Quando duas forças empatam tecnicamente, o relatório declara o empate ("você transita entre X e Y") em vez de fingir precisão. E a robustez foi testada por simulação: em 1.500 perfis, trocar uma única resposta muda o rótulo em 6% dos casos, e em 97% dessas viradas o relatório já avisava do empate.</p>
+</div>
+
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 7</span><span class="dt">Maestria: o número que conecta o teste à evolução</span></div>
+  <p>Um índice de zero a cinquenta que responde: a pessoa conduz o que sente, ou é conduzida? Na composição, 60% vem de itens próprios de condução sob pressão (manter o combinado, o prazo e o plano quando a emoção sobe) e 40% da média das maturidades. Como agrega só o que muda com trabalho direcionado, é o número do reteste: o antes e depois de um ciclo de desenvolvimento.</p>
+</div>
+
+<div class="dec">
+  <div class="dk"><span class="dn">Decisão 8</span><span class="dt">A entrega: identidade nomeada + manual pro gestor</span></div>
+  <p>As duas forças mais altas formam uma identidade com nome próprio (O Comandante, A Formadora, O Porto: 30 combinações), porque ninguém decora seis números, mas todo mundo lembra de um nome. Saem dois documentos: <b>o Mapa</b> (pra pessoa: forças, sabotagem, pontos cegos, plano de 90 dias) e <b>o Guia de Condução</b> (pro gestor: como dar feedback naquela pessoa, o que delegar, o que a motiva, os sinais de alerta, e as sombras prováveis do perfil formuladas como perguntas pra verificar com o time, cobrindo o que autorrelato não enxerga sozinho).</p>
+  <p class="desc"><b>Descartamos:</b> o laudo descritivo tradicional, que informa e não muda conduta nenhuma.</p>
+</div>
+
+<!-- ============ 4. PONTOS FORTES ============ -->
+<div class="sec"><span class="n">4</span> Onde o método é forte</div>
+<div class="forte">
   <ul>
-    <li><b>60 itens, ~12 minutos, celular.</b> O limite veio da linha de abandono do público. Referência: o DISC comum leva uns 10 minutos, o Big Five completo passa de 20. O tempo real será medido no teste em escala.</li>
-    <li><b>Centralidade por escolha forçada:</b> blocos onde as 4 opções são igualmente desejáveis e a pessoa marca a que MAIS e a que MENOS é a cara dela. Não dá pra responder "tudo bonito": o formato obriga a revelar prioridade real.</li>
-    <li><b>Maturidade por afirmações de frequência</b> com metade dos itens invertidos e <b>12 perguntas-armadilha</b>: sombras vestidas de virtude ("gosto de manter várias frentes abertas pra nenhuma oportunidade escapar"). Quem responde pra ficar bonito concorda com a armadilha e se denuncia.</li>
-    <li><b>Selo de confiabilidade em cada resultado:</b> quatro índices (respostas em linha reta, concordância com conteúdos contraditórios, retrato perfeito demais, queda nas armadilhas). O blefe recebe o próprio laudo avisando.</li>
-    <li><b>Cortes estatísticos:</b> "força alta" é desvio além do que o acaso explica (p ≈ 0,04 sob resposta indiferente).</li>
-    <li><b>Empates declarados:</b> quando dois eixos empatam tecnicamente, o relatório diz "você transita entre X e Y" em vez de fingir precisão.</li>
-    <li><b>Robustez testada por simulação:</b> em 1.500 perfis, trocar UMA resposta muda o rótulo em 6% dos casos, e 97% dessas viradas já estavam declaradas como empate. Instabilidade não avisada: 0,2%.</li>
+    <li><b>Mede o que o mercado não mede.</b> O eixo do uso (sombra/luz por força) não existe em nenhum teste de massa. É a diferença entre os dois sócios, e é o coração da casa virando número.</li>
+    <li><b>Gera ação, além de retrato.</b> O Guia de Condução dá ao gestor o que fazer com cada pessoa na segunda-feira; nos nossos testes internos, foi a peça mais elogiada por avaliadores céticos.</li>
+    <li><b>Resiste a blefe.</b> Escolha forçada, armadilhas e selo de consistência: quem responde pra ficar bonito recebe o próprio laudo avisando.</li>
+    <li><b>Mede evolução.</b> A Maestria subindo entre dois testes é a prova de desenvolvimento que conecta o instrumento à formação.</li>
+    <li><b>Aguentou o primeiro estresse.</b> Colocamos os relatórios contra 24 laudos reais (DNA e Big Five), com avaliadores instruídos a ceticismo máximo, em 5 rodadas de crítica e correção: terminou com 21 vitórias, 1 empate e nenhuma derrota. A ressalva importante está na seção seguinte.</li>
   </ul>
 </div>
 
-<!-- ============ 7. MOTOR DE LEITURA ============ -->
-<div class="sec"><span class="n">7</span> O motor de leitura (do número ao texto)</div>
-<div class="card">
-  <p>Treze números viram leitura por um motor combinatório: <b>30 identidades nomeadas</b> (O Comandante, A Formadora, O Porto...) formadas pelas duas forças do topo, moduladas pelo padrão de uso da dupla, pelos pares em tensão ou aliança, pelo estilo que a força alta assume quando falta a do piso ("cuida sem cobrar: colo tem, régua não"), e pelos agregados (temperatura, amplitude, Maestria). São ~240 átomos de texto autorais que o motor monta em milhões de combinações possíveis: <b>duas pessoas com o mesmo dominante recebem leituras diferentes se o uso difere</b>, que é o caso dos dois sócios.</p>
-  <p><b>Entregáveis por pessoa:</b> o Mapa (espelho: forças, sabotagem, pontos cegos, plano de 90 dias, ficha técnica com os 13 números) e o Guia de Condução (manual pro gestor: feedback, delegação, motivadores, sinais de alerta, e as sombras prováveis do perfil formuladas como perguntas de verificação com o time, cobrindo o que autorrelato não enxerga sozinho).</p>
-</div>
-
-<!-- ============ 8. VALIDAÇÃO ============ -->
-<div class="sec"><span class="n">8</span> A validação até aqui: o que prova, e o que ainda não prova</div>
-<div class="card">
-  <p><b>O que já fizemos, com o método aberto:</b> pegamos 24 laudos reais de pessoas reais (DNA comportamental e Big Five). Agentes de IA encarnaram cada pessoa com fidelidade às fraquezas do laudo e responderam o teste. O motor gerou os relatórios. Avaliadores independentes (IA, instruídos a ceticismo máximo, sem saber qual produto era nosso) compararam lado a lado em 7 dimensões, em 5 rodadas: cada crítica virou correção, cada correção foi re-julgada.</p>
-  <p><b>O que isso prova:</b> que o PRODUTO (a leitura, a acionabilidade, o valor pro gestor) vence o laudo antigo sob crítica cética, e que a arquitetura aguentou as 5 rodadas. <b>O que ainda NÃO prova:</b> a precisão com gente de verdade respondendo. Simulação de persona tem teto (a convergência com a pessoa real ficou em ~6,4/10 por causa dele). Por isso a sequência combinada: primeiro a fundação validada por você, depois o teste em escala com respondentes reais, depois a recalibragem dos cortes na base própria. Este dossiê é a primeira etapa.</p>
-  <p><b>Sinal forte de consistência que já apareceu:</b> a mesma pessoa avaliada por 3 fontes diferentes (2 DNAs + 1 Big Five) caiu no MESMO arquétipo nas 3 simulações independentes; duplicatas de outras 2 pessoas mantiveram a força dominante.</p>
-  <p style="font-size:12.5px;color:var(--ink-3);font-style:italic;margin-top:10px">Os números do estresse interno, pra registro: 21 vitórias, 0 derrotas, 1 empate contra os 24 laudos na rodada final; margem média de +1,3; nota de produto subindo de 6,8 pra 7,7 ao longo das 5 rodadas.</p>
-</div>
-
-<!-- ============ 9. LIMITES ============ -->
-<div class="sec"><span class="n">9</span> Escolhas deliberadas e limites conhecidos</div>
-<div class="lim">
+<!-- ============ 5. PONTOS FRACOS ============ -->
+<div class="sec"><span class="n">5</span> Onde ainda é fraco (sem defesa)</div>
+<div class="fraco">
   <ul>
-    <li><b>LUST fora, PLAY dentro:</b> recorte deliberado pro contexto corporativo, documentado.</li>
-    <li><b>A centralidade compara a pessoa com ela mesma</b> (escolha forçada é intra-pessoa por natureza); a maturidade compara entre pessoas. O relatório descreve cada eixo pelo que ele é, sem percentuais inventados.</li>
-    <li><b>Não é ferramenta de eliminação em seleção</b> sem validação específica pra isso. É ferramenta de condução: onboarding, delegação, feedback, desenvolvimento.</li>
-    <li><b>Fronteira de construto:</b> dimensões como "didática" ou "método" (o Educador do DISC) aparecem aqui via Prudência + Acolhimento, não como eixo próprio. Sabemos onde o mapa termina.</li>
-    <li><b>Normas próprias virão da escala:</b> os cortes atuais são estatísticos e serão recalibrados com a base real conforme ela cresce.</li>
+    <li><b>Ainda não foi medido em gente de verdade.</b> O estresse interno usou personas simuladas por IA respondendo a partir de laudos reais, e avaliadores também de IA. Isso valida o produto e a arquitetura; a precisão com humanos respondendo continua sem prova. É a próxima etapa, e nada substitui ela.</li>
+    <li><b>O mapa tem fronteira.</b> Dimensões como didática e método (fortes em alguns perfis de DISC) não têm eixo próprio aqui: aparecem combinadas em Prudência e Acolhimento. Se o mercado sentir falta delas, é limite real.</li>
+    <li><b>Nomes com risco de leitura dupla.</b> "Governança" no Brasil já pertence à governança corporativa; o empresário pode ler compliance onde queremos dizer cobrança de padrão. "Acolhimento" pode soar RH pra dono de indústria. "Superpoder" agrada uns e faz outros torcerem o nariz.</li>
+    <li><b>A centralidade compara a pessoa com ela mesma.</b> É consequência do formato anti-blefe (escolha forçada) e funciona pro que o teste promete; mas não permite dizer "você é mais enérgico que 80% dos empresários" até termos normas próprias da base real.</li>
+    <li><b>12 minutos contra 10 do DISC.</b> Um pouco mais longo que o padrão do mercado. A aposta é que a entrega paga a diferença; é aposta, ainda.</li>
+    <li><b>Risco do nosso encantamento.</b> Quem constrói se apaixona pelo relatório e pela teoria. O mercado compra resultado. Este dossiê existe pra ser atacado antes que o encantamento decida qualquer coisa.</li>
   </ul>
 </div>
 
-<!-- ============ 10. ESTEIRA ============ -->
-<div class="sec"><span class="n">10</span> Onde encaixa na esteira</div>
-<div class="chips">
-  <div class="chip">Porta de entrada fria: ~12 min, sem cadastro, o link se compartilha sozinho</div>
-  <div class="chip">Baseline pré-formação de cada mentorado</div>
-  <div class="chip">Reteste pós: a Maestria subindo mostra a evolução em número</div>
-  <div class="chip">Mesma língua da casa: forças, sombra e luz, uso</div>
-  <div class="chip">Depois: mapa de time e de sócios (onde ninguém cobre)</div>
-</div>
-
-<!-- ============ 11. ONDE ATIRAR ============ -->
-<div class="sec"><span class="n">11</span> Onde atirar (os pontos abertos da fundação)</div>
-<div class="alvo">
+<!-- ============ 6. O QUE PEDIMOS ============ -->
+<div class="sec"><span class="n">6</span> O que pedimos de quem lê</div>
+<div class="pede">
   <ul>
-    <li><b>A fala de 30 segundos convence o frio?</b> Se o valor da seção 1 não convencer sozinho, nada do resto importa. Metralhe ali primeiro.</li>
-    <li><b>Os nomes vendem, ou têm leitura dupla?</b> "Governança" no Brasil já tem dono (governança corporativa, compliance, conselho): o empresário pode ler auditoria onde queremos dizer "cobrar o padrão". Alternativas na mesa: Comando, Firmeza, Autoridade. "Acolhimento" pode soar RH-fofo pro dono de indústria. E o vocabulário "superpoder/sabotagem" agrada uns e faz outros torcerem o nariz. Precisamos escolher a régua: encantar ou não fazer ninguém tropeçar.</li>
-    <li><b>"Forças" é a categoria certa?</b> Ou existe palavra mais vendável pra vitrine do método?</li>
-    <li><b>A ponte com o DISC ajuda ou ancora?</b> Traduzir pro que o mercado já fala facilita a entrada, mas pode nos posicionar como "DISC melhorado". Onde ela entra e onde ela sai da conversa?</li>
-    <li><b>Maestria como conceito de venda:</b> o índice que sobe e prova evolução. É a joia ou é abstrato demais pro frio?</li>
-    <li><b>O que falta pra você colocar um real nisso</b> na frente de alguém que nunca ouviu falar da ELOS?</li>
+    <li><b>Ataque a fala de 28 segundos.</b> Se o valor dela não convencer sozinho, nada do resto importa.</li>
+    <li><b>Ataque as decisões, uma a uma.</b> Cada card da seção 3 tem o porquê e o que foi descartado; se algum porquê não parar em pé, é ali que a fundação cede.</li>
+    <li><b>Ataque os nomes.</b> As seis forças e as 30 identidades, com as alternativas na mesa (pra Governança: Comando, Firmeza, Autoridade).</li>
+    <li><b>Diga o que falta na lista de pontos fracos.</b> O fraco que a gente não listou é o mais perigoso.</li>
   </ul>
 </div>
 
