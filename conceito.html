@@ -3,121 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O teste que separa o líder que constrói do que destrói · Instituto ELOS</title>
+<title>ELO Assessment · Dossiê do Método</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#faf7f2;--card:#fff;--ink:#2b2620;--ink-2:#5c554b;--ink-3:#8a8175;--gold:#b8862e;--gold-2:#d4a94e;--gold-bg:#faf3e6;--gold-soft:#e8d5ae;--green:#3a6b4a;--green-bg:#eef4ef;--green-soft:#cfe0d3;--line:#eee8de;--dark:#28221b;--red:#a84f3d}
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2620;--ink-2:#5c554b;--ink-3:#8a8175;--gold:#b8862e;--gold-2:#d4a94e;--gold-bg:#faf3e6;--gold-soft:#e8d5ae;--green:#3a6b4a;--green-bg:#eef4ef;--green-soft:#cfe0d3;--line:#eee8de;--dark:#28221b;--red:#a84f3d;--blue:#3d5578}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
-.wrap{max-width:720px;margin:0 auto;padding:44px 22px 60px}
-.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
-h1{font-family:Fraunces,serif;font-size:clamp(30px,6.4vw,46px);font-weight:600;line-height:1.12;margin-bottom:22px}
+.wrap{max-width:780px;margin:0 auto;padding:44px 22px 60px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+h1{font-family:Fraunces,serif;font-size:clamp(30px,6vw,44px);font-weight:600;line-height:1.12;margin-bottom:8px}
 h1 .it{font-style:italic;color:var(--gold)}
-.socios{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.soc{border-radius:16px;padding:18px 19px}
+.sub{color:var(--ink-3);font-size:13.5px;margin-bottom:30px}
+.sec{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:38px 0 12px;display:flex;align-items:center;gap:10px}
+.sec .n{background:var(--gold);color:#fff;border-radius:8px;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.sec::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:12px}
+.card p,.card li{font-size:13.8px;color:var(--ink-2)}
+.card p+p{margin-top:9px}
+.card b{color:var(--ink)}
+.card ul{margin-left:18px}
+.card li{margin-bottom:7px}
+.pitch{background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);color:#e7dcc9;border-radius:18px;padding:26px 28px;margin-bottom:12px}
+.pitch .pk{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);font-weight:700;margin-bottom:12px}
+.pitch .fala{font-family:Fraunces,serif;font-style:italic;font-size:17.5px;line-height:1.6;color:#f2e9d8}
+.pitch .fala b{color:#fff;font-style:normal}
+.pitch .nota{font-size:12.5px;color:#a89a82;margin-top:14px;font-style:italic}
+.socios{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.soc{border-radius:14px;padding:15px 17px}
 .soc.a{background:var(--green-bg);border:1.5px solid var(--green-soft)}
 .soc.b{background:rgba(168,79,61,.07);border:1.5px solid rgba(168,79,61,.22)}
-.soc .sk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.soc .sk{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:5px}
 .soc.a .sk{color:#2c6045}.soc.b .sk{color:var(--red)}
-.soc p{font-size:13.5px;color:var(--ink-2);line-height:1.5}
-.hookline{font-family:Fraunces,serif;font-size:clamp(19px,3.8vw,24px);font-style:italic;line-height:1.4;margin:18px 0 34px}
-.hookline b{color:var(--gold);font-style:normal}
-.lbl{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:32px 0 12px;display:flex;align-items:center;gap:10px}
-.lbl::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:12px}
-.card p{font-size:14px;color:var(--ink-2)}
-.card p b{color:var(--ink)}
-.dor{background:var(--dark);color:#e7dcc9;border-radius:18px;padding:24px 26px;margin-bottom:12px}
-.dor p{font-size:15.5px;line-height:1.65}
-.dor b{color:#fff}
-.dor .d2{font-size:13.5px;color:#c9bda6;margin-top:12px}
-.conceito{background:var(--gold-bg);border:1.5px solid var(--gold-soft);border-radius:18px;padding:24px 26px;margin-bottom:12px;text-align:center}
-.conceito .big{font-family:Fraunces,serif;font-size:clamp(22px,4.6vw,30px);font-weight:600;line-height:1.25;margin-bottom:8px}
-.conceito .big i{color:var(--gold)}
-.conceito p{font-size:13.5px;color:var(--ink-2)}
-.quads{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;text-align:left}
-.qd{border-radius:10px;padding:10px 13px;font-size:12.5px;font-weight:600;background:#fff;border:1px solid var(--line)}
+.soc p{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);padding:7px 9px;border-bottom:2px solid var(--line)}
+td{padding:7px 9px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top}
+td:first-child{font-weight:600;color:var(--ink)}
+.gbox{background:var(--gold-bg);border:1.5px solid var(--gold-soft);border-radius:16px;padding:20px 22px;margin-bottom:12px}
+.gbox p,.gbox li{font-size:13.8px;color:var(--ink-2)}
+.gbox b{color:var(--ink)}
+.gbox ul{margin-left:18px}
+.gbox li{margin-bottom:7px}
+.quads{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.qd{border-radius:10px;padding:9px 12px;font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line)}
 .qd span{display:block;font-weight:400;font-size:11px;color:var(--ink-3)}
 .qd.g{border-color:var(--green-soft)}.qd.g b{color:#2c6045}
 .qd.r{border-color:rgba(168,79,61,.25)}.qd.r b{color:var(--red)}
-.terca li{margin:0 0 10px 18px;font-size:14px;color:var(--ink-2)}
-.terca b{color:var(--ink)}
-.docs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.doc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
-.doc .dk{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
-.doc b{display:block;font-family:Fraunces,serif;font-size:17px;margin-bottom:5px}
-.doc p{font-size:12.5px;color:var(--ink-2)}
-.trust{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 8px}
-.tchip{background:var(--card);border:1px solid var(--line);color:var(--ink-2);border-radius:99px;padding:7px 14px;font-size:12px;font-weight:600}
-.cta{background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);border-radius:20px;padding:30px 28px;text-align:center;margin:34px 0 10px}
-.cta .ct{font-family:Fraunces,serif;font-size:clamp(22px,4.6vw,29px);color:#fff;font-weight:600;line-height:1.25;margin-bottom:8px}
-.cta p{font-size:13.5px;color:#c9bda6;margin-bottom:18px}
-.btn{display:inline-block;background:var(--gold-2);color:#28221b;font-weight:700;font-size:15px;padding:14px 30px;border-radius:14px;text-decoration:none}
-.foot{text-align:center;font-size:12px;color:var(--ink-3);margin-top:34px;padding-top:16px;border-top:1px solid var(--line)}
-@media(max-width:540px){.socios{grid-template-columns:1fr}.docs{grid-template-columns:1fr}}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.num{background:var(--dark);color:#e7dcc9;border-radius:14px;padding:15px 13px;text-align:center}
+.num b{display:block;font-family:Fraunces,serif;font-size:24px;color:var(--gold-2)}
+.num span{font-size:10.5px;line-height:1.35;display:block;margin-top:4px;color:#c9bda6}
+.lim{background:#fff;border:1.5px dashed var(--gold-soft);border-radius:16px;padding:18px 21px;margin-bottom:12px}
+.lim li{font-size:13.5px;color:var(--ink-2);margin:0 0 8px 18px}
+.lim b{color:var(--ink)}
+.alvo{background:rgba(168,79,61,.05);border:1.5px solid rgba(168,79,61,.25);border-radius:16px;padding:20px 22px;margin-bottom:12px}
+.alvo li{font-size:13.8px;color:var(--ink-2);margin:0 0 10px 18px}
+.alvo b{color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{background:var(--green-bg);border:1px solid var(--green-soft);color:#2c6045;border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:600}
+.foot{text-align:center;font-size:12px;color:var(--ink-3);margin-top:36px;padding-top:16px;border-top:1px solid var(--line)}
+.foot a{color:var(--gold)}
+@media(max-width:560px){.socios{grid-template-columns:1fr}.nums{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div class="eyebrow">Instituto ELOS</div>
-<h1>Dois sócios. O mesmo perfil no teste. <span class="it">Empresas opostas.</span></h1>
+<div class="eyebrow">ELO Assessment · dossiê do método · fase conceitual</div>
+<h1>O método inteiro, aberto,<br><span class="it">pra ser metralhado.</span></h1>
+<p class="sub">O valor primeiro, a fundamentação depois, os limites declarados no fim. O que ficar de pé vai a mercado.</p>
 
+<!-- ============ 1. O VALOR ============ -->
+<div class="sec"><span class="n">1</span> O valor em 30 segundos (pro empresário que não nos conhece)</div>
+<div class="pitch">
+  <div class="pk">A fala, palavra por palavra</div>
+  <p class="fala">"Todo empresário tem um líder que constrói e um que destrói, e os testes de perfil dão o mesmo laudo pros dois. A gente criou um teste que mede o que nenhum outro mede: <b>não só quais forças movem a pessoa, mas se cada força trabalha a favor dela ou contra ela</b>. Em 5 minutos, no celular, saem dois documentos: o mapa da pessoa, com onde ela brilha, onde ela se sabota e o plano de 90 dias; e o manual de condução pro gestor, com o feedback, a delegação e os sinais de alerta daquela pessoa específica. E como o mau uso melhora com trabalho, você mede de novo em 90 dias e vê o ponteiro se mexer. <b>Perfil é foto. Isto aqui é filme.</b>"</p>
+  <p class="nota">Sem citar DISC, sem citar neurociência, sem citar a ELOS. O valor precisa parar de pé sozinho: mede o que nenhum outro mede, entrega o que fazer na segunda-feira, e prova evolução.</p>
+</div>
 <div class="socios">
-  <div class="soc a"><div class="sk">Sócio 1 · "Dominante"</div><p>Cobra o padrão sem humilhar. O time sabe onde pisa, o medíocre não se acomoda, os bons ficam. A empresa cresce com ele no comando.</p></div>
-  <div class="soc b"><div class="sk">Sócio 2 · "Dominante"</div><p>Explode, intimida, guarda rancor. O time só anda com medo, os bons vão embora primeiro. A empresa depende dele e sofre com ele.</p></div>
+  <div class="soc a"><div class="sk">A imagem que carrega o conceito</div><p><b>Sócio 1, "dominante":</b> cobra o padrão sem humilhar. O time sabe onde pisa, os bons ficam.</p></div>
+  <div class="soc b"><div class="sk">Mesmo laudo em qualquer teste de perfil</div><p><b>Sócio 2, "dominante":</b> explode, intimida, guarda rancor. O time só anda com medo, os bons saem primeiro.</p></div>
 </div>
 
-<p class="hookline">O teste de perfil que você conhece dá o <b>mesmo laudo</b> pros dois. É por isso que ele nunca resolveu o seu problema de gente.</p>
-
-<div class="lbl">O que isso custa</div>
-<div class="dor">
-  <p>Você já sabe o preço, porque já pagou: <b>a contratação errada que levou meses pra admitir</b>, o gerente por quem o time inteiro pediu demissão, o vendedor bom que rendia médio porque estava na cadeira errada, o sócio com quem a conversa difícil nunca acontece.</p>
-  <p class="d2">Nenhum desses problemas era de caráter. Era de força mal usada, e ninguém tinha o mapa.</p>
+<!-- ============ 2. A LACUNA ============ -->
+<div class="sec"><span class="n">2</span> A lacuna que o mercado tem</div>
+<div class="card">
+  <p><b>O DISC venceu o mercado</b> porque é simples, prático e impecavelmente adaptado à linguagem que a empresa quer ouvir (eles trocaram até "Submisso" por "Estável"). Mas ele mede UMA dimensão: o temperamento. Por isso o laudo dos dois sócios sai igual.</p>
+  <p><b>O Eneagrama tem profundidade</b> (inclusive a leitura de sombra e luz), mas nunca venceu o DISC porque fala a língua do autoconhecimento, não a língua da operação. O gestor lê e não sabe o que fazer terça-feira.</p>
+  <p><b>A lacuna:</b> ninguém entrega as duas coisas ao mesmo tempo: a simplicidade operacional do DISC com a profundidade do uso (sombra e luz) medida de verdade. É exatamente essa lacuna que o método ataca: <b>fácil e prático como DISC, mais profundo que DISC.</b></p>
 </div>
 
-<div class="lbl">O que a gente mede (e ninguém mais mede)</div>
-<div class="conceito">
-  <div class="big">Toda força tem dois lados.<br><i>Nós medimos os dois.</i></div>
-  <p>Não só QUAIS forças movem a pessoa, mas se cada uma trabalha <b>a favor</b> ou <b>contra</b> ela:</p>
+<!-- ============ 3. A TESE ============ -->
+<div class="sec"><span class="n">3</span> A tese metodológica: dois eixos ortogonais + o leme</div>
+<div class="gbox">
+  <p><b>Eixo 1, CENTRALIDADE ("o quê te move"):</b> quanto cada força pesa no jeito da pessoa operar. É temperamento: muda pouco na vida adulta. Equivale ao "quanto do tempero" que a pessoa tem.</p>
+  <p style="margin-top:9px"><b>Eixo 2, MATURIDADE ("como você usa"):</b> se a força aparece pelo lado da luz ou da sombra. É habilidade: <b>sobe com consciência e trabalho</b>. É o eixo que nenhum concorrente mede, e é onde a formação da casa atua.</p>
+  <p style="margin-top:9px"><b>MAESTRIA (o leme):</b> um índice geral de quanto a pessoa conduz o que sente em vez de ser conduzida. É o número do reteste: o antes/depois que prova evolução.</p>
   <div class="quads">
-    <div class="qd g"><b>Superpoder</b><span>a força que ela domina</span></div>
-    <div class="qd r"><b>Sabotagem</b><span>a força que domina ela</span></div>
-    <div class="qd"><b>Ferramenta na gaveta</b><span>madura, mas pouco usada</span></div>
-    <div class="qd"><b>Ponto cego</b><span>a falta que o time paga</span></div>
+    <div class="qd g"><b>Superpoder</b><span>move muito + uso maduro</span></div>
+    <div class="qd r"><b>Sabotagem</b><span>move muito + uso imaturo</span></div>
+    <div class="qd"><b>Ferramenta na gaveta</b><span>move pouco + uso maduro</span></div>
+    <div class="qd"><b>Ponto cego</b><span>move pouco + uso imaturo</span></div>
   </div>
+  <p style="margin-top:12px;font-size:12.5px;font-style:italic">Coerência com a casa: é a leitura sombra → luz que já ensinamos, virando número. O assessment mede o que a esteira já trabalha.</p>
 </div>
 
-<div class="lbl">O que muda na sua terça-feira</div>
-<div class="card"><ul class="terca">
-  <li><b>Antes da conversa difícil:</b> você sabe o que falar, o que nunca falar, e a frase que destrava aquela pessoa</li>
-  <li><b>Na delegação:</b> onde cada um rende de fábrica e onde vai custar caro</li>
-  <li><b>Em vendas:</b> como cada perfil compra e o que trava cada um (um quer garantia, outro quer vínculo, outro quer objetividade)</li>
-  <li><b>No time:</b> o buraco coletivo que ninguém cobre (time sem ninguém que cobra = padrão que desce até onde você tolera)</li>
-  <li><b>Em 90 dias:</b> mede de novo e VÊ o uso melhorando. Perfil é foto; aqui você tem filme.</li>
-</ul></div>
-
-<div class="lbl">O que você recebe</div>
-<div class="docs">
-  <div class="doc"><div class="dk">Pra pessoa</div><b>O Mapa</b><p>Quem ela é, onde brilha, onde se sabota, e o plano de 90 dias pra virar o jogo.</p></div>
-  <div class="doc"><div class="dk">Pra quem lidera</div><b>O Manual de Condução</b><p>Feedback, delegação, motivação, sinais de alerta e as sombras a verificar antes de confiar.</p></div>
+<!-- ============ 4. POR QUE 6 ============ -->
+<div class="sec"><span class="n">4</span> Por que 6 forças (o caminho científico)</div>
+<div class="card">
+  <p><b>Partimos das emoções primárias</b> mapeadas em neurociência afetiva por Jaak Panksepp: sistemas emocionais identificados no cérebro de mamíferos, não categorias inventadas pra teste. Sete sistemas; um deles (LUST, o desejo sexual) fica deliberadamente fora de qualquer instrumento corporativo. Sobram seis, e a diferenciação que o Panksepp fez resolve o ponto historicamente mal resolvido da "alegria": PLAY (a energia da brincadeira e do vínculo) é sistema próprio, separado do desejo.</p>
+  <p><b>O lastro estatístico:</b> a escala que mede esses sistemas em humanos (ANPS) foi validada contra o Big Five numa meta-análise com 9.939 pessoas. Dois achados sustentam o desenho: as correlações confirmam que os 6 sistemas capturam o espaço da personalidade; e a dimensão de autodisciplina do Big Five correlaciona fraco com TODAS as emoções, o que prova que <b>o "como usa" é estatisticamente independente do "quanto move"</b>. Os dois eixos não são invenção retórica: são ortogonais nos dados.</p>
+  <p><b>Por que não 4 (DISC)?</b> Porque 4 mistura gente diferente na mesma caixa: o mesmo "I" contém o vendedor carismático e o líder que desenvolve pessoas. E por que não 9 (Eneagrama)? Porque 9 tipos fixos sem eixo de uso confundem essência com comportamento. Seis forças COM eixo de uso separam mais fino que ambos, sem pedir que ninguém decore seis coisas: a pessoa recebe UMA identidade nomeada.</p>
 </div>
 
-<div class="trust">
-  <div class="tchip">5 minutos, no celular</div>
-  <div class="tchip">Anti-blefe embutido</div>
-  <div class="tchip">Base em neurociência, não em moda</div>
-  <div class="tchip">Sem cadastro, sem enrolação</div>
+<!-- ============ 5. TRADUÇÃO ============ -->
+<div class="sec"><span class="n">5</span> A tradução pro mercado (a lição do DISC, aplicada)</div>
+<div class="card">
+  <p>A palavra "emoção" não aparece pro cliente, pelo mesmo motivo que o DISC aposentou "Submisso": terminologia define destino comercial. Cada sistema virou uma <b>força com nome de mesa de reunião</b>:</p>
+  <div style="margin-top:10px">
+  <table>
+    <tr><th>Sistema (motor)</th><th>Força (vitrine)</th><th>Na prática</th></tr>
+    <tr><td>RAGE / raiva</td><td>Governança</td><td>confrontar e cobrar o padrão</td></tr>
+    <tr><td>FEAR / medo</td><td>Prudência</td><td>prever o risco e proteger</td></tr>
+    <tr><td>GRIEF / tristeza</td><td>Profundidade</td><td>ler gente e sentir o não-dito</td></tr>
+    <tr><td>PLAY / alegria</td><td>Vivacidade</td><td>energia, ânimo, ritmo</td></tr>
+    <tr><td>CARE / cuidado</td><td>Acolhimento</td><td>cuidar e desenvolver gente</td></tr>
+    <tr><td>SEEKING / busca</td><td>Curiosidade</td><td>caçar o novo e o melhor</td></tr>
+  </table>
+  </div>
+  <p style="margin-top:12px"><b>Ponte com quem já fala DISC</b> (levantada empiricamente com 24 laudos reais): Dominante ↔ Governança alta · Influente ↔ Vivacidade + Acolhimento · Estável ↔ Prudência · Analista ↔ Prudência + Profundidade. Tudo que um time já sabe fazer com DISC continua valendo aqui; ganha o eixo do uso por cima.</p>
 </div>
 
-<div class="cta">
-  <div class="ct">Não acredite. Meça.</div>
-  <p>Faça o seu agora e leia o próprio mapa antes de decidir qualquer coisa.</p>
-  <a class="btn" href="https://institutoelos.github.io/os-5-elos/v43.html">Fazer o meu teste →</a>
+<!-- ============ 6. ENGENHARIA ============ -->
+<div class="sec"><span class="n">6</span> A engenharia psicométrica (por que dá pra confiar no número)</div>
+<div class="card">
+  <ul>
+    <li><b>60 itens, 5 minutos, celular.</b> O limite foi definido pela linha de abandono do público, não pela ambição do método.</li>
+    <li><b>Centralidade por escolha forçada:</b> blocos onde as 4 opções são igualmente desejáveis e a pessoa marca a que MAIS e a que MENOS é a cara dela. Não dá pra responder "tudo bonito": o formato obriga a revelar prioridade real.</li>
+    <li><b>Maturidade por afirmações de frequência</b> com metade dos itens invertidos e <b>12 perguntas-armadilha</b>: sombras vestidas de virtude ("gosto de manter várias frentes abertas pra nenhuma oportunidade escapar"). Quem responde pra ficar bonito concorda com a armadilha e se denuncia.</li>
+    <li><b>Selo de confiabilidade em cada resultado:</b> quatro índices (respostas em linha reta, concordância com conteúdos contraditórios, retrato perfeito demais, queda nas armadilhas). O blefe recebe o próprio laudo avisando.</li>
+    <li><b>Cortes estatísticos, não estéticos:</b> "força alta" é desvio além do que o acaso explica (p ≈ 0,04 sob resposta indiferente). Nada de régua no olho.</li>
+    <li><b>Empates declarados, nunca sorteados:</b> quando dois eixos empatam tecnicamente, o relatório diz "você transita entre X e Y" em vez de fingir precisão.</li>
+    <li><b>Robustez testada por simulação:</b> em 1.500 perfis, trocar UMA resposta muda o rótulo em 6% dos casos, e 97% dessas viradas já estavam declaradas como empate. Instabilidade não avisada: 0,2%.</li>
+  </ul>
 </div>
 
-<div class="foot"><b>Instituto ELOS</b> · ELO Assessment</div>
+<!-- ============ 7. MOTOR DE LEITURA ============ -->
+<div class="sec"><span class="n">7</span> O motor de leitura (do número ao texto que muda conduta)</div>
+<div class="card">
+  <p>Treze números viram leitura por um motor combinatório: <b>30 identidades nomeadas</b> (O Comandante, A Formadora, O Porto...) formadas pelas duas forças do topo, moduladas pelo padrão de uso da dupla, pelos pares em tensão ou aliança, pelo estilo que a força alta assume quando falta a do piso ("cuida sem cobrar: colo tem, régua não"), e pelos agregados (temperatura, amplitude, Maestria). São ~240 átomos de texto autorais que o motor monta em milhões de combinações possíveis: <b>duas pessoas com o mesmo dominante recebem leituras diferentes se o uso difere</b>, que é exatamente o caso dos dois sócios.</p>
+  <p><b>Entregáveis por pessoa:</b> o Mapa (espelho: forças, sabotagem, pontos cegos, plano de 90 dias, ficha técnica com os 13 números) e o Guia de Condução (manual pro gestor: feedback, delegação, motivadores, sinais de alerta, e as sombras prováveis do perfil formuladas como perguntas de verificação com o time, cobrindo com honestidade o que autorrelato nenhum enxerga sozinho).</p>
+</div>
+
+<!-- ============ 8. VALIDAÇÃO ============ -->
+<div class="sec"><span class="n">8</span> A validação até aqui (com o método aberto)</div>
+<div class="nums">
+  <div class="num"><b>21-0-1</b><span>vitórias vs 24 laudos reais (DNA e Big Five) na rodada final</span></div>
+  <div class="num"><b>+1,3</b><span>margem média sobre o laudo original, em avaliação às cegas</span></div>
+  <div class="num"><b>6,8 → 7,7</b><span>nota de produto em 5 rodadas de crítica e correção</span></div>
+</div>
+<div class="card">
+  <p><b>Como foi feito, sem maquiagem:</b> pegamos 24 laudos reais de pessoas reais (DNA comportamental e Big Five). Agentes de IA encarnaram cada pessoa com fidelidade às fraquezas do laudo e responderam o teste. O motor gerou os relatórios. Avaliadores independentes (IA, instruídos a ceticismo máximo, sem saber qual produto era nosso) compararam lado a lado em 7 dimensões. Rodamos 5 rodadas: cada crítica virou correção, cada correção foi re-julgada.</p>
+  <p><b>O que isso prova e o que não prova:</b> prova que o produto (leitura, acionabilidade, valor pro gestor) vence o incumbente com folga, e que críticas de avaliador cético não derrubam a arquitetura. NÃO substitui gente de verdade: a convergência com a pessoa real ficou em ~6,4/10 porque simulação de persona tem teto. Por isso o próximo passo é o teste em escala com respondentes reais, com recalibragem dos cortes na base própria.</p>
+  <p><b>Sinal forte de consistência:</b> a mesma pessoa avaliada por 3 fontes diferentes (2 DNAs + 1 Big Five) caiu no MESMO arquétipo nas 3 simulações independentes; duplicatas de outras 2 pessoas mantiveram a força dominante.</p>
+</div>
+
+<!-- ============ 9. LIMITES ============ -->
+<div class="sec"><span class="n">9</span> Escolhas deliberadas e limites conhecidos (antes que perguntem)</div>
+<div class="lim">
+  <ul>
+    <li><b>LUST fora, PLAY dentro:</b> recorte deliberado pro contexto corporativo, documentado. A subdivisão do Panksepp é usada a nosso favor.</li>
+    <li><b>A centralidade compara a pessoa com ela mesma</b> (escolha forçada é intra-pessoa por natureza); a maturidade compara entre pessoas. É a combinação certa pros dois eixos, e falamos dela com precisão, não com percentuais inventados.</li>
+    <li><b>Não é ferramenta de eliminação em seleção</b> sem validação específica pra isso. É ferramenta de condução: onboarding, delegação, feedback, desenvolvimento.</li>
+    <li><b>Fronteira de construto:</b> dimensões como "didática" ou "método" (o Educador do DISC) aparecem aqui via Prudência + Acolhimento, não como eixo próprio. Sabemos onde o mapa termina.</li>
+    <li><b>Normas próprias virão da escala:</b> os cortes atuais são estatísticos e serão recalibrados com a base real conforme ela cresce.</li>
+  </ul>
+</div>
+
+<!-- ============ 10. ESTEIRA ============ -->
+<div class="sec"><span class="n">10</span> Onde encaixa na esteira</div>
+<div class="chips">
+  <div class="chip">Porta de entrada fria: 5 min, sem cadastro, o link se compartilha sozinho</div>
+  <div class="chip">Baseline pré-formação de cada mentorado</div>
+  <div class="chip">Reteste pós: a Maestria subindo é a prova de evolução que ninguém entrega</div>
+  <div class="chip">Mesma língua da casa: forças, sombra e luz, uso</div>
+  <div class="chip">Depois: mapa de time e de sócios (onde ninguém cobre)</div>
+</div>
+
+<!-- ============ 11. ONDE ATIRAR ============ -->
+<div class="sec"><span class="n">11</span> Onde atirar (as perguntas que queremos que derrubem, se puderem)</div>
+<div class="alvo">
+  <ul>
+    <li><b>A fala de 30 segundos convence o frio?</b> Se o valor não parar de pé na seção 1, nada do resto importa. Metralhe ali primeiro.</li>
+    <li><b>Os nomes vendem?</b> "Governança, Prudência, Profundidade, Vivacidade, Acolhimento, Curiosidade" e as 30 identidades (O Comandante, A Formadora, O Porto). Alguma palavra trava na mesa do empresário?</li>
+    <li><b>"Forças" é a categoria certa?</b> Ou existe palavra mais vendável pra vitrine do método?</li>
+    <li><b>A ponte com o DISC ajuda ou ancora?</b> Traduzir pro que o mercado já fala facilita a entrada, mas pode nos posicionar como "DISC melhorado". Onde ela entra e onde ela sai da conversa?</li>
+    <li><b>Maestria como conceito de venda:</b> o índice que sobe e prova evolução. É a joia ou é abstrato demais pro frio?</li>
+    <li><b>O que falta pra você colocar um real nisso</b> na frente de alguém que nunca ouviu falar da ELOS?</li>
+  </ul>
+</div>
+
+<div class="foot"><b>Instituto ELOS</b> · ELO Assessment · dossiê da fase conceitual · jul/2026<br>Teste ao vivo: <a href="https://institutoelos.github.io/os-5-elos/v43.html">fazer o teste (5 min)</a></div>
 </div>
 </body>
 </html>
