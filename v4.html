@@ -329,6 +329,7 @@ h1 .it{font-style:italic;color:var(--gold)}
 .selo.ok{background:var(--green-bg);border:1px solid var(--green-soft);color:#2c6045}
 .selo.warn{background:rgba(180,80,60,.06);border:1px solid rgba(180,80,60,.2);color:var(--ink-2)}
 .selo.warn b{color:var(--excesso)}
+.csub2{font-size:11px;color:var(--ink-3);margin-top:4px;line-height:1.4;font-style:italic}
 .fkn2{font-size:11.5px;color:var(--ink-3);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
 .ficha{margin:16px 0 6px;padding:14px 17px;border-radius:14px;background:#fff;border:1px solid var(--line)}
 .ficha .fik{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin-bottom:9px}
@@ -1022,7 +1023,7 @@ function renderGuia(){
       <div class="mrow"><b>Pra render no máximo, precisa de</b><p>${NEEDS[dom]||""}</p></div>
       <div class="mrow"><b>O que evitar</b><p>${mn.ev||""}</p></div>
       <div class="mrow"><b>O ambiente que faz render</b><p>${mn.am||""}</p></div>
-      <div class="mrow"><b>Como delegar</b><p><b class="ok2">Dê:</b> ${dl.serve||""} <b class="no2">Mantenha longe:</b> ${dl.longe||""}</p></div>
+      <div class="mrow"><b>Onde rende mais (tendência natural)</b><p><b class="ok2">Rende naturalmente em:</b> ${dl.serve||""} <b class="no2">Rende menos de fábrica em:</b> ${dl.longe||""}</p><p class="csub2">Tendência não é sentença: se o cargo atual dessa pessoa está na segunda lista, ela compensa com método e maturidade o que não vem de fábrica. Avalie a entrega real antes de mover qualquer peça.</p></div>
       <div class="mrow"><b>O tempero do 2º eixo (${C[sec].mercado})</b><p>${mn2.fb||""}</p></div>
     </div>
     <div class="prio big"><div class="k">🔑 Como extrair o máximo</div><p>${EXTRAIR[dom]||""}</p></div>
