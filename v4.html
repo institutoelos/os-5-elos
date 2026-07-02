@@ -460,6 +460,19 @@ const BIZPISO={raiva:"meta sem dono e medíocre confortável: o padrão da empre
 const BIZROLE={raiva:"operação, qualidade e cobrança de meta",medo:"financeiro, risco e planejamento",tristeza:"pessoas-chave, negociações delicadas e clientes estratégicos",alegria:"comercial, marketing e a linha de frente com cliente",cuidado:"cultura, desenvolvimento de gente e relacionamento",busca:"produto, inovação e novas frentes"};
 const FUEL={raiva:["Um padrão pra defender","Injustiça pra corrigir","Poder de decidir e cobrar"],medo:["Tempo pra preparar","Cenário mapeado","Margem de segurança antes do salto"],tristeza:["Conversa de verdade","Sentido no que faz","Espaço pra processar o que pesa"],alegria:["Gente e movimento","Reconhecimento","Um clima pra levantar"],cuidado:["Ver alguém crescer","Ser necessário de verdade","Vínculo, não só tarefa"],busca:["Problema novo pra destrinchar","Autonomia pra experimentar","Terreno que ninguém mapeou"]};
 const DRAIN={raiva:["Mediocridade tolerada","Engolir o que está errado","Política e panos quentes"],medo:["Decisão no susto","Risco que ninguém calculou","Mudança de última hora"],tristeza:["Superficialidade e barulho","Fingir que está tudo bem","Pressa que atropela o sentido"],alegria:["Ambiente pesado e monótono","Isolamento","Esforço sem retorno visível"],cuidado:["Dar e não receber","Frieza","Cobrar sem poder cuidar"],busca:["Rotina e execução repetitiva","Ter que pedir permissão","Terminar sem novidade à vista"]};
+/* ── HIPÓTESES A VERIFICAR: sombras prováveis do perfil que o autorrelato NÃO mede sozinho.
+   Formuladas como perguntas pra validar com quem convive — honestidade psicométrica sem cegueira comercial. ── */
+const HIPO={
+  raiva:["O padrão alto já virou impaciência que humilha? Pergunte a quem erra perto dessa pessoa.","A franqueza já queimou pontes que faziam falta? Pergunte a quem saiu do time."],
+  medo:["A cautela já virou controle excessivo sobre o trabalho dos outros? Pergunte a quem é revisado por ela.","O preparo já virou desculpa pra adiar? Pergunte a quem espera as decisões."],
+  tristeza:["O peso que carrega já virou distância ou frieza aparente? Pergunte a quem precisa de resposta rápida dela.","A leitura fina já virou julgamento silencioso? Pergunte a quem se sente observado."],
+  alegria:["O charme já virou ferramenta de contornar em vez de resolver? Pergunte a quem já discordou dessa pessoa.","O brilho já precisa de plateia? Pergunte se ela some quando ninguém aplaude."],
+  cuidado:["O cuidado já virou controle ou dependência? Pergunte a quem é protegido por ela.","A lealdade já protege quem devia ter saído? Pergunte a quem vê o time de fora."],
+  busca:["A fome de novo já virou desprezo pelo que sustenta a casa? Pergunte a quem cuida do operacional.","O questionamento já soa como arrogância? Pergunte a quem defende o processo atual."]
+};
+/* estilo de comunicação preferencial + necessidades pra produtividade máxima (átomos operacionais, língua de gestor) */
+const COMM={raiva:"Direto, objetivo, sem rodeio: vá ao ponto e sustente o argumento. Diplomacia excessiva soa como enrolação.",medo:"Estruturado e com antecedência: contexto, dados e tempo pra digerir. Surpresa em reunião é sabotagem.",tristeza:"Em particular, com calma e verdade: essa pessoa lê o tom antes do conteúdo. Pressa e superficialidade fecham a porta.",alegria:"Com energia e presença: comece pelo positivo, mantenha leveza mesmo no difícil. Frieza burocrática desliga.",cuidado:"Pessoal antes de profissional: pergunte da vida antes da tarefa. Cobrança seca sem vínculo soa como descarte.",busca:"Pelo problema, não pela ordem: apresente o desafio e o porquê. 'Faça porque sim' mata o engajamento."};
+const NEEDS={raiva:"Autoridade real sobre a área, padrão claro pra defender, e liberdade pra cobrar sem ser desautorizado depois.",medo:"Previsibilidade, prazos combinados que não mudam de última hora, e margem de segurança nas decisões grandes.",tristeza:"Sentido claro no trabalho, espaço pra profundidade, e um ambiente onde emoção não é tratada como fraqueza.",alegria:"Gente por perto, reconhecimento visível, e variedade: rotina isolada e sem retorno apaga essa pessoa em semanas.",cuidado:"Vínculo com o time, tempo pra desenvolver pessoas, e alguém que também olhe por ela, não só cobre.",busca:"Problemas novos em sequência, autonomia no método, e o mínimo de burocracia entre a ideia e o teste."};
 const MANUAL={
   raiva:{fb:"Reto e no olho, rodeio é lido como falta de coragem. Justifique pelo padrão.",ev:"Injustiça e mediocridade sem resposta, é o que mais tira do sério.",am:"Poder real de decidir e cobrar, com um padrão claro pra defender."},
   medo:{fb:"Com contexto e antecedência, feedback de emboscada trava.",ev:"Empurrar decisão no susto e mudar as regras no meio do jogo.",am:"Previsibilidade, tempo de preparo e margem pra checar antes de agir."},
@@ -988,7 +1001,11 @@ function renderGuia(){
       <div class="cbox dont"><span class="h">✕ O que NÃO falar</span>${bul(FBDONT[dom])}</div>
     </div>
     ${fbModHTML}
+    <div class="lbl">Como aparece no dia a dia</div>
+    <div class="lyr"><p>${RETRATO[dom]||""}</p></div>
     <div class="manual"><div class="mk">Como trabalhar com ${Nm}</div>
+      <div class="mrow"><b>Estilo de comunicação preferencial</b><p>${COMM[dom]||""}</p></div>
+      <div class="mrow"><b>Pra render no máximo, precisa de</b><p>${NEEDS[dom]||""}</p></div>
       <div class="mrow"><b>O que evitar</b><p>${mn.ev||""}</p></div>
       <div class="mrow"><b>O ambiente que faz render</b><p>${mn.am||""}</p></div>
       <div class="mrow"><b>Como delegar</b><p><b class="ok2">Dê:</b> ${dl.serve||""} <b class="no2">Mantenha longe:</b> ${dl.longe||""}</p></div>
@@ -999,6 +1016,7 @@ function renderGuia(){
       <div class="arow"><b>Você percebe assim</b><p>${al.sinal||""}</p></div>
       <div class="arow"><b>O que fazer</b><p>${al.acao||""}</p></div>
     </div>
+    <div class="falta"><div class="fk">Hipóteses a verificar (o que teste nenhum mede sozinho)</div><ul>${[...(HIPO[dom]||[]).slice(0,2),...(HIPO[sec]||[]).slice(0,1)].map(h=>`<li>${h}</li>`).join("")}</ul><div class="fkn">Autorrelato honesto não enxerga as próprias sombras relacionais. Estas são as sombras estatisticamente prováveis deste perfil: valide com o time antes de assumir que existem ou que não existem.</div></div>
     ${V.lows.length?`<div class="falta"><div class="fk">O ponto cego: o que falta em ${Nm}</div><ul>${V.lows.map(e=>`<li><b>${C[e].mercado}.</b> ${cap(QUAD[e][V.Q[e]==='k'?'k':(V.Q[e]==='b'?'b':'n')])}.<span class="cmp">↳ cerque com ${COMPLEMENT[e]}</span></li>`).join("")}</ul></div>`:""}
     ${(V.tens.length||V.alli.length)?`<div class="combos"><div class="ck">O que as forças dizem juntas</div>${V.alli.map(o=>`<div class="cmb"><b>🔗 ${o.t}</b><p>${o.x}.</p></div>`).join("")}${V.tens.map(o=>`<div class="cmb"><b>⚡ ${o.t}</b><p>${o.x}.</p></div>`).join("")}</div>`:""}
     <div class="prio"><div class="k">💬 A conversa que destrava</div><p>“${CONVERSA[dom]||""}”</p></div>
