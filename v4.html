@@ -639,7 +639,7 @@ function flexG(s){
     ["Esgotado e ressentido","Esgotada e ressentida"],["entediado e irritado","entediada e irritada"],["não ser visto de verdade","não ser vista de verdade"],
     ["de não ser necessário","de não ser necessária"],["nenhuma força o domina","nenhuma força a domina"],["quem já o decepcionou","quem já a decepcionou"],["rápida o percebe","rápida a percebe"],["ele mesmo terminou","ela mesma terminou"],["valorizado por ele","valorizado por ela"],["revisado por ele","revisado por ela"]];
   D.forEach(([a,b])=>{ s=s.split(a).join(b); });
-  s=s.replace(/\bdele\b/g,"dela").replace(/\bnele\b/g,"nela").replace(/\bele\b/g,"ela").replace(/-lo\b/g,"-la");
+  s=s.replace(/\bdele\b/g,"dela").replace(/\bnele\b/g,"nela").replace(/\bele\b/g,"ela").replace(/\bDele\b/g,"Dela").replace(/\bEle\b/g,"Ela").replace(/-lo\b/g,"-la");
   return s;
 }
 function analyze(st){
