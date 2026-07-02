@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELO Assessment · A Narrativa Macro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2620;--ink-2:#5c554b;--ink-3:#8a8175;--gold:#b8862e;--gold-2:#d4a94e;--gold-bg:#faf3e6;--gold-soft:#e8d5ae;--green:#3a6b4a;--green-bg:#eef4ef;--green-soft:#cfe0d3;--line:#eee8de;--dark:#28221b;--red:#a84f3d}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:40px 22px 60px}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+h1{font-family:Fraunces,serif;font-size:clamp(30px,6vw,44px);font-weight:600;line-height:1.12;margin-bottom:6px}
+h1 .it{font-style:italic;color:var(--gold)}
+.sub{color:var(--ink-3);font-size:13.5px;font-style:italic;margin-bottom:26px}
+.pitch{background:linear-gradient(150deg,#28221b,#3c3023 60%,#4a3a26);color:#e7dcc9;border-radius:18px;padding:24px 26px;margin-bottom:26px}
+.pitch .pk{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);font-weight:700;margin-bottom:10px}
+.pitch p{font-size:16.5px;line-height:1.6}
+.pitch b{color:#fff}
+.pitch .p2{font-size:14px;color:#c9bda6;margin-top:12px}
+.lbl{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:30px 0 12px;display:flex;align-items:center;gap:10px}
+.lbl::after{content:"";flex:1;height:1px;background:var(--gold-soft)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:12px}
+.forcas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.fc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.fc b{display:block;font-size:13.5px}
+.fc span{font-size:11.5px;color:var(--ink-3)}
+.eixo2{background:var(--gold-bg);border:1.5px solid var(--gold-soft);border-radius:16px;padding:20px 22px;margin-bottom:12px}
+.eixo2 .ek{font-weight:700;font-size:14px;margin-bottom:8px}
+.eixo2 p{font-size:13.5px;color:var(--ink-2)}
+.quads{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.qd{border-radius:10px;padding:9px 12px;font-size:12px;font-weight:600}
+.qd span{display:block;font-weight:400;font-size:11px;opacity:.8}
+.qd.g{background:var(--green-bg);color:#2c6045}.qd.r{background:rgba(168,79,61,.08);color:var(--red)}
+.qd.b{background:#eef1f6;color:#3d5578}.qd.k{background:#f0efed;color:#6b665e}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);padding:7px 10px;border-bottom:2px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top}
+td:first-child{font-weight:600;color:var(--ink)}
+td.no{color:var(--ink-3)}
+td.yes{color:#2c6045;font-weight:600}
+.prova{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.pnum{background:var(--dark);color:#e7dcc9;border-radius:14px;padding:16px 14px;text-align:center}
+.pnum b{display:block;font-family:Fraunces,serif;font-size:26px;color:var(--gold-2)}
+.pnum span{font-size:11px;line-height:1.35;display:block;margin-top:4px;color:#c9bda6}
+.pfoot{font-size:12px;color:var(--ink-3);font-style:italic}
+.terca li{margin:0 0 9px 18px;font-size:13.5px;color:var(--ink-2)}
+.terca b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--green-bg);border:1px solid var(--green-soft);color:#2c6045;border-radius:99px;padding:8px 14px;font-size:12.5px;font-weight:600}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 18px;margin-bottom:9px}
+.qa b{display:block;font-size:13.5px;margin-bottom:4px}
+.qa p{font-size:13px;color:var(--ink-2)}
+.close{font-family:Fraunces,serif;font-size:19px;font-style:italic;line-height:1.45;margin:34px 0 8px;color:var(--ink)}
+.foot{text-align:center;font-size:12px;color:var(--ink-3);margin-top:30px;padding-top:16px;border-top:1px solid var(--line)}
+@media(max-width:560px){.forcas{grid-template-columns:1fr 1fr}.prova{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">ELO Assessment · fase conceitual</div>
+<h1>A narrativa <span class="it">macro</span></h1>
+<p class="sub">Escrito pra quem nunca ouviu falar da ELOS. Se não convencer assim, não está pronto.</p>
+
+<div class="pitch">
+  <div class="pk">Os 30 segundos</div>
+  <p><b>O DISC te diz o que a pessoa é. Este assessment te diz isso E se cada força dela trabalha a favor ou contra ela.</b> Todo gestor conhece o dominante que constrói e o dominante que destrói o time: o DISC dá o mesmo laudo pros dois. Aqui não.</p>
+  <p class="p2">60 perguntas, 5 minutos, celular. Saem dois documentos: o mapa da pessoa (quem é, onde se sabota, plano de 90 dias) e o manual de condução pro gestor (feedback, delegação, motivação, sinais de alerta). Simples como DISC. Mais profundo que DISC.</p>
+</div>
+
+<div class="lbl">Eixo 1 · As 6 forças que movem um líder</div>
+<div class="forcas">
+  <div class="fc"><b>Governança</b><span>confrontar e cobrar</span></div>
+  <div class="fc"><b>Prudência</b><span>prever o risco</span></div>
+  <div class="fc"><b>Profundidade</b><span>ler gente e o não-dito</span></div>
+  <div class="fc"><b>Vivacidade</b><span>energia e ânimo</span></div>
+  <div class="fc"><b>Acolhimento</b><span>cuidar e desenvolver</span></div>
+  <div class="fc"><b>Curiosidade</b><span>buscar o novo</span></div>
+</div>
+
+<div class="eixo2">
+  <div class="ek">Eixo 2 · O que nenhum DISC mede: cada força tem bom uso e mau uso</div>
+  <p>Governança madura cobra o padrão sem queimar a relação; imatura humilha e gera rotatividade. Acolhimento maduro desenvolve gente; imaturo protege o medíocre porque "é boa gente". O cruzamento gera 4 quadrantes por força:</p>
+  <div class="quads">
+    <div class="qd g">Superpoder <span>te move muito e você domina</span></div>
+    <div class="qd r">Sabotagem <span>te move muito e te domina</span></div>
+    <div class="qd b">Ferramenta na gaveta <span>move pouco, uso maduro</span></div>
+    <div class="qd k">Ponto cego <span>move pouco e sai torto</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="ek" style="font-weight:700;font-size:14px;margin-bottom:6px">Eixo 3 · Maestria</div>
+  <p style="font-size:13.5px;color:var(--ink-2)">O quanto a pessoa conduz o que sente, em vez de ser conduzida. É o número que separa o líder intenso do líder refém da própria intensidade. E é o que sobe com desenvolvimento: <b>reteste em 90 dias mostra o progresso. DISC é foto; isto tem filme.</b></p>
+</div>
+
+<div class="lbl">Contra o DISC, ponto a ponto</div>
+<div class="card" style="padding:10px 12px">
+<table>
+  <tr><th></th><th>DISC</th><th>ELO Assessment</th></tr>
+  <tr><td>Diz o perfil</td><td>Sim</td><td class="yes">Sim</td></tr>
+  <tr><td>Diz se trabalha a favor ou contra</td><td class="no">Não</td><td class="yes">Sim (o eixo que falta no mercado)</td></tr>
+  <tr><td>Caixas</td><td class="no">4 tipos</td><td class="yes">6 forças × uso = 30 identidades nomeadas</td></tr>
+  <tr><td>Entrega</td><td class="no">Laudo</td><td class="yes">Laudo + plano de 90 dias + manual do gestor</td></tr>
+  <tr><td>Anti-blefe</td><td class="no">Não</td><td class="yes">Escolha forçada + armadilhas + selo de consistência</td></tr>
+  <tr><td>Evolução</td><td class="no">Foto fixa</td><td class="yes">Reteste mede o uso subindo</td></tr>
+  <tr><td>Base</td><td class="no">Empírica, anos 1920</td><td class="yes">Neurociência das emoções primárias, validada contra Big Five</td></tr>
+</table>
+</div>
+<p class="pfoot" style="margin:8px 2px 0">Tradução direta pra quem já fala DISC (levantada com 24 casos reais): Dominante ↔ Governança · Influente ↔ Vivacidade + Acolhimento · Estável ↔ Prudência · Analista ↔ Prudência + Profundidade. Tudo que o time já sabe fazer com DISC continua valendo. E ganha o eixo do uso.</p>
+
+<div class="lbl">O que o gestor faz com isso na terça-feira</div>
+<div class="card"><ul class="terca">
+  <li><b>Vendas:</b> como cada perfil compra e o que o trava (o Prudente quer garantia; o Vivaz compra pelo vínculo; o Governante quer objetividade sem rodeio)</li>
+  <li><b>Feedback:</b> o que falar e o que nunca falar pra cada pessoa, com a frase que destrava pronta</li>
+  <li><b>Delegação:</b> onde cada um rende de fábrica e onde vai custar caro</li>
+  <li><b>Antes da conversa difícil:</b> as sombras prováveis do perfil com perguntas de verificação ("ele delega ou distribui tarefa vigiada? pergunte ao time")</li>
+  <li><b>Time:</b> onde ninguém cobre (time inteiro sem Governança alta = padrão que desce até onde o dono tolera)</li>
+</ul></div>
+
+<div class="lbl">A prova · por que não é teoria bonita</div>
+<div class="prova">
+  <div class="pnum"><b>21 - 0 - 1</b><span>vitórias contra 24 laudos reais (DNA e Big Five), avaliação cega e cética</span></div>
+  <div class="pnum"><b>8,1/10</b><span>em acionabilidade e em valor pro gestor</span></div>
+  <div class="pnum"><b>0,2%</b><span>mudança de resultado ao trocar 1 resposta: robustez estatística</span></div>
+</div>
+<p class="pfoot">Cortes estatísticos, não achismo. Entrando agora em teste de escala com respondentes reais; recalibragem contínua com base própria.</p>
+
+<div class="lbl">Onde encaixa na esteira</div>
+<div class="chips">
+  <div class="chip">Porta de entrada fria (5 min, viraliza pelo link)</div>
+  <div class="chip">Baseline pré-formação</div>
+  <div class="chip">Reteste pós: a prova da evolução</div>
+  <div class="chip">Mesma língua da casa: forças, sombra e luz, uso</div>
+</div>
+
+<div class="lbl">A metralhadora · perguntas que derrubam castelos, respondidas antes</div>
+<div class="qa"><b>"Por que 6 forças e não 4 como o DISC?"</b><p>Porque 4 é pouco pra separar gente real: o DISC junta no mesmo "I" o vendedor carismático e o líder que desenvolve pessoas. As 6 vêm da neurociência, não de estética. E ninguém decora 6: a pessoa recebe UMA identidade nomeada (O Comandante, A Formadora).</p></div>
+<div class="qa"><b>"Emoção? Isso é coisa de terapia."</b><p>A palavra emoção não aparece pro cliente. Ele lê forças: Governança, Prudência, Vivacidade. A neurociência é o motor debaixo do capô; ninguém compra carro pelo diagrama do motor.</p></div>
+<div class="qa"><b>"Como sei que a pessoa não respondeu pra ficar bonita?"</b><p>Escolha forçada onde todas as opções parecem boas, perguntas-armadilha onde a resposta bonita denuncia a sombra vestida de virtude, e selo de consistência no resultado. Quem blefa recebe o próprio relatório avisando.</p></div>
+<div class="qa"><b>"E se der tudo meio-termo?"</b><p>Empates são declarados em vez de escondidos ("você transita entre O Formador e O Desbravador") e o perfil equilibrado tem leitura própria. Ninguém sai com laudo vazio.</p></div>
+<div class="qa"><b>"Serve pra contratar?"</b><p>Serve pra CONDUZIR quem entra: onboarding, delegação, feedback desde o dia 1. Como critério de eliminação em seleção, não sem validação específica; quem promete o contrário vende risco jurídico.</p></div>
+<div class="qa"><b>"Me dá UM exemplo que me faça sentir a diferença."</b><p>Dois sócios, ambos "D" no DISC, mesmo laudo. Aqui: um é Governança madura (cobra o padrão, o time sabe onde pisa) e o outro é Governança imatura (explode, o time só anda com medo). Mesmo perfil, empresas opostas. É essa diferença que você paga pra enxergar ANTES de ela custar caro.</p></div>
+
+<p class="close">"Bem melhor que DISC, fácil e prático como DISC, mais profundo que DISC."<br>É só isso que a gente tem que entregar. E é isso que está na mesa.</p>
+
+<div class="foot"><b>Instituto ELOS</b> · ELO Assessment · fase conceitual · jul/2026</div>
+</div>
+</body>
+</html>
